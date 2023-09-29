@@ -16,7 +16,7 @@ const showDrawer = ref(false)
 
 <template>
   <header
-    cclass="flex fixed backdrop-filter backdrop-blur-md top-0 z-40 w-full flex-none transition-colors duration-300 lg:z-50 border-b border-gray-950/10 dark:border-gray-50/[0.2] bg-[#0B0B0F] dark:bg-gray-950/[0.5]"
+    class="flex fixed backdrop-filter backdrop-blur-md top-0 z-40 w-full flex-none transition-colors duration-300 lg:z-50 border-b border-gray-950/10 dark:border-gray-50/[0.2] bg-[#0B0B0F] dark:bg-gray-950/[0.5]"
   >
     <!-- content -->
     <div
@@ -26,8 +26,7 @@ const showDrawer = ref(false)
       <div>
         <slot name="title">
           <NuxtLink to="/" class="font-bold text-lg text-primary-500">
-            <img src="@/assets/svg/logo/logo.svg" alt="" />
-            <span class="capitalize">{{ awesome.name }}</span>
+            <img src="/images/logo/logo.svg" alt="" />
           </NuxtLink>
         </slot>
       </div>
