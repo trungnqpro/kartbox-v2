@@ -22,7 +22,7 @@
 - [X] 📚 [Nuxt Layer Support](https://nuxt.com/docs/getting-started/layers#layers)
 - [X] 💨 [Tailwind CSS v3](https://tailwindcss.com/)
 - [X] ✨ [Headless UI](https://headlessui.dev/)
-- [X] 🔔 [Nuxt Icon](https://icones.js.org/)
+- [X] 🔔 [Nuxt Icon](https://icones.js.org/) (https://github.com/nuxt-modules/icon)
 - [X] 🛹 [State & Store Management (Pinia)](https://pinia.vuejs.org/)
 - [X] 📦 [Vue Composition Collection (Vueuse)](https://vueuse.org/)
 - [X] 🪝 Built-in Awesome Component & Layout

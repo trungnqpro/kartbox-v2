@@ -3,6 +3,7 @@ const { resolve } = createResolver(import.meta.url)
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
+import svgLoader from 'vite-svg-loader'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -105,6 +106,7 @@ export default defineNuxtConfig({
           ),
         ],
       }),
+      svgLoader(),
     ],
   },
 })

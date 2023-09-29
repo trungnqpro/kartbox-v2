@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 const { awesome } = useAppConfig()
+import IconCopy from '~/assets/svg/icons/copy.svg';
+
 definePageMeta({ layout: 'page' })
 useHead({ titleTemplate: '', title: awesome?.name || 'Nuxt 3 Awesome Starter' })
+
 </script>
 
 <template>
@@ -14,5 +17,6 @@ useHead({ titleTemplate: '', title: awesome?.name || 'Nuxt 3 Awesome Starter' })
         <option value="vi">vi</option>
       </select>
     </form>
+    <IconCopy fill="black" />
   </div>
 </template>
