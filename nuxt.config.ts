@@ -35,6 +35,7 @@ export default defineNuxtConfig({
     'nuxt-headlessui',
     'nuxt-icon',
     '@nuxtjs/color-mode',
+    'nuxt-purgecss',
     // management
     '@pinia/nuxt',
     '@vueuse/nuxt',

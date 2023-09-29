@@ -11,7 +11,6 @@ const menus = computed(
     (awesome?.layout?.navbar?.menus ||
       []) as AwesomeLayoutPageNavbarMenu[]
 )
-console.log("[menus]", awesome)
 
 // drawer
 const showDrawer = ref(false)
