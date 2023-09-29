@@ -13,28 +13,12 @@ export default defineAppConfig({
     layout: {
       navbar: {
         menus: [
-          { type: 'link', title: 'Blank', to: { name: 'blank' } },
-          { type: 'link', title: 'Post', to: { name: 'post' } },
-          { type: 'link', title: 'Test', to: { name: 'test' } },
-          {
-            type: 'dropdown',
-            title: 'Documentations',
-            children: [
-              {
-                type: 'link',
-                title: 'Components',
-                to: { name: 'docs-components' },
-              },
-            ],
-          },
-          { type: 'button', title: 'Setting', to: { name: 'setting' } },
-          // dynamic title
-          // {
-          //   type: 'button',
-          //   title: (nuxt) =>
-          //     (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',
-          //   to: (nuxt) => (nuxt._appConfig as AppConfigInput)?.awesome?.name || '',
-          // },
+          { type: 'link', title: 'Home', to: { name: 'blank' } },
+          { type: 'link', title: 'Kart ID', to: { name: 'post' } },
+          { type: 'link', title: 'Games', to: { name: 'test' } },
+          { type: 'link', title: 'Spaces', to: { name: 'test' } },
+          { type: 'link', title: 'Campaigns', to: { name: 'test' } },
+          { type: 'link', title: 'Marketplace', to: { name: 'test' } },
         ],
       },
       footer: {

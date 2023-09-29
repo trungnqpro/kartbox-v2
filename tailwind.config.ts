@@ -2,6 +2,23 @@ import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 
+const screens = {
+  sm: '480px',
+  md: '768px',
+  lg: '976px',
+  xl: '1440px',
+}
+
+const container = {
+  center: true,
+  padding: {
+    DEFAULT: '1.25rem',
+  },
+  screens: {
+    xl: '1440px',
+  },
+}
+
 const MyTheme = {
   colors: {
     green: {
@@ -61,6 +78,8 @@ export default <Partial<Config>>{
   ],
   theme: {
     extend: {
+      screens,
+      container,
       maxWidth: {
         '8xl': '90rem',
       },

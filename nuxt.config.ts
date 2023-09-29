@@ -63,6 +63,11 @@ export default defineNuxtConfig({
       global: true,
     },
     {
+      prefix: 'Page',
+      path: resolve('./components/page'),
+      global: true,
+    },
+    {
       prefix: 'Awesome',
       path: resolve('./components/awesome'),
       global: true,
