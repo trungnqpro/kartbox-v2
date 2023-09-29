@@ -22,13 +22,10 @@ export interface NuxtAwesomeAppConfig {
 
   /** layout config */
   layout?: {
-    /** page layout */
-    page?: {
-      /** navbar */
-      navbar?: {
-        /** menus in navbar */
-        menus?: AwesomeLayoutPageNavbarMenu[]
-      }
+    /** navbar */
+    navbar?: {
+      /** menus in navbar */
+      menus?: AwesomeLayoutPageNavbarMenu[]
     }
     /** footer */
     footer?: {
@@ -77,7 +74,7 @@ declare module '@nuxt/schema' {
 
 export default defineAppConfig({
   awesome: {
-    name: 'Nuxt 3 Awesome Starter',
+    name: 'My Nuxt 3',
     description:
       'a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.',
     project: {

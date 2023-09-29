@@ -4,12 +4,12 @@ useHead({ title: 'Blank Page' })
 </script>
 
 <template>
-  <LayoutPageWrapper>
-    <LayoutPageHeader>
-      <LayoutPageTitle text="Components Page" class="capitalize" />
-    </LayoutPageHeader>
-    <LayoutPageSection>
-      <LayoutPageSectionTitle text="Coming Soon" />
-    </LayoutPageSection>
-  </LayoutPageWrapper>
+  <LayoutWrapper>
+    <LayoutHeader>
+      <LayoutTitle text="Components Page" class="capitalize" />
+    </LayoutHeader>
+    <LayoutSection>
+      <LayoutSectionTitle text="Coming Soon" />
+    </LayoutSection>
+  </LayoutWrapper>
 </template>

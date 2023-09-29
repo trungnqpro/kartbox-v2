@@ -8,11 +8,11 @@ useHead({ title: 'Posts' })
 </script>
 
 <template>
-  <LayoutPageWrapper>
-    <LayoutPageHeader>
-      <LayoutPageTitle text="Posts" class="capitalize" />
-    </LayoutPageHeader>
-    <LayoutPageSection>
+  <LayoutWrapper>
+    <LayoutHeader>
+      <LayoutTitle text="Posts" class="capitalize" />
+    </LayoutHeader>
+    <LayoutSection>
       <ContentList path="/post">
         <template #default="{ list }">
           <div
@@ -55,6 +55,6 @@ useHead({ title: 'Posts' })
           <p>No articles found.</p>
         </template>
       </ContentList>
-    </LayoutPageSection>
-  </LayoutPageWrapper>
+    </LayoutSection>
+  </LayoutWrapper>
 </template>

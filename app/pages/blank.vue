@@ -4,17 +4,17 @@ useHead({ title: 'Blank Page' })
 </script>
 
 <template>
-  <LayoutPageWrapper>
-    <LayoutPageHeader>
-      <LayoutPageTitle text="Blank Page" class="capitalize" />
-    </LayoutPageHeader>
-    <LayoutPageSection>
-      <LayoutPageSectionTitle text="Section Title" />
+  <LayoutWrapper>
+    <LayoutHeader>
+      <LayoutTitle text="Blank Page" class="capitalize" />
+    </LayoutHeader>
+    <LayoutSection>
+      <LayoutSectionTitle text="Section Title" />
       <div>My Content</div>
-    </LayoutPageSection>
-    <LayoutPageSection>
-      <LayoutPageSectionTitle text="Another Section" />
+    </LayoutSection>
+    <LayoutSection>
+      <LayoutSectionTitle text="Another Section" />
       <div>My Content</div>
-    </LayoutPageSection>
-  </LayoutPageWrapper>
+    </LayoutSection>
+  </LayoutWrapper>
 </template>

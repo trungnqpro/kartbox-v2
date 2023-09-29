@@ -3,7 +3,7 @@ import { RouteLocationRaw } from 'vue-router'
 import {
   AwesomeLayoutPageNavbarMenu,
   AwesomeLayoutPageNavbarMenuDropdownItem,
-} from '../../../../types'
+} from '../../../types'
 import { NuxtApp } from '#app'
 
 const nuxtApp = useNuxtApp()
@@ -34,7 +34,7 @@ const isActive = computed(() => {
 
 <template>
   <template v-if="menu.type !== 'dropdown'">
-    <LayoutPageNavbarMenuItem :menu="menu" />
+    <LayoutMenuItem :menu="menu" />
   </template>
   <template v-else-if="menu.children && menu.children.length > 0">
     <HeadlessPopover v-slot="{ open }">
@@ -63,7 +63,7 @@ const isActive = computed(() => {
         >
           <div class="grid grid-cols-1">
             <template v-for="(child, j) in menu.children" :key="j">
-              <LayoutPageNavbarMenuItem :menu="child" is-dropdown />
+              <LayoutMenuItem :menu="child" is-dropdown />
             </template>
           </div>
         </HeadlessPopoverPanel>

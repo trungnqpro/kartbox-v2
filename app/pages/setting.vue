@@ -57,19 +57,19 @@ const validate = async () => {
 </script>
 
 <template>
-  <LayoutPageWrapper>
-    <LayoutPageSection class="mb-0">
+  <LayoutWrapper>
+    <LayoutSection class="mb-0">
       <AwesomeAlertBanner
         type="success"
         title="This is a page for testing purposes"
         text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         class="mb-6"
       />
-    </LayoutPageSection>
-    <LayoutPageHeader>
-      <LayoutPageTitle text="Setting" class="capitalize" />
-    </LayoutPageHeader>
-    <LayoutPageSection>
+    </LayoutSection>
+    <LayoutHeader>
+      <LayoutTitle text="Setting" class="capitalize" />
+    </LayoutHeader>
+    <LayoutSection>
       <div class="mb-6">
         <HeadlessTabGroup
           as="div"
@@ -230,6 +230,6 @@ const validate = async () => {
           </HeadlessTabPanels>
         </HeadlessTabGroup>
       </div>
-    </LayoutPageSection>
-  </LayoutPageWrapper>
+    </LayoutSection>
+  </LayoutWrapper>
 </template>

@@ -8,9 +8,10 @@ const nuxtApp = useNuxtApp()
 
 const menus = computed(
   () =>
-    (awesome?.layout?.page?.navbar?.menus ||
+    (awesome?.layout?.navbar?.menus ||
       []) as AwesomeLayoutPageNavbarMenu[]
 )
+console.log("[menus]", awesome)
 
 // drawer
 const showDrawer = ref(false)
@@ -45,7 +46,7 @@ const showDrawer = ref(false)
         <div class="flex space-x-4 text-sm items-center">
           <!-- dynamic menus -->
           <template v-for="(item, i) in menus" :key="i">
-            <LayoutPageNavbarMenuWrapper :menu="item" />
+            <LayoutMenuWrapper :menu="item" />
           </template>
         </div>
         <!-- others -->
@@ -54,7 +55,7 @@ const showDrawer = ref(false)
           <!-- <AwesomeLink class="text-gray-400 hover:text-gray-100">
             <Icon name="la:language" />
           </AwesomeLink> -->
-          <LayoutPageNavbarDropdownThemeSwitcher />
+          <LayoutDropdownThemeSwitcher />
           <AwesomeLink
             v-if="awesome?.project?.links?.github"
             class="dark:text-gray-400 text-gray-600"
@@ -184,7 +185,7 @@ const showDrawer = ref(false)
             <div class="mt-2 mb-2 text-sm font-bold capitalize">
               Change Theme
             </div>
-            <LayoutPageNavbarDropdownThemeSwitcher type="select-box" />
+            <LayoutDropdownThemeSwitcher type="select-box" />
           </div>
         </AwesomeActionSheetItem>
       </AwesomeActionSheetGroup>

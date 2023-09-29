@@ -52,8 +52,13 @@ export default defineNuxtConfig({
 
   components: [
     {
+      prefix: 'Common',
+      path: resolve('./components/common'),
+      global: true,
+    },
+    {
       prefix: 'Layout',
-      path: resolve('./components/layouts'),
+      path: resolve('./components/layout'),
       global: true,
     },
     {

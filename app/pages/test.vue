@@ -9,12 +9,12 @@ useHead({ title: 'Test Page' })
 </script>
 
 <template>
-  <LayoutPageWrapper>
-    <LayoutPageHeader>
-      <LayoutPageTitle text="Testing" class="capitalize" />
-    </LayoutPageHeader>
-    <LayoutPageSection>
-      <LayoutPageSectionTitle text="Stores Test" />
+  <LayoutWrapper>
+    <LayoutHeader>
+      <LayoutTitle text="Testing" class="capitalize" />
+    </LayoutHeader>
+    <LayoutSection>
+      <LayoutSectionTitle text="Stores Test" />
       <!-- store::counter -->
       <div class="mb-6">
         <div class="mb-2">Counter : {{ counter.count }}</div>
@@ -81,6 +81,6 @@ useHead({ title: 'Test Page' })
           </div>
         </div>
       </div>
-    </LayoutPageSection>
-  </LayoutPageWrapper>
+    </LayoutSection>
+  </LayoutWrapper>
 </template>
