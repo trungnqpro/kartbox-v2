@@ -23,7 +23,7 @@ const LIST = [
 ]
 const HomeItem = {
   title: 'User identity in Kartbox ecosystem',
-  contents: 'Kart',
+  contents: 'Kart ID',
   detail:
     'Kartbox is a magical space where verified digital information appears everywhere, and we are elevating them to new heights.',
 }
@@ -35,6 +35,7 @@ const HomeItem = {
       :title="HomeItem.title"
       :contents="HomeItem.contents"
       :detail="HomeItem.detail"
+      detailClass="max-w-[50%]"
     />
     <div
       class="flex lg:justify-center w-full px-5 gap-x-[19px] overflow-x-auto pt-[5%]"

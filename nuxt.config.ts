@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     // contents,
     '@nuxt/content',
-
+    'nuxt-swiper'
     // todo: feat/localization
     // '@nuxtjs/i18n'
   ],
