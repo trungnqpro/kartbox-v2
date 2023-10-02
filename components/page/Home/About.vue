@@ -16,7 +16,7 @@
           with customer loyalty programs based on rewards.
         </div>
         <div
-          class="text-[22px] gap-y-[20px] flex justify-between max-w-[60%] pt-[5%]"
+          class="text-[22px] gap-y-[20px] flex justify-between max-w-[70%] pt-[5%]"
         >
           <button class="w-[254px] h-[70px] rounded bg-[#FF9900]">
             Explore More
