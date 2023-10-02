@@ -43,7 +43,7 @@ const GameItem = [
     />
     <div class="flex gap-4 justify-center pt-8">
       <div v-for="(item, idx) in GameItem" :key="idx">
-        <PageHomeGameItems
+        <PageHomeItemsGameItems
           class="lg:max-w-[388px]"
           :title="item.title"
           :thumb="item.thumb"

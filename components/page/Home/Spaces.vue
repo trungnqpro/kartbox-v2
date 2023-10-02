@@ -5,6 +5,32 @@ const HomeItem = {
   detail:
     'Kartbox Space is where your project exists on Kartbox. It is a public profile that users can track, view, and participate in the campaigns you create. Space administrators can also log into their Space to manage campaigns and NFT contracts. Of course, you can also use Space as your brand page and add discordant information, media, Twitter, and other details to let Galaxy users know more about your brand.',
 }
+const SwiperItem = [
+  {
+    name: 'John Smith',
+    nickName: '@Jsmith',
+    detail: '1 campaign is active !',
+    symbol: '/images/icons/Space_1.png',
+    icon: '/images/icons/Certificate.png',
+    Categories: 'Bridge, NFT, Web3, Infrastructure, Layer 2',
+  },
+  {
+    name: 'John Smith',
+    nickName: '@Jsmith',
+    detail: '1 campaign is active !',
+    symbol: '/images/icons/Space_2.png',
+    icon: '/images/icons/Certificate.png',
+    Categories: 'Bridge, NFT, Web3, Infrastructure, Layer 2',
+  },
+  {
+    name: 'John Smith',
+    nickName: '@Jsmith',
+    detail: '1 campaign is active !',
+    symbol: '/images/icons/Space_3.png',
+    icon: '/images/icons/Certificate.png',
+    Categories: 'Bridge, NFT, Web3, Infrastructure, Layer 2',
+  },
+]
 </script>
 
 <template>
@@ -15,22 +41,52 @@ const HomeItem = {
       :detail="HomeItem.detail"
       detailClass="max-w-[60%] text-[18px]"
     />
-    <div>
+    <div class="pt-[5%]">
       <Swiper
-        :width="240"
-        :modules="[SwiperAutoplay, SwiperEffectCube]"
+        class="swiper-card "
+        :width="425"
+        :modules="[SwiperAutoplay, SwiperZoom]"
         :slides-per-view="1"
-        :loop="true"
-        :effect="'cards'"
-        :autoplay="{
-          delay: 8000,
-          disableOnInteraction: true,
+        :centeredSlides="true"
+        :loop="false"
+        :effect="'creative'"
+        :creative-effect="{
+          prev: {
+            shadow: false,
+            translate: ['-20%', 0, -1],
+          },
+          next: {
+            translate: ['100%', 0, 0],
+          },
         }"
       >
-        <SwiperSlide v-for="slide in 10" :key="slide">
-          <strong>{{ slide }}</strong>
+        <SwiperSlide v-for="(slide, idx) in SwiperItem" :key="idx">
+          <PageHomeItemsSpaceItems
+            class="min-w-[414px] max-w-[414px]"
+            :detail="slide.detail"
+            :symbol="slide.symbol"
+            :name="slide.name"
+            :nickName="slide.nickName"
+            :Categories="slide.Categories"
+            :icon="slide.icon"
+          />
         </SwiperSlide>
+        <PageHomeSwiperControls />
       </Swiper>
     </div>
   </div>
 </template>
+
+<style>
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-wrapper {
+  justify-content: center;
+}
+.swiper-card {
+    position: relative;
+}
+</style>

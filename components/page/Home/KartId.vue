@@ -40,10 +40,9 @@ const HomeItem = {
     <div
       class="flex lg:justify-center w-full px-5 gap-x-[19px] overflow-x-auto pt-[5%]"
     >
-      <PageHomeKartItem
+      <PageHomeItemsKartItem
         v-for="(item, idx) in LIST"
         :key="idx"
-        data-aos="zoom-in"
         class="min-w-[308px] max-w-[308px]"
         :detail="item.detail"
         :symbol="item.symbol"
