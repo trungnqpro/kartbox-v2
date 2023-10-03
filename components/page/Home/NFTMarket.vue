@@ -63,18 +63,42 @@ const NFT_Cards = [
         </div>
       </div>
     </div>
-    <div class="flex gap-3 flex justify-center pt-[5%]">
-      <PageHomeItemsNFTItems
-        v-for="(item, idx) in NFT_Cards"
-        :key="idx"
-        :level="item.level"
-        :img="item.img"
-        :difficult="item.difficult"
-        :name="item.name"
-        :nameNFt="item.nameNFt"
-        :Price="item.Price"
-        class="lg:max-w-[388px]"
-      />
+    <div class="pt-[5%]">
+      <Swiper
+        class="swiper-card"
+        :width="425"
+        :modules="[SwiperAutoplay, SwiperEffectCards]"
+        :loop="true"
+        :effect="'creative'"
+      >
+        <SwiperSlide v-for="(item, idx) in NFT_Cards" :key="idx">
+          <PageHomeItemsNFTItems
+            :key="idx"
+            :level="item.level"
+            :img="item.img"
+            :difficult="item.difficult"
+            :name="item.name"
+            :nameNFt="item.nameNFt"
+            :Price="item.Price"
+            class="lg:max-w-[388px]"
+          />
+        </SwiperSlide>
+        <PageHomeSwiperControls />
+      </Swiper>
     </div>
   </div>
 </template>
+
+<style>
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-wrapper {
+  justify-content: center;
+}
+.swiper-card {
+    position: relative;
+}
+</style>

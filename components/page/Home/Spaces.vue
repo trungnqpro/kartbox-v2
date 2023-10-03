@@ -48,11 +48,11 @@ const SwiperItem = [
         :modules="[SwiperAutoplay, SwiperZoom]"
         :slides-per-view="1"
         :centeredSlides="true"
-        :loop="false"
+        :loop="true"
         :effect="'creative'"
       >
         <SwiperSlide v-for="(slide, idx) in SwiperItem" :key="idx">
-          <PageHomeItemsSpaceItems
+          <PageHomeItemsSpaceItem
             class="min-w-[414px] max-w-[414px]"
             :detail="slide.detail"
             :symbol="slide.symbol"
