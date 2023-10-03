@@ -50,15 +50,6 @@ const SwiperItem = [
         :centeredSlides="true"
         :loop="false"
         :effect="'creative'"
-        :creative-effect="{
-          prev: {
-            shadow: false,
-            translate: ['-20%', 0, -1],
-          },
-          next: {
-            translate: ['100%', 0, 0],
-          },
-        }"
       >
         <SwiperSlide v-for="(slide, idx) in SwiperItem" :key="idx">
           <PageHomeItemsSpaceItems

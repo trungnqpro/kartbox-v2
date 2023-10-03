@@ -10,22 +10,28 @@ const GameItem = [
     img: '/images/home/Campaigns_1.png',
     thumb: 'Scroll X Vooi Incentivized Testnet Campaign',
     title: 'Explore Mode Onchain Functionality on Testnet, Trade to Mint NFT &amp; Earn Loyalty Points!',
-    BtnTitle: 'Play now',
     active: true,
+    imgCamp: '/images/icons/campaignicon_1.png',
+    titleCamp: 'PancakeSwap',
+    icon: '/images/icons/Certificate.png'
   },
   {
     img: '/images/home/Campaigns_2.png',
     thumb: 'Scroll X Vooi Incentivized Testnet Campaign',
     title: 'Explore Mode Onchain Functionality on Testnet, Trade to Mint NFT &amp; Earn Loyalty Points!',
-    BtnTitle: 'Play now',
     active: true,
+    imgCamp: '/images/icons/campaignicon_2.png',
+    titleCamp: 'PancakeSwap',
+    icon: '/images/icons/Certificate.png'
   },
   {
     img: '/images/home/Campaigns_3.png',
     thumb: 'Scroll X Vooi Incentivized Testnet Campaign',
     title: 'Explore Mode Onchain Functionality on Testnet, Trade to Mint NFT &amp; Earn Loyalty Points!',
-    BtnTitle: 'Coming soon',
     active: false,
+    imgCamp: '/images/icons/campaignicon_3.png',
+    titleCamp: 'PancakeSwap',
+    icon: '/images/icons/Certificate.png'
   },
 ]
 </script>
@@ -45,8 +51,10 @@ const GameItem = [
           :title="item.title"
           :thumb="item.thumb"
           :img="item.img"
-          :BtnTitle="item.BtnTitle"
           :active="item.active"
+          :imgCamp="item.imgCamp"
+          :titleCamp="item.titleCamp"
+          :icon="item.icon"
         />
       </div>
     </div>
