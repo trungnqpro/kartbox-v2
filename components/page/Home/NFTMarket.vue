@@ -65,11 +65,14 @@ const NFT_Cards = [
     </div>
     <div class="pt-[5%]">
       <Swiper
-        class="swiper-card"
-        :width="425"
-        :modules="[SwiperAutoplay, SwiperEffectCards]"
-        :loop="true"
-        :effect="'creative'"
+      :effect="'coverflow'"
+      :centeredSlides="true"
+      :slidesPerView="3"
+      :coverflowEffect="{
+      }"
+      :pagination="true"
+      :modules="[SwiperEffectCoverflow]"
+      class="mySwiper"
       >
         <SwiperSlide v-for="(item, idx) in NFT_Cards" :key="idx">
           <PageHomeItemsNFTItems
@@ -80,7 +83,6 @@ const NFT_Cards = [
             :name="item.name"
             :nameNFt="item.nameNFt"
             :Price="item.Price"
-            class="lg:max-w-[388px]"
           />
         </SwiperSlide>
         <PageHomeSwiperControls />
@@ -90,15 +92,10 @@ const NFT_Cards = [
 </template>
 
 <style>
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.swiper-slide-shadow-left {
+  background-image: unset !important;
 }
-.swiper-wrapper {
-  justify-content: center;
-}
-.swiper-card {
-    position: relative;
+.swiper-slide-shadow-right {
+  background-image: unset !important;
 }
 </style>

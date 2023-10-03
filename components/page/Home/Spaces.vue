@@ -43,13 +43,12 @@ const SwiperItem = [
     />
     <div class="pt-[5%]">
       <Swiper
-        class="swiper-card "
-        :width="425"
-        :modules="[SwiperAutoplay, SwiperZoom]"
-        :slides-per-view="1"
+        ref="{swiperRef}"
+        :slidesPerView="3"
         :centeredSlides="true"
-        :loop="true"
-        :effect="'creative'"
+        :spaceBetween="0"
+        :modules="[SwiperNavigation]"
+        class="mySwiper"
       >
         <SwiperSlide v-for="(slide, idx) in SwiperItem" :key="idx">
           <PageHomeItemsSpaceItem
@@ -78,6 +77,6 @@ const SwiperItem = [
   justify-content: center;
 }
 .swiper-card {
-    position: relative;
+  position: relative;
 }
 </style>
