@@ -48,46 +48,57 @@ const NFT_Cards = [
 </script>
 
 <template>
-  <div class="container pb-[10%]">
-    <PageHomeItemHome
-      :title="HomeItem.title"
-      :contents="HomeItem.contents"
-      :detail="HomeItem.detail"
-      detailClass="max-w-[60%] text-[18px]"
-    />
-    <div class="flex flex-row justify-center gap-8 pt-5">
-      <div class="text-[#f90] flex" v-for="(item, idx) in BoxRaf" :key="idx">
-        <a :href="item.link">{{ item.name }}</a>
-        <div class="pt-1 pl-2">
-          <img src="/images/icons/link.png" alt="" />
+  <div class="pb-[10%] relative">
+    <div class="container">
+      <PageHomeItemHome
+        :title="HomeItem.title"
+        :contents="HomeItem.contents"
+        :detail="HomeItem.detail"
+        detailClass="max-w-[60%] text-[18px]"
+      />
+      <div class="flex flex-row justify-center gap-8 pt-5">
+        <div class="text-[#f90] flex" v-for="(item, idx) in BoxRaf" :key="idx">
+          <a :href="item.link">{{ item.name }}</a>
+          <div class="pt-1 pl-2">
+            <img src="/images/icons/link.png" alt="" />
+          </div>
         </div>
       </div>
+      <div class="pt-[5%]">
+        <Swiper
+          :effect="'coverflow'"
+          :centeredSlides="true"
+          :slidesPerView="3"
+          :coverflowEffect="{}"
+          :pagination="true"
+          :modules="[SwiperEffectCoverflow]"
+          class="mySwiper"
+        >
+          <SwiperSlide v-for="(item, idx) in NFT_Cards" :key="idx">
+            <PageHomeItemsNFTItems
+              :key="idx"
+              :level="item.level"
+              :img="item.img"
+              :difficult="item.difficult"
+              :name="item.name"
+              :nameNFt="item.nameNFt"
+              :Price="item.Price"
+            />
+          </SwiperSlide>
+          <PageHomeSwiperControls />
+        </Swiper>
+      </div>
     </div>
-    <div class="pt-[5%]">
-      <Swiper
-      :effect="'coverflow'"
-      :centeredSlides="true"
-      :slidesPerView="3"
-      :coverflowEffect="{
-      }"
-      :pagination="true"
-      :modules="[SwiperEffectCoverflow]"
-      class="mySwiper"
-      >
-        <SwiperSlide v-for="(item, idx) in NFT_Cards" :key="idx">
-          <PageHomeItemsNFTItems
-            :key="idx"
-            :level="item.level"
-            :img="item.img"
-            :difficult="item.difficult"
-            :name="item.name"
-            :nameNFt="item.nameNFt"
-            :Price="item.Price"
-          />
-        </SwiperSlide>
-        <PageHomeSwiperControls />
-      </Swiper>
-    </div>
+    <img
+      class="absolute top-[-40%] right-[0]"
+      src="/images/home/Vector_2.png"
+      alt=""
+    />
+    <img
+      class="absolute left-[17%] top-[80%]"
+      src="/images/home/Vector_3.png"
+      alt=""
+    />
   </div>
 </template>
 

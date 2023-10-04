@@ -34,36 +34,43 @@ const SwiperItem = [
 </script>
 
 <template>
-  <div class="container pb-[10%]">
-    <PageHomeItemHome
-      :title="HomeItem.title"
-      :contents="HomeItem.contents"
-      :detail="HomeItem.detail"
-      detailClass="max-w-[60%] text-[18px]"
-    />
-    <div class="pt-[5%]">
-      <Swiper
-        ref="{swiperRef}"
-        :slidesPerView="3"
-        :centeredSlides="true"
-        :spaceBetween="0"
-        :modules="[SwiperNavigation]"
-        class="mySwiper"
-      >
-        <SwiperSlide v-for="(slide, idx) in SwiperItem" :key="idx">
-          <PageHomeItemsSpaceItem
-            class="min-w-[414px] max-w-[414px]"
-            :detail="slide.detail"
-            :symbol="slide.symbol"
-            :name="slide.name"
-            :nickName="slide.nickName"
-            :Categories="slide.Categories"
-            :icon="slide.icon"
-          />
-        </SwiperSlide>
-        <PageHomeSwiperControls />
-      </Swiper>
+  <div class=" pb-[10%] relative">
+    <div class="container">
+      <PageHomeItemHome
+        :title="HomeItem.title"
+        :contents="HomeItem.contents"
+        :detail="HomeItem.detail"
+        detailClass="max-w-[60%] text-[18px]"
+      />
+      <div class="pt-[5%]">
+        <Swiper
+          ref="{swiperRef}"
+          :slidesPerView="3"
+          :centeredSlides="true"
+          :spaceBetween="0"
+          :modules="[SwiperNavigation]"
+          class="mySwiper"
+        >
+          <SwiperSlide v-for="(slide, idx) in SwiperItem" :key="idx">
+            <PageHomeItemsSpaceItem
+              class="min-w-[414px] max-w-[414px]"
+              :detail="slide.detail"
+              :symbol="slide.symbol"
+              :name="slide.name"
+              :nickName="slide.nickName"
+              :Categories="slide.Categories"
+              :icon="slide.icon"
+            />
+          </SwiperSlide>
+          <PageHomeSwiperControls />
+        </Swiper>
+      </div>
     </div>
+    <img
+      class="absolute top-[10%] left-[-5%]"
+      src="/images/home/Vector.png"
+      alt=""
+    />
   </div>
 </template>
 

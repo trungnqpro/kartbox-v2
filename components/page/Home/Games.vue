@@ -12,7 +12,7 @@ const GameItem = [
     iconThumb: '/images/icons/game-control-act.png',
     title: 'Collect, Combine, Build, P2Earn',
     BtnTitle: 'Play now',
-    active: true
+    active: true,
   },
   {
     img: '/images/home/Game_2.png',
@@ -20,7 +20,7 @@ const GameItem = [
     iconThumb: '/images/icons/game-control-act.png',
     title: 'Collect, Combine, Build, P2Earn',
     BtnTitle: 'Play now',
-    active: true
+    active: true,
   },
   {
     img: '/images/home/Game_3.png',
@@ -28,31 +28,38 @@ const GameItem = [
     iconThumb: '/images/icons/game-control-dis.png',
     title: 'Coming soon',
     BtnTitle: 'Coming soon',
-    active: false
+    active: false,
   },
 ]
 </script>
 
 <template>
-  <div class="container pb-[10%]">
-    <PageHomeItemHome
-      :title="HomeItem.title"
-      :contents="HomeItem.contents"
-      :detail="HomeItem.detail"
-      detailClass="max-w-[60%] text-[18px]"
-    />
-    <div class="flex gap-4 justify-center pt-8">
-      <div v-for="(item, idx) in GameItem" :key="idx">
-        <PageHomeItemsGameItems
-          class="lg:max-w-[388px]"
-          :title="item.title"
-          :thumb="item.thumb"
-          :iconThumb="item.iconThumb"
-          :img="item.img"
-          :BtnTitle="item.BtnTitle"
-          :active="item.active"
-        />
+  <div class="pb-[10%] relative">
+    <div class="container">
+      <PageHomeItemHome
+        :title="HomeItem.title"
+        :contents="HomeItem.contents"
+        :detail="HomeItem.detail"
+        detailClass="max-w-[60%] text-[18px]"
+      />
+      <div class="flex gap-4 justify-center pt-8">
+        <div v-for="(item, idx) in GameItem" :key="idx">
+          <PageHomeItemsGameItems
+            class="lg:max-w-[388px]"
+            :title="item.title"
+            :thumb="item.thumb"
+            :iconThumb="item.iconThumb"
+            :img="item.img"
+            :BtnTitle="item.BtnTitle"
+            :active="item.active"
+          />
+        </div>
       </div>
     </div>
+    <img
+      class="absolute top-[-50%] right-0"
+      src="/images/home/Vector_2.png"
+      alt=""
+    />
   </div>
 </template>

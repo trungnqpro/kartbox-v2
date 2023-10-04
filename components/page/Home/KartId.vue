@@ -30,7 +30,7 @@ const HomeItem = {
 </script>
 
 <template>
-  <div class="container py-[10%] pt-[20%]">
+  <div class="container py-[10%] pt-[20%] relative">
     <PageHomeItemHome
       :title="HomeItem.title"
       :contents="HomeItem.contents"
@@ -49,4 +49,5 @@ const HomeItem = {
       />
     </div>
   </div>
+  <img class="absolute top-[50%] left-[-10%]" src="/images/home/Vector.png" alt="">
 </template>
