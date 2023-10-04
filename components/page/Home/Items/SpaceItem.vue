@@ -1,3 +1,31 @@
+<script setup lang="ts">
+const props = defineProps({
+  name: {
+    type: String,
+    default: '',
+  },
+  detail: {
+    type: String,
+    default: '',
+  },
+  symbol: {
+    type: String,
+    default: '',
+  },
+  nickName: {
+    type: String,
+    default: '',
+  },
+  Categories: {
+    type: String,
+    default: '',
+  },
+  icon: {
+    type: String,
+    default: '',
+  },
+})
+</script>
 <template>
   <div
     class="advantage-card relative rounded-[15px] pt-[30px] pb-[38px] px-[30px]"
@@ -29,12 +57,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: ['name', 'detail', 'symbol', 'nickName', 'Categories', 'icon'],
-}
-</script>
 
 <style scoped>
 .advantage-card {

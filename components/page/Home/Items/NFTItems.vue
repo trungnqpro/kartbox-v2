@@ -1,3 +1,31 @@
+<script setup lang="ts">
+const props = defineProps({
+  level: {
+    type: String,
+    default: '',
+  },
+  difficult: {
+    type: Number,
+    default: '',
+  },
+  img: {
+    type: String,
+    default: '',
+  },
+  name: {
+    type: String,
+    default: '',
+  },
+  nameNFt: {
+    type: String,
+    default: '',
+  },
+  Price: {
+    type: String,
+    default: '',
+  },
+})
+</script>
 <template>
   <div>
     <div
@@ -30,18 +58,14 @@
           <div class="">
             {{ nameNFt }}
           </div>
-          <div class="flex"><img class="pr-2" src="/images/home/dragon_logo.png" /> {{ Price }}</div>
+          <div class="flex">
+            <img class="pr-2" src="/images/home/dragon_logo.png" /> {{ Price }}
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: ['level', 'difficult', 'img', 'name', 'nameNFt', 'Price'],
-}
-</script>
 
 <style scoped>
 .article-item {

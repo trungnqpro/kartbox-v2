@@ -1,3 +1,31 @@
+<script setup lang="ts">
+const props = defineProps({
+  title: {
+    type: String,
+    default: '',
+  },
+  BtnTitle: {
+    type: String,
+    default: '',
+  },
+  thumb: {
+    type: String,
+    default: '',
+  },
+  img: {
+    type: String,
+    default: '',
+  },
+  iconThumb: {
+    type: String,
+    default: '',
+  },
+  active: {
+    type: Boolean,
+    default: true,
+  },
+})
+</script>
 <template>
   <div>
     <div
@@ -29,12 +57,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  props: ['title', 'BtnTitle', 'thumb', 'img', 'iconThumb', 'active'],
-}
-</script>
 
 <style scoped>
 .article-item {
