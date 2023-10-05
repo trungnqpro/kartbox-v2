@@ -34,7 +34,7 @@ const SwiperItem = [
 </script>
 
 <template>
-  <div class=" pb-[10%] relative">
+  <div id="Spaces" class=" pb-[10%] relative">
     <div class="container">
       <PageHomeItemHome
         :title="HomeItem.title"

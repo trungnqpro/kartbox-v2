@@ -17,8 +17,8 @@ const props = defineProps({
     default: '',
   },
   active: {
-    type: String,
-    default: '',
+    type: Boolean,
+    default: true,
   },
   titleCamp: {
     type: String,

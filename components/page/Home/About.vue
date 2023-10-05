@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>
+  <div id="home">
     <div class="flex justify-between pt-[70px] container">
       <div class="text-[48px] font-semibold gap-y-[20px]">
         <div>

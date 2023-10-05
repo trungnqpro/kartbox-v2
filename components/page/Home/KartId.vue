@@ -30,24 +30,30 @@ const HomeItem = {
 </script>
 
 <template>
-  <div class="container py-[10%] pt-[20%] relative">
-    <PageHomeItemHome
-      :title="HomeItem.title"
-      :contents="HomeItem.contents"
-      :detail="HomeItem.detail"
-      detailClass="max-w-[50%]"
-    />
-    <div
-      class="flex lg:justify-center w-full px-5 gap-x-[19px] overflow-x-auto pt-[5%]"
-    >
-      <PageHomeItemsKartItem
-        v-for="(item, idx) in LIST"
-        :key="idx"
-        class="min-w-[308px] max-w-[308px]"
-        :detail="item.detail"
-        :symbol="item.symbol"
+  <div id="KartId">
+    <div class="container py-[10%] pt-[20%] relative">
+      <PageHomeItemHome
+        :title="HomeItem.title"
+        :contents="HomeItem.contents"
+        :detail="HomeItem.detail"
+        detailClass="max-w-[50%]"
       />
+      <div
+        class="flex lg:justify-center w-full px-5 gap-x-[19px] overflow-x-auto pt-[5%]"
+      >
+        <PageHomeItemsKartItem
+          v-for="(item, idx) in LIST"
+          :key="idx"
+          class="min-w-[308px] max-w-[308px]"
+          :detail="item.detail"
+          :symbol="item.symbol"
+        />
+      </div>
     </div>
+    <img
+      class="absolute top-[50%] left-[-10%]"
+      src="/images/home/Vector.png"
+      alt=""
+    />
   </div>
-  <img class="absolute top-[50%] left-[-10%]" src="/images/home/Vector.png" alt="">
 </template>

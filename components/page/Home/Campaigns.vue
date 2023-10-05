@@ -37,7 +37,7 @@ const GameItem = [
 </script>
 
 <template>
-  <div class="container pb-[10%]">
+  <div id="Campaigns" class="container pb-[10%]">
     <PageHomeItemHome
       :title="HomeItem.title"
       :contents="HomeItem.contents"

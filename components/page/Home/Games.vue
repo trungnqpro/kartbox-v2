@@ -34,7 +34,7 @@ const GameItem = [
 </script>
 
 <template>
-  <div class="pb-[10%] relative">
+  <div id="Games" class="pb-[10%] relative">
     <div class="container">
       <PageHomeItemHome
         :title="HomeItem.title"

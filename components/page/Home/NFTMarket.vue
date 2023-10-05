@@ -48,7 +48,7 @@ const NFT_Cards = [
 </script>
 
 <template>
-  <div class="pb-[10%] relative">
+  <div id="NFT_Market" class="pb-[10%] relative">
     <div class="container">
       <PageHomeItemHome
         :title="HomeItem.title"
