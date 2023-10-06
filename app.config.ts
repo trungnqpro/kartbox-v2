@@ -1,9 +1,6 @@
-import type { RouteLocationRaw } from 'vue-router'
-import {
-  AwesomeLayoutPageNavbarMenu,
-  AwesomeLayoutPageNavbarMenuDropdownItem,
-} from './types'
 import { NuxtApp } from '#app'
+import type { RouteLocationRaw } from 'vue-router'
+import { AwesomeLayoutPageNavbarMenu } from './types'
 
 export interface NuxtAwesomeAppConfig {
   /** title name */
@@ -83,10 +80,8 @@ export default defineAppConfig({
       },
     },
     layout: {
-      page: {
-        navbar: {
-          menus: [],
-        },
+      navbar: {
+        menus: [],
       },
       footer: {
         year: new Date().getFullYear(),
