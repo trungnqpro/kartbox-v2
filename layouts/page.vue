@@ -4,6 +4,6 @@
     <LayoutContent>
       <slot />
     </LayoutContent>
-    <LayoutFooter class="h-[52px] md:h-[42px]" />
+    <LayoutFooter />
   </div>
 </template>

@@ -10,5 +10,10 @@ useHead({ titleTemplate: '', title: awesome?.name || 'Nuxt 3 Awesome Starter' })
   <div>
     <PageHomeAbout />
     <PageHomeKartId />
+    <PageHomeGames />
+    <PageHomeSpaces />
+    <PageHomeCampaigns />
+    <PageHomeNFTMarket />
+    <PageHomeContacts />
   </div>
 </template>

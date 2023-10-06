@@ -1,0 +1,65 @@
+.sidebar{
+    width: 100%;
+	display: inline-table;
+	margin-bottom: 20px;
+	margin-right: 25px;
+
+	@media only screen and (min-width: 1200px) {
+        max-width: 265px;
+        flex: 1 0 265px;
+	}
+
+	.sidebar-heading{
+		padding:20px;
+		border-bottom: 0;
+	}
+	.sidebar-body{
+		border-top: 0;
+		ul{
+			list-style: none;
+
+			li{
+				a{
+                    padding: 1.1rem 1.5rem;
+                    display: flex;
+                    align-items: center;
+					background: transparent;
+					color:#fff;
+
+					&.active, &.nuxt-link-exact-active{
+                        background: #FF9500;
+                        color: #FF9500;
+					}
+
+					&:any-link:hover{
+                        background: 0.5rem solid #FF9500;
+					}
+
+					.icon-item{
+						float: left;
+					    margin-right: 5px;
+					    width: 30px;
+					    text-align: center;
+					}
+
+					.badge {
+                        margin-left: auto;
+                    }
+				}
+				&:hover {
+					background: #FF9500;
+				}
+				border-radius: 5px;
+			}
+		}
+	}
+}
+
+.sidebar-banner {
+    margin-top: 16px;
+    
+	img {
+		display: block;
+		width: 100%;
+	}
+}

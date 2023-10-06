@@ -53,7 +53,8 @@
         "stringify": "^5.2.0",
         "tailwind-merge": "^1.14.0",
         "tailwindcss": "^3.3.2",
-        "unplugin-vue-components": "^0.25.1"
+        "unplugin-vue-components": "^0.25.1",
+        "vue-final-modal": "^4.4.5"
     },
     "devDependencies": {
         "@intlify/unplugin-vue-i18n": "^1.2.0",
@@ -66,6 +67,7 @@
         "nuxt": "^3.6.1",
         "nuxt-og-image": "^2.0.28",
         "nuxt-purgecss": "^2.0.0",
+        "nuxt-swiper": "^1.2.2",
         "prettier": "^2.8.8",
         "release-it": "^15.11.0",
         "serve": "^14.2.0",
