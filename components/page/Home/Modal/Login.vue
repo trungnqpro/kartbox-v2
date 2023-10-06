@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import { VueFinalModal } from 'vue-final-modal'
-
-defineProps<{
-  title?: string
-}>()
-
 const emit = defineEmits<{
   (e: 'update:modelValue', modelValue: boolean): void
 }>()
@@ -30,16 +24,7 @@ const wallet = [
 </script>
 
 <template>
-  <VueFinalModal
-    class="flex justify-center items-center"
-    content-class="flex flex-col p-8 bg-[#17191E] rounded-lg w-[40%]"
-    @update:model-value="(val) => emit('update:modelValue', val)"
-  >
-    <ClientOnly>
-      <button class="ml-auto" @click="emit('update:modelValue', false)">
-        <Icon name="clarity:window-close-line" class="w-10 h-10" />
-      </button>
-    </ClientOnly>
+  <div class="p-8">
     <span class="text-[40px] font-bold"> Log in to Kartbox </span> <br />
     <span
       >By connecting a wallet, you agree to
@@ -57,5 +42,5 @@ const wallet = [
         <span class="font-bold pt-1"> {{ item.name }} </span>
       </button>
     </div>
-  </VueFinalModal>
+  </div>
 </template>

@@ -10,9 +10,7 @@ const menus = computed(
   () => (awesome?.layout?.navbar?.menus || []) as AwesomeLayoutPageNavbarMenu[]
 )
 
-// const { open } = useModal({
-//   component: Login,
-// })
+const isOpen = ref(false)
 </script>
 
 <template>
@@ -20,9 +18,7 @@ const menus = computed(
     class="flex fixed backdrop-filter backdrop-blur-md top-0 z-40 w-full flex-none transition-colors duration-300 lg:z-50 border-b border-gray-950/10 dark:border-gray-50/[0.2] bg-[#0B0B0F] dark:bg-gray-950/[0.5] p-4"
   >
     <!-- content -->
-    <div
-      class="flex-1 flex items-center max-w-screen-2xl mx-auto px-4"
-    >
+    <div class="flex-1 flex items-center max-w-screen-2xl mx-auto px-4">
       <!-- title -->
       <div>
         <slot name="title">
@@ -47,6 +43,7 @@ const menus = computed(
         <div>
           <button
             class="w-[182px] h-[40px] rounded bg-[#FF9900]"
+            @click="isOpen = true"
           >
             Connect Wallet
           </button>
@@ -54,14 +51,15 @@ const menus = computed(
       </div>
     </div>
   </header>
-  <ModalsContainer />
+  <CommonModal v-model="isOpen" class="modal-login">
+    <Login />
+  </CommonModal>
 </template>
 
 <style lang="scss">
-.ant-modal-content {
-  background-color: #17191e !important;
-  .ant-modal-close {
-    color: #fff;
+.modal-login {
+  .Common-modal {
+    max-width: 40%;
   }
 }
 </style>

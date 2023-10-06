@@ -49,7 +49,6 @@ export default defineNuxtConfig({
   css: [
     resolve('./assets/scss/_variables.scss'),
     resolve('./assets/scss/app.scss'),
-    'vue-final-modal/style.css'
   ],
 
   components: [

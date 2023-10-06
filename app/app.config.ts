@@ -1177,7 +1177,7 @@ export default defineAppConfig({
       base: 'relative text-left rtl:text-right overflow-hidden w-full flex flex-col',
       overlay: {
         base: 'fixed inset-0 transition-opacity',
-        background: 'bg-gray-200/75 dark:bg-gray-800/75',
+        background: 'bg-neutral-950/75 dark:bg-gray-800/75',
         // Syntax for `<TransitionRoot>` component https://headlessui.com/vue/transition#basic-example
         transition: {
           enter: 'ease-out duration-300',
@@ -1188,7 +1188,7 @@ export default defineAppConfig({
           leaveTo: 'opacity-0',
         },
       },
-      background: 'bg-white dark:bg-gray-900',
+      background: 'bg-[#17191E] dark:bg-gray-900',
       ring: '',
       rounded: 'rounded-lg',
       shadow: 'shadow-xl',
