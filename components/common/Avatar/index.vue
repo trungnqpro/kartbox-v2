@@ -33,16 +33,14 @@ import type {
   Strategy,
 } from '../../../types'
 import { mergeConfig } from '../../../utils'
-// import UIcon from '../Icon/index.vue'
 
 // @ts-expect-error
 import appConfig from '#build/app.config'
-const { ui } = useAppConfig()
 
-const config = mergeConfig<typeof ui.avatar>(
+const config = mergeConfig<typeof appConfig.ui.avatar>(
   appConfig.ui.strategy,
-  ui.avatar,
-  ui.avatar
+  appConfig.ui.avatar,
+  appConfig.ui.avatar
 )
 
 export default defineComponent({

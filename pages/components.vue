@@ -6,7 +6,7 @@ useHead({ titleTemplate: 'Components' })
 <template>
   <div>
     <CommonIcon name="i-heroicons-light-bulb" color="red" />
-    <!-- <CommonAvatar /> -->
+    <CommonAvatar src="/images/home/NFT_Cards.png" />
     <CommonLink>Link</CommonLink>
   </div>
 </template>
