@@ -8,14 +8,12 @@ export default defineNuxtSchema({
         'a starter template for Nuxt 3 with minimalist themes design, built in components, drawer & menus, and more.',
       project: {
         links: {
-          github: 'https://github.com/viandwi24/nuxt3-awesome-starter',
+          github: '#',
         },
       },
       layout: {
-        page: {
-          navbar: {
-            menus: [],
-          },
+        navbar: {
+          menus: [],
         },
         footer: {
           year: 2023,
@@ -28,9 +26,9 @@ export default defineNuxtSchema({
       author: {
         name: 'viandwi24',
         links: {
-          github: 'https://github.com/viandwi24',
-          medium: 'https://viandwi24.medium.com',
-          website: 'https://viandwi24.site',
+          github: '#',
+          medium: '#',
+          website: '#',
         },
       },
     } as NuxtAwesomeAppConfig,

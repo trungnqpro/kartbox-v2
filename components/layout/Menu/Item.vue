@@ -54,3 +54,4 @@ const props = defineProps({
     />
   </template>
 </template>
+../../../types/types
