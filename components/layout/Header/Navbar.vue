@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { RouteLocationRaw } from 'vue-router'
 import { AwesomeLayoutPageNavbarMenu } from '../../../types'
-import { ref } from 'vue'
+import { useModal, ModalsContainer } from 'vue-final-modal'
+import Login from '../../../components/page/Home/Modal/Login.vue'
 
 const { awesome } = useAppConfig()
 const $screen = useAwesomeScreen()
@@ -10,16 +10,14 @@ const menus = computed(
   () => (awesome?.layout?.navbar?.menus || []) as AwesomeLayoutPageNavbarMenu[]
 )
 
-const open = ref<boolean>(false)
-const showModal = () => {
-  open.value = true
-}
-// drawer
+const { open } = useModal({
+  component: Login,
+})
 </script>
 
 <template>
   <header
-    class="flex fixed backdrop-filter backdrop-blur-md top-0 z-40 w-full flex-none transition-colors duration-300 lg:z-50 border-b border-gray-950/10 dark:border-gray-50/[0.2] bg-[#0B0B0F] dark:bg-gray-950/[0.5]"
+    class="flex fixed backdrop-filter backdrop-blur-md top-0 z-40 w-full flex-none transition-colors duration-300 lg:z-50 border-b border-gray-950/10 dark:border-gray-50/[0.2] bg-[#0B0B0F] dark:bg-gray-950/[0.5] p-4"
   >
     <!-- content -->
     <div
@@ -49,24 +47,15 @@ const showModal = () => {
         <div>
           <button
             class="w-[182px] h-[40px] rounded bg-[#FF9900]"
-            @click="showModal"
+            @click="() => open()"
           >
             Connect Wallet
           </button>
         </div>
       </div>
-
-      <a-modal
-        v-model:open="open"
-        title=""
-        :footer="false"
-        width="804px"
-        centered
-      >
-        <PageHomeModalLogin />
-      </a-modal>
     </div>
   </header>
+  <ModalsContainer />
 </template>
 
 <style lang="scss">

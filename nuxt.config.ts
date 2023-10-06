@@ -42,7 +42,6 @@ export default defineNuxtConfig({
     // contents,
     '@nuxt/content',
     'nuxt-swiper',
-    '@ant-design-vue/nuxt'
     // todo: feat/localization
     // '@nuxtjs/i18n'
   ],
@@ -50,6 +49,7 @@ export default defineNuxtConfig({
   css: [
     resolve('./assets/scss/_variables.scss'),
     resolve('./assets/scss/app.scss'),
+    'vue-final-modal/style.css'
   ],
 
   components: [

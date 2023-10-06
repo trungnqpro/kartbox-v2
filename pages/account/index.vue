@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const AccountSidebar = () => import("../../components/Navigation/AccountSidebar.vue");
+import AccountSidebar from '../../components/Navigation/AccountSidebar.vue'
 definePageMeta({ layout: 'page' })
 
 </script>

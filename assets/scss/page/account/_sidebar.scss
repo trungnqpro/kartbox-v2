@@ -11,14 +11,10 @@
 
 	.sidebar-heading{
 		padding:20px;
-		border:1px solid #dddddd;
 		border-bottom: 0;
-		background-color: #fff;
 	}
 	.sidebar-body{
-		border:1px solid #dddddd;
 		border-top: 0;
-		background-color: #fff;
 		ul{
 			list-style: none;
 
@@ -27,20 +23,16 @@
                     padding: 1.1rem 1.5rem;
                     display: flex;
                     align-items: center;
-					border-left: 0.5rem solid transparent;
-					background-color: #fff;
-					color:#333;
+					background: transparent;
+					color:#fff;
 
 					&.active, &.nuxt-link-exact-active{
-					 	background-color:#F2F2F2;
-                        border-left: 0.5rem solid #FF9500;
+                        background: #FF9500;
                         color: #FF9500;
 					}
 
 					&:any-link:hover{
-					 	background-color:#F2F2F2;
-                        border-left: 0.5rem solid #FF9500;
-                        color: #FF9500;
+                        background: 0.5rem solid #FF9500;
 					}
 
 					.icon-item{
@@ -54,6 +46,10 @@
                         margin-left: auto;
                     }
 				}
+				&:hover {
+					background: #FF9500;
+				}
+				border-radius: 5px;
 			}
 		}
 	}
