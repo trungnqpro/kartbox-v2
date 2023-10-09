@@ -21,11 +21,11 @@ const screen = useAwesomeScreen()
             :vertical="screen.higherThan('md')"
           >
             <HeadlessTabList
-              class="w-full md:w-1/6 flex md:flex-col rounded-lg mb-2"
+              class="md:border-r border-solid border-gray-800 w-full md:w-1/6 flex md:flex-col mb-2 pr-4"
             >
               <AccountSidebar />
             </HeadlessTabList>
-            <HeadlessTabPanels class="flex-1">
+            <HeadlessTabPanels class="flex-1 pl-4">
               <HeadlessTabPanel>
                 <Profile />
               </HeadlessTabPanel>
@@ -48,3 +48,4 @@ const screen = useAwesomeScreen()
     </LayoutWrapper>
   </div>
 </template>
+

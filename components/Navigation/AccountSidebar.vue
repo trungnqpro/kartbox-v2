@@ -11,9 +11,9 @@
         'md:w-full text-left px-3 rounded py-2.5 text-sm leading-5 transition-all hover:bg-[#FF9500] hover:text-gray-900',
         selected ? 'font-extrabold bg-[#FF9500]' : 'text-white font-bold',
       ]"
-      class="flex gap-4"
+      class="flex gap-4 lessTab-btn"
     >
-      <img :src="item.icon" alt="" />
+      <img :class="selected ? 'filter brightness-0 invert' : ''" :src="item.icon" alt="" />
       <span> {{ item.title }} </span>
     </button>
   </HeadlessTab>
@@ -71,5 +71,10 @@ export default defineComponent({
   @apply 
     gap-4
     md:w-1/4
+}
+.lessTab-btn:hover {
+  img {
+    filter: brightness(0%);
+  }
 }
 </style>
