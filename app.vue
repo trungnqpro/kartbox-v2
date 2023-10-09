@@ -6,14 +6,30 @@ useHead({
   titleTemplate: `%s - ${awesome.name}`,
 });
 
-const route = useRoute().path;
+</script>
 
+<script lang="ts">
+export default {
+  data() {
+    return {
+      router : this.$route.path
+    }
+  },
+  watch: {
+    $route: {
+      handler(to, from) {
+        this.router = to.path
+      },
+      immediate: true,
+    },
+  }
+}
 </script>
 
 <template>
   <Body
     class="antialiased duration-300 transition-colors text-[#fff] "
-    :class="route == '/account' ? 'bg-[#010101]' : 'bg-[#140C1F]'"
+    :class="router == '/account' ? 'bg-[#010101]' : 'bg-[#140C1F]'"
   >
     <NuxtLayout>
       <NuxtLoadingIndicator />

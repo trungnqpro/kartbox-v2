@@ -58,17 +58,17 @@ const validate = async () => {
 
 <template>
   <LayoutWrapper>
-    <LayoutSection class="mb-0">
+    <!-- <LayoutSection class="mb-0">
       <AwesomeAlertBanner
         type="success"
         title="This is a page for testing purposes"
         text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         class="mb-6"
       />
-    </LayoutSection>
-    <LayoutHeader>
+    </LayoutSection> -->
+    <!-- <LayoutHeader>
       <LayoutTitle text="Setting" class="capitalize" />
-    </LayoutHeader>
+    </LayoutHeader> -->
     <LayoutSection>
       <div class="mb-6">
         <HeadlessTabGroup
