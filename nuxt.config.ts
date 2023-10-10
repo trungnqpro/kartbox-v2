@@ -11,6 +11,11 @@ export default defineNuxtConfig({
   experimental: {
     localLayerAliases: true,
   },
+  telemetry: false,
+  alias: {
+    'micromark/lib/preprocess.js': 'micromark',
+    'micromark/lib/postprocess.js': 'micromark',
+  },
 
   // app config
   app: {
