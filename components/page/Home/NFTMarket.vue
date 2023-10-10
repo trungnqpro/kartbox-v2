@@ -44,6 +44,22 @@ const NFT_Cards = [
     nameNFt: 'Varahara GT',
     Price: '125,000',
   },
+  {
+    level: 'Level 8',
+    img: '/images/home/Lilly_1.png',
+    difficult: 3,
+    name: 'Character',
+    nameNFt: 'Pikalong',
+    Price: '125,000',
+  },
+  {
+    level: 'Level 10',
+    img: '/images/home/Lilly_2.png',
+    difficult: 1,
+    name: 'Material',
+    nameNFt: 'Mystery CB2',
+    Price: '125,000',
+  },
 ]
 </script>
 
@@ -71,7 +87,12 @@ const NFT_Cards = [
           :slidesPerView="3"
           :coverflowEffect="{}"
           :pagination="true"
-          :modules="[SwiperEffectCoverflow]"
+          :modules="[SwiperEffectCoverflow, SwiperAutoplay]"
+          :autoplay="{
+            delay: 5000,
+            disableOnInteraction: true
+          }"
+          :loop="true"
           class="mySwiper"
         >
           <SwiperSlide v-for="(item, idx) in NFT_Cards" :key="idx">

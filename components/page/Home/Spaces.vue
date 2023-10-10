@@ -30,6 +30,22 @@ const SwiperItem = [
     icon: '/images/icons/Certificate.png',
     Categories: 'Bridge, NFT, Web3, Infrastructure, Layer 2',
   },
+  {
+    name: 'John Smith',
+    nickName: '@Jsmith',
+    detail: '1 campaign is active !',
+    symbol: '/images/icons/Space_1.png',
+    icon: '/images/icons/Certificate.png',
+    Categories: 'Bridge, NFT, Web3, Infrastructure, Layer 2',
+  },
+  {
+    name: 'John Smith',
+    nickName: '@Jsmith',
+    detail: '1 campaign is active !',
+    symbol: '/images/icons/Space_3.png',
+    icon: '/images/icons/Certificate.png',
+    Categories: 'Bridge, NFT, Web3, Infrastructure, Layer 2',
+  },
 ]
 </script>
 
@@ -48,7 +64,12 @@ const SwiperItem = [
           :slidesPerView="3"
           :centeredSlides="true"
           :spaceBetween="0"
-          :modules="[SwiperNavigation]"
+          :modules="[SwiperNavigation, SwiperAutoplay]"
+          :autoplay="{
+            delay: 5000,
+            disableOnInteraction: true
+          }"
+          :loop="true"
           class="mySwiper"
         >
           <SwiperSlide v-for="(slide, idx) in SwiperItem" :key="idx">
