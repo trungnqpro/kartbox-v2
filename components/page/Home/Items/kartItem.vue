@@ -1,3 +1,19 @@
+<script setup lang="ts">
+const props = defineProps({
+  label: {
+    type: String,
+    default: '',
+  },
+  detail: {
+    type: String,
+    default: '',
+  },
+  symbol: {
+    type: String,
+    default: '',
+  },
+})
+</script>
 <template>
   <div
     class="
@@ -30,12 +46,6 @@
     </p>
   </div>
 </template>
-
-<script>
-export default {
-  props: ['label', 'detail', 'symbol']
-}
-</script>
 
 <style scoped>
 .advantage-card {

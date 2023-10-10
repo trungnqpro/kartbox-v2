@@ -23,30 +23,35 @@ const LIST = [
 ]
 const HomeItem = {
   title: 'User identity in Kartbox ecosystem',
-  contents: 'Kart',
+  contents: 'Kart ID',
   detail:
     'Kartbox is a magical space where verified digital information appears everywhere, and we are elevating them to new heights.',
 }
 </script>
 
 <template>
-  <div class="container py-[10%] pt-[20%]">
-    <PageHomeItemHome
-      :title="HomeItem.title"
-      :contents="HomeItem.contents"
-      :detail="HomeItem.detail"
-    />
-    <div
-      class="flex lg:justify-center w-full px-5 gap-x-[19px] overflow-x-auto pt-[5%]"
-    >
-      <PageHomeKartItem
-        v-for="(item, idx) in LIST"
-        :key="idx"
-        data-aos="zoom-in"
-        class="min-w-[308px] max-w-[308px]"
-        :detail="item.detail"
-        :symbol="item.symbol"
+  <div id="KartId">
+    <div class="container py-[5%] relative">
+      <PageHomeItemHome
+        :title="HomeItem.title"
+        :contents="HomeItem.contents"
+        :detail="HomeItem.detail"
+        detailClass="max-w-[50%]"
       />
+      <div
+        class="flex lg:justify-center w-full px-5 gap-x-[19px] overflow-x-auto pt-[5%]"
+      >
+        <PageHomeItemsKartItem
+          v-for="(item, idx) in LIST"
+          :key="idx"
+          class="min-w-[308px] max-w-[308px]"
+          :detail="item.detail"
+          :symbol="item.symbol"
+        />
+      </div>
+    </div>
+    <div class="absolute top-[90%] left-[-25%]">
+      <div class="point_line"/>
     </div>
   </div>
 </template>

@@ -22,6 +22,7 @@
             v-bind="transitionClass"
           >
             <HDialogPanel
+              class="Common-modal"
               :class="[
                 ui.base,
                 ui.background,

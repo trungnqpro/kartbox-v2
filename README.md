@@ -16,6 +16,9 @@
   ```bash
   pnpm dev
   ```
+- install anymore package
+  ```bash
+  pnpm add -wD package_name
 
 ## Features
 
