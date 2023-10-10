@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import AccountSidebar from '../../components/Navigation/AccountSidebar.vue'
-import Profile from './profile.vue'
-import Wallet from './Wallet.vue'
-import Social from './Social.vue'
-import AccessToken from './AccessToken.vue'
-import Apps from './Apps.vue'
 definePageMeta({ layout: 'page' })
 
 const screen = useAwesomeScreen()
@@ -23,29 +17,33 @@ const screen = useAwesomeScreen()
             <HeadlessTabList
               class="md:border-r border-solid border-gray-800 w-full md:w-1/6 flex md:flex-col mb-2 pr-4"
             >
-              <AccountSidebar />
+              <PageHomeAccountSidebar />
             </HeadlessTabList>
             <HeadlessTabPanels class="flex-1 pl-4">
               <HeadlessTabPanel>
-                <Profile />
+                <PageHomeAccountProfile />
               </HeadlessTabPanel>
               <HeadlessTabPanel>
-                <Wallet />
+                <PageHomeAccountWallet />
               </HeadlessTabPanel>
               <HeadlessTabPanel>
-                <Social />
+                <PageHomeAccountSocial />
               </HeadlessTabPanel>
               <HeadlessTabPanel>
-                <AccessToken />
+                <PageHomeAccountAccessToken />
               </HeadlessTabPanel>
               <HeadlessTabPanel>
-                <Apps />
+                <PageHomeAccountApps />
               </HeadlessTabPanel>
             </HeadlessTabPanels>
           </HeadlessTabGroup>
         </div>
       </LayoutSection>
     </LayoutWrapper>
+    <img
+      class="absolute left-[17%] top-[30%]"
+      src="/images/home/Vector_3.png"
+      alt=""
+    />
   </div>
 </template>
-

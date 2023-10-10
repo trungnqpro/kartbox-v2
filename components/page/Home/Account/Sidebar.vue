@@ -66,7 +66,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import '../../assets/scss/page/account/_sidebar.scss';
 [role=tablist] {
   @apply 
     gap-4

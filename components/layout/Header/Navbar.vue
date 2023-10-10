@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { AwesomeLayoutPageNavbarMenu } from '../../../types'
 // import { useModal, ModalsContainer } from 'vue-final-modal'
-import Login from '../../../components/page/Home/Modal/Login.vue'
 
 const { awesome } = useAppConfig()
 const $screen = useAwesomeScreen()
@@ -52,7 +51,7 @@ const isOpen = ref(false)
     </div>
   </header>
   <CommonModal v-model="isOpen" class="modal-login">
-    <Login />
+    <PageHomeModalLogin />
   </CommonModal>
 </template>
 

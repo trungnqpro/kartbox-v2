@@ -3,20 +3,20 @@ definePageMeta({ layout: 'page' })
 
 const Social = [
   {
-    name: 'Connect Twitter Account',
-    icon: '/images/icons/social_1.png',
+    name: 'BNB Chain',
+    icon: '/images/icons/BNB_icon.png',
   },
   {
-    name: 'Connect Discord Account',
-    icon: '/images/icons/social_2.png',
+    name: 'Polygon',
+    icon: '/images/icons/Polygon_icon.png',
   },
   {
-    name: 'Connect Github Account',
-    icon: '/images/icons/social_3.png',
+    name: 'Ethereum',
+    icon: '/images/icons/Ethereum_icon.png',
   },
   {
-    name: 'Connect Telegram Account',
-    icon: '/images/icons/social_4.png',
+    name: 'Optimism',
+    icon: '/images/icons/Optimism_icon.png',
   },
 ]
 </script>
@@ -25,7 +25,7 @@ const Social = [
     <div class="profile_title text-[36px] font-bold">Wallet Address</div>
     <div class="flex flex-col gap-4">
       <span> Address List </span>
-      <CommonCard class="wallet-card">
+      <CommonCard class="wallet-card" ring-gray-200>
         <span> EVM Chain </span>
       </CommonCard>
     </div>
