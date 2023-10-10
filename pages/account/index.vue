@@ -40,8 +40,5 @@ const screen = useAwesomeScreen()
         </div>
       </LayoutSection>
     </LayoutWrapper>
-    <!-- <div class="absolute left-[17%] top-[30%] z-0">
-      <img src="/images/home/Vector_3.png" alt="" />
-    </div> -->
   </div>
 </template>

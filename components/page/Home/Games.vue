@@ -34,7 +34,7 @@ const GameItem = [
 </script>
 
 <template>
-  <div id="Games" class="pb-[10%] relative">
+  <div id="Games" class="pb-[10%] py-[5%] relative">
     <div class="container">
       <PageHomeItemHome
         :title="HomeItem.title"
@@ -56,10 +56,8 @@ const GameItem = [
         </div>
       </div>
     </div>
-    <img
-      class="absolute top-[-50%] right-0"
-      src="/images/home/Vector_2.png"
-      alt=""
-    />
+    <div class="absolute top-[-10%] right-[-20%]">
+      <div class="point_line"/>
+    </div>
   </div>
 </template>

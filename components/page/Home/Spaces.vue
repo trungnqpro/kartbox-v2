@@ -34,7 +34,7 @@ const SwiperItem = [
 </script>
 
 <template>
-  <div id="Spaces" class=" pb-[10%] relative">
+  <div id="Spaces" class=" pb-[10%] py-[5%] relative">
     <div class="container">
       <PageHomeItemHome
         :title="HomeItem.title"
@@ -66,11 +66,6 @@ const SwiperItem = [
         </Swiper>
       </div>
     </div>
-    <img
-      class="absolute top-[10%] left-[-5%]"
-      src="/images/home/Vector.png"
-      alt=""
-    />
   </div>
 </template>
 

@@ -31,7 +31,7 @@ const HomeItem = {
 
 <template>
   <div id="KartId">
-    <div class="container py-[10%] pt-[20%] relative">
+    <div class="container py-[5%] relative">
       <PageHomeItemHome
         :title="HomeItem.title"
         :contents="HomeItem.contents"
@@ -50,10 +50,8 @@ const HomeItem = {
         />
       </div>
     </div>
-    <img
-      class="absolute top-[50%] left-[-10%]"
-      src="/images/home/Vector.png"
-      alt=""
-    />
+    <div class="absolute top-[90%] left-[-25%]">
+      <div class="point_line"/>
+    </div>
   </div>
 </template>

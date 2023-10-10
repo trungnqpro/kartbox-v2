@@ -51,7 +51,12 @@ const isOpen = ref(false)
     </div>
   </header>
   <CommonModal v-model="isOpen" class="modal-login">
-    <PageHomeModalLogin />
+    <div class="text-right p-3">
+      <Button @click="isOpen = false">
+        <img src="/images/icons/clear.png" alt="" />
+      </Button>
+    </div>
+    <PageHomeModalLogin class="pt-0" />
   </CommonModal>
 </template>
 

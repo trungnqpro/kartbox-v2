@@ -48,7 +48,7 @@ const NFT_Cards = [
 </script>
 
 <template>
-  <div id="NFT_Market" class="pb-[10%] relative">
+  <div id="NFT_Market" class="pb-[10%] py-[5%] relative">
     <div class="container">
       <PageHomeItemHome
         :title="HomeItem.title"
@@ -89,16 +89,9 @@ const NFT_Cards = [
         </Swiper>
       </div>
     </div>
-    <img
-      class="absolute top-[-40%] right-[0]"
-      src="/images/home/Vector_2.png"
-      alt=""
-    />
-    <img
-      class="absolute left-[17%] top-[80%]"
-      src="/images/home/Vector_3.png"
-      alt=""
-    />
+    <div class="absolute top-[5%] right-[-20%]">
+      <div class="point_line"/>
+    </div>
   </div>
 </template>
 

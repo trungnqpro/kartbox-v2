@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div id="home">
+  <div id="home" class="pb-[20%]">
     <div class="flex justify-between pt-[70px] container">
       <div class="text-[48px] font-semibold gap-y-[20px]">
         <div>
@@ -18,11 +18,11 @@
         <div
           class="text-[22px] gap-y-[20px] flex justify-between max-w-[70%] pt-[5%]"
         >
-          <button class="w-[254px] h-[70px] rounded bg-[#FF9900]">
+          <button class="w-[254px] h-[70px] rounded bg-[#FF9900] z-10">
             Explore More
           </button>
           <button
-            class="w-[254px] h-[70px] rounded border border-yellow-400 hover:border-yellow-500"
+            class="w-[254px] h-[70px] rounded border border-yellow-400 hover:border-yellow-500 z-10"
           >
             Create Your Space
           </button>
@@ -30,7 +30,7 @@
       </div>
       <img src="/images/home/NFT_Cards.png" alt="" />
     </div>
-    <div class="absolute bottom-[5%]">
+    <div class="absolute bottom-[5%] z-1">
       <img src="/images/home/MilkyWay.png" alt="" />
     </div>
   </div>

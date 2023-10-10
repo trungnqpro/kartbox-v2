@@ -3,7 +3,7 @@ const { awesome } = useAppConfig()
 </script>
 
 <template>
-  <div class="pb-[5%] container text-[20px]">
+  <div class="pb-[5%] container text-[20px] relative">
     <div class="grid lg:grid-cols-4 gap-[6%]">
       <div>
         <img src="/images/logo/logo.svg" alt="" />
@@ -42,5 +42,15 @@ const { awesome } = useAppConfig()
         </ul>
       </div>
     </div>
+    <div class="w-full absolute flex justify-center top-[-30%]">
+      <div class="point_line"></div>
+    </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.point_line {
+  filter: blur(200px);
+  @apply bg-[#f90] w-[262px] h-[165px];
+}
+</style>

@@ -6,3 +6,7 @@
   background: var(--base-color-dark-transparent, rgba(47, 50, 65, 0.5));
   border: none;
 }
+.point_line {
+  filter: blur(220px);
+  @apply bg-[#f90] w-[480px] h-[467px];
+}

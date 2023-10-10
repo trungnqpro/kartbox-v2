@@ -37,7 +37,7 @@ const GameItem = [
 </script>
 
 <template>
-  <div id="Campaigns" class="container pb-[10%]">
+  <div id="Campaigns" class="container pb-[10%] py-[5%] relative">
     <PageHomeItemHome
       :title="HomeItem.title"
       :contents="HomeItem.contents"
@@ -57,6 +57,9 @@ const GameItem = [
           :icon="item.icon"
         />
       </div>
+    </div>
+    <div class="absolute top-[-20%] left-[-35%]">
+      <div class="point_line"/>
     </div>
   </div>
 </template>
