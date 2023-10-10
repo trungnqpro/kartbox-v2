@@ -24,25 +24,37 @@ const Social = [
   <div class="flex flex-col gap-8">
     <div class="profile_title text-[36px] font-bold">Wallet Address</div>
     <div class="flex flex-col gap-4">
-      <span> Address List </span>
-      <CommonCard class="wallet-card" ring-gray-200>
-        <span> EVM Chain </span>
+      <span class="font-bold text-[20px]"> Address List </span>
+      <CommonCard class="wallet-card">
+        <div class="flex flex-col gap-4">
+          <span class="font-bold text-[20px]"> EVM Chain </span>
+          <div
+            class="bg-[#060708] w-full p-3 px-4 rounded-md flex justify-between"
+          >
+            <span class="text-[#F90]">{{ '0x455097....f57c' }}</span>
+            <button>
+              <img src="/images/icons/copy_icon.png" />
+            </button>
+          </div>
+          <button
+            class="w-full rounded-md p-3 bg-[#060708] flex justify-center"
+          >
+            <img src="/images/icons/add_icon.png" />
+          </button>
+        </div>
       </CommonCard>
     </div>
-    <CommonCard class="wallet-card">
-      <span> Add Address </span>
-      <div class="grid gap-8 grid-cols-2 grid-row-2 py-8 text-[16px]">
-        <button
-          v-for="(item, idx) in Social"
-          :key="idx"
-          class="w-full h-[51px] rounded flex gap-8 p-2 pl-4"
-          style="background: rgba(47, 50, 65, 0.5)"
-        >
-          <img class="pt-2" :src="item.icon" />
-          <span class="font-bold pt-1"> {{ item.name }} </span>
-        </button>
-      </div>
-    </CommonCard>
+    <div class="flex flex-col gap-4">
+      <span class="font-bold text-[20px]"> Add Address </span>
+      <CommonCard class="wallet-card">
+        <div class="grid gap-8 grid-cols-2 grid-row-2 py-2 text-[16px]">
+          <button v-for="(item, idx) in Social" :key="idx" class="btn-address">
+            <img class="pt-2" :src="item.icon" />
+            <span class="font-bold pt-1"> {{ item.name }} </span>
+          </button>
+        </div>
+      </CommonCard>
+    </div>
   </div>
 </template>
 <style>
@@ -51,6 +63,10 @@ const Social = [
   @apply w-[50%] h-[48px] p-[20px] pr-[8rem] rounded-lg;
 } */
 .wallet-card {
-   background: rgba(47, 50, 65, 0.50) !important
+  background: rgba(47, 50, 65, 0.5) !important;
+}
+.btn-address {
+  background: #080809;
+  @apply w-full h-[51px] rounded flex gap-8 p-2 pl-4;
 }
 </style>
