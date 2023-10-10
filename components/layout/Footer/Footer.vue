@@ -15,10 +15,10 @@ const { awesome } = useAppConfig()
           with customer loyalty programs based on rewards.
         </span>
         <div class="flex gap-x-5 pt-2">
-          <img src="images/icons/Vector.png" alt="" />
-          <img src="images/icons/Vector_1.png" alt="" />
-          <img src="images/icons/Vector_2.png" alt="" />
-          <img src="images/icons/Vector_3.png" alt="" />
+          <img src="/images/icons/Vector.png" alt="" />
+          <img src="/images/icons/Vector_1.png" alt="" />
+          <img src="/images/icons/Vector_2.png" alt="" />
+          <img src="/images/icons/Vector_3.png" alt="" />
         </div>
         <span> All rights reserved @Kartbox.io </span>
       </div>
