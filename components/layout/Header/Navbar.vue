@@ -14,7 +14,7 @@ const isOpen = ref(false)
 
 <template>
   <header
-    class="flex fixed backdrop-filter backdrop-blur-md top-0 z-40 w-full flex-none transition-colors duration-300 lg:z-50 border-b border-gray-950/10 dark:border-gray-50/[0.2] bg-[#0B0B0F] dark:bg-gray-950/[0.5] p-4"
+    class="flex fixed backdrop-filter backdrop-blur-md top-0 z-40 w-full flex-none transition-colors duration-300 lg:z-50 dark:border-gray-50/[0.2] bg-[#0B0B0F] p-4"
   >
     <!-- content -->
     <div class="flex-1 flex items-center max-w-screen-2xl mx-auto px-4">
@@ -32,7 +32,7 @@ const isOpen = ref(false)
           class="flex space-x-4 items-center pl-8 font-bold"
           :class="{ 'divide-x divide-gray-500': menus.length > 0 }"
         >
-          <div class="flex space-x-8 text-[16px] items-center">
+          <div class="flex text-[16px] items-center">
             <!-- dynamic menus -->
             <template v-for="(item, i) in menus" :key="i">
               <LayoutMenuWrapper :menu="item" />

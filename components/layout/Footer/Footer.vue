@@ -3,8 +3,8 @@ const { awesome } = useAppConfig()
 </script>
 
 <template>
-  <div class="pb-[5%] container text-[20px] relative">
-    <div class="grid lg:grid-cols-4 gap-[6%]">
+  <div class="pb-[5%] container text-[20px] relative ">
+    <div class="grid lg:grid-cols-4 gap-[6%] pt-[2%] border-t border-solid border-gray-800">
       <div>
         <img src="/images/logo/logo.svg" alt="" />
       </div>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RouteLocationRaw } from 'vue-router'
+import { computed } from 'vue'
 import {
   AwesomeLayoutPageNavbarMenu,
   AwesomeLayoutPageNavbarMenuDropdownItem,
@@ -20,6 +20,9 @@ const props = defineProps({
     default: false,
   },
 })
+const route = useRoute()
+
+const path = computed(() => route.hash)
 </script>
 
 <template>
@@ -36,12 +39,11 @@ const props = defineProps({
     </NuxtLink>
   </template>
   <template v-else-if="menu?.type === 'link'">
-    <NuxtLink :to="parseMenuRoute(menu?.to)" #="{ isActive }">
+    <NuxtLink :to="parseMenuRoute(menu?.to)">
       <span
-        :class="{
-          'font-bold': !!isActive, 
-        }"
-        class="text-[#fff]"
+        :class="path == menu.to ? 'menu-active' : ''"
+        class="text-[#fff] p-6"
+        style=""
         >{{ parseMenuTitle(menu?.title) }}</span
       >
     </NuxtLink>
@@ -54,4 +56,13 @@ const props = defineProps({
     />
   </template>
 </template>
-../../../types/types
+<style>
+.menu-active {
+  background: linear-gradient(
+    to top,
+    rgba(255, 166, 0, 0.377),
+    rgba(255, 165, 0, 0)
+  );
+  @apply border-b-2 border-orange-400;
+}
+</style>

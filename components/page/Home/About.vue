@@ -16,13 +16,13 @@
           with customer loyalty programs based on rewards.
         </div>
         <div
-          class="text-[22px] gap-y-[20px] flex justify-between max-w-[70%] pt-[5%]"
+          class="text-[22px] flex gap-8 max-w-[70%] pt-[5%]"
         >
-          <button class="w-[254px] h-[70px] rounded bg-[#FF9900] z-10">
+          <button class="w-[254px] h-[70px] rounded-lg bg-[#FF9900] z-10">
             Explore More
           </button>
           <button
-            class="w-[254px] h-[70px] rounded border border-yellow-400 hover:border-yellow-500 z-10"
+            class="w-[254px] h-[70px] rounded-lg border border-yellow-400 hover:border-yellow-500 z-10"
           >
             Create Your Space
           </button>
