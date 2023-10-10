@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-const { awesome } = useAppConfig()
+const route = useRoute()
+
+const path = computed(() => route.fullPath)
 </script>
 
 <template>
   <div class="pb-[5%] container text-[20px] relative ">
-    <div class="grid lg:grid-cols-4 gap-[6%] pt-[2%] border-t border-solid border-gray-800">
+    <div :class="path == '/account' ? 'border-t border-solid border-gray-800': ''" class="grid lg:grid-cols-4 gap-[6%] pt-[2%]">
       <div>
         <img src="/images/logo/logo.svg" alt="" />
       </div>
