@@ -13,12 +13,12 @@ export default defineAppConfig({
     layout: {
       navbar: {
         menus: [
-          { type: 'link', title: 'Home', to: '#home' },
-          { type: 'link', title: 'Kart ID', to:'#KartId' },
-          { type: 'link', title: 'Games', to: '#Games' },
-          { type: 'link', title: 'Spaces', to: '#Spaces' },
-          { type: 'link', title: 'Campaigns', to: '#Campaigns' },
-          { type: 'link', title: 'Marketplace', to: '#NFT_Market' },
+          { type: 'link', title: 'Home', to: '/#home' },
+          { type: 'link', title: 'Kart ID', to:'/#KartId' },
+          { type: 'link', title: 'Games', to: '/#Games' },
+          { type: 'link', title: 'Spaces', to: '/#Spaces' },
+          { type: 'link', title: 'Campaigns', to: '/#Campaigns' },
+          { type: 'link', title: 'Marketplace', to: '/#NFT_Market' },
         ],
       },
       footer: {

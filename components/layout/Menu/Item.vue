@@ -22,7 +22,7 @@ const props = defineProps({
 })
 const route = useRoute()
 
-const path = computed(() => route.hash)
+const path = computed(() => route.fullPath)
 </script>
 
 <template>

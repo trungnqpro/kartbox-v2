@@ -1,34 +1,31 @@
 <script lang="ts" setup>
+import { watch } from 'vue'
 const { awesome } = useAppConfig()
 
 useHead({
   title: awesome.name,
   titleTemplate: `%s - ${awesome.name}`,
-});
-</script>
+})
 
-<script lang="ts">
-export default {
-  data() {
-    return {
-      router : this.$route.path
+const route = useRoute()
+const account = ref(false)
+
+watch(
+  route,
+  (value) => {
+    if (value.fullPath == '/account') {
+      return (account.value = true)
     }
+    account.value = false
   },
-  watch: {
-    $route: {
-      handler(to, from) {
-        this.router = to.path
-      },
-      immediate: true,
-    },
-  }
-}
+  { deep: true, immediate: true }
+)
 </script>
 
 <template>
   <Body
-    class="antialiased duration-300 transition-colors text-[#fff] "
-    :class="router == '/account' ? 'bg-[#010101]' : 'bg-[#140C1F]'"
+    class="antialiased duration-300 transition-colors text-[#fff]"
+    :class="account ? 'bg-[#010101]' : 'bg-[#140C1F]'"
   >
     <NuxtLayout>
       <NuxtLoadingIndicator />
