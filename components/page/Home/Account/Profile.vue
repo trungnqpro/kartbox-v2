@@ -5,7 +5,10 @@ definePageMeta({ layout: 'page' })
   <div class="flex flex-col gap-8">
     <div class="profile_title text-[36px] font-bold">User Profile</div>
     <div class="profile_img flex gap-4">
-      <CommonAvatar src="" size="3xl" />
+      <div class="relative">
+        <CommonAvatar src="" size="3xl" />
+        <img class="absolute bottom-0 right-[-10%] cursor-pointer" src="/images/icons/Camera_icon.png" />
+      </div>
       <div>
         <span class="font-bold text-[20px]"> Profile Images </span> <br />
         <span class="text-[#B1B5C3]">
@@ -15,11 +18,7 @@ definePageMeta({ layout: 'page' })
     </div>
     <div class="flex flex-col gap-4">
       <span> Username </span>
-      <input
-        class="profile-input"
-        type="email"
-        placeholder="info"
-      />
+      <input class="profile-input" type="email" placeholder="info" />
     </div>
     <div class="flex flex-col gap-4">
       <span> Email </span>
