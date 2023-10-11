@@ -68,22 +68,15 @@ const isNetWork = ref(false)
       </template>
     </CommonDropdown>
   </div>
-  <CommonModal v-model="isUserName" class="modal-User">
-    <div class="text-right p-3">
-      <Button @click="isUserName = false">
-        <img src="/images/icons/clear.png" alt="" />
-      </Button>
-    </div>
-    <PageHomeModalUser class="pt-0" />
-  </CommonModal>
-  <CommonModal v-model="isNetWork" class="modal-login">
-    <div class="text-right p-3">
-      <Button @click="isNetWork = false">
-        <img src="/images/icons/clear.png" alt="" />
-      </Button>
-    </div>
-    <PageHomeModalNetwork class="pt-0" />
-  </CommonModal>
+  <PageHomeModalUser
+    :isUserName="isUserName"
+    @close-Modal="isUserName = false"
+  />
+
+  <PageHomeModalNetwork
+    :isNetWork="isNetWork"
+    @close-Modal="isNetWork = false"
+  />
 </template>
 
 <style lang="scss">

@@ -53,15 +53,11 @@ const connectWallet = ref(false)
         </div>
       </div>
     </div>
+    <PageHomeModalLogin
+      :isLogin="isLogin"
+      @close-Modal="isLogin = false"
+    />
   </header>
-  <CommonModal v-model="isLogin" class="modal-login">
-    <div class="text-right p-3">
-      <Button @click="isLogin = false">
-        <img src="/images/icons/clear.png" alt="" />
-      </Button>
-    </div>
-    <PageHomeModalLogin class="pt-0" />
-  </CommonModal>
 </template>
 
 <style lang="scss">
