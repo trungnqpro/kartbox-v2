@@ -14,10 +14,9 @@ watch(
   route,
   (value) => {
     if (value.fullPath == '/account') {
-      account.value = true
-    } else {
-      account.value = false
+      return (account.value = true)
     }
+    account.value = false
   },
   { deep: true, immediate: true }
 )
