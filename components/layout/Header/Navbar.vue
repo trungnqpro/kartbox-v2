@@ -48,8 +48,7 @@ const connectWallet = ref(false)
             </button>
           </div>
           <div v-else>
-            <button></button>
-            <CommonAvatar src="" size="3xl"/>
+            <PageHomeUser />
           </div>
         </div>
       </div>
