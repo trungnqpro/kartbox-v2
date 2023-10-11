@@ -49,8 +49,29 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     // todo: feat/localization
     // '@nuxtjs/i18n'
+    // '@nuxtjs/auth-next',
   ],
-
+  // auth: {
+  //   redirect: {
+  //     callback: "/",
+  //     home: "/",
+  //     login: "/login",
+  //     logout: "/"
+  //   },
+  //   localStorage: false,
+  //   strategies: {
+  //     local: false,
+  //     auth0: {
+  //       domain: 'dev-iflffbveru6u55u7.us.auth0.com',
+  //       clientId: 'MVq4WqOxk5McH8WrmOhHra2U3x7FNtAr',
+  //       scope: ['openid', 'profile', 'offline_access'],
+  //       accessType: 'offline',
+  //       responseType: 'code',
+  //       grantType: 'authorization_code',
+  //       codeChallengeMethod: 'S256',
+  //     },
+  //   },
+  // },
   css: [
     resolve('./assets/scss/_variables.scss'),
     resolve('./assets/scss/app.scss'),

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Login from '../../../login/login.vue'
 const emit = defineEmits<{
   (e: 'update:modelValue', modelValue: boolean): void
 }>()
@@ -31,6 +32,7 @@ const wallet = [
       <a class="text-[#E5A403]">Terms of Service</a> And
       <a class="text-[#E5A403]">Privacy Policy.</a>
     </span>
+    <Login />
     <div class="grid gap-8 grid-cols-2 grid-row-2 py-8 text-[16px]">
       <button
         v-for="(item, idx) in wallet"
