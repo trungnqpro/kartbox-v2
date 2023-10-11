@@ -1,11 +1,11 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div id="home" class="pb-[20%]">
-    <div class="flex justify-between pt-[70px] container">
+  <div id="home" class="pb-[20%] py-[5%]">
+    <div class="flex justify-between container">
       <div class="text-[48px] font-semibold gap-y-[20px]">
         <div>
-          <span>Earn</span>
+          <span>Earn </span>
           <span class="text-[#f90]">Tokens / NFTs / OATs </span> <br />
           <span>by Contributing to Your</span> <br />
           <span>Favorite Web3 Community</span>
