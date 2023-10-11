@@ -5,7 +5,6 @@ useHead({
   title: awesome.name,
   titleTemplate: `%s - ${awesome.name}`,
 });
-
 </script>
 
 <script lang="ts">

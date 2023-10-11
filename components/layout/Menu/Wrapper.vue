@@ -8,7 +8,6 @@ import { NuxtApp } from '#app'
 
 const nuxtApp = useNuxtApp()
 const route = useRoute()
-const router = useRouter()
 
 const props = defineProps({
   menu: {
