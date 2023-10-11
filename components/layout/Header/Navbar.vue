@@ -3,13 +3,12 @@ import { AwesomeLayoutPageNavbarMenu } from '../../../types'
 // import { useModal, ModalsContainer } from 'vue-final-modal'
 
 const { awesome } = useAppConfig()
-const $screen = useAwesomeScreen()
-
 const menus = computed(
   () => (awesome?.layout?.navbar?.menus || []) as AwesomeLayoutPageNavbarMenu[]
 )
 
-const isOpen = ref(false)
+const isLogin = ref(false)
+const connectWallet = ref(false)
 </script>
 
 <template>
@@ -39,20 +38,25 @@ const isOpen = ref(false)
             </template>
           </div>
         </div>
-        <div>
-          <button
-            class="w-[182px] h-[40px] rounded bg-[#FF9900]"
-            @click="isOpen = true"
-          >
-            Connect Wallet
-          </button>
+        <div class="Wallet">
+          <div v-if="!connectWallet">
+            <button
+              class="w-[182px] h-[40px] rounded bg-[#FF9900]"
+              @click="isLogin = true"
+            >
+              Connect Wallet
+            </button>
+          </div>
+          <div v-else>
+            <PageHomeUser />
+          </div>
         </div>
       </div>
     </div>
   </header>
-  <CommonModal v-model="isOpen" class="modal-login">
+  <CommonModal v-model="isLogin" class="modal-login">
     <div class="text-right p-3">
-      <Button @click="isOpen = false">
+      <Button @click="isLogin = false">
         <img src="/images/icons/clear.png" alt="" />
       </Button>
     </div>
