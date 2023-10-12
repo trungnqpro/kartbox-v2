@@ -29,7 +29,7 @@
     ],
     "scripts": {
         "build": "nuxt build ./app",
-        "dev": "nuxt dev ./app --no-clear",
+        "dev": "nuxt dev",
         "generate": "nuxt generate ./app",
         "preview": "nuxt preview ./app",
         "postinstall": "nuxt prepare ./app",
@@ -45,6 +45,7 @@
         "@pinia/nuxt": "^0.4.11",
         "@popperjs/core": "^2.11.8",
         "@vueuse/core": "^10.2.0",
+        "@vueuse/math": "^10.5.0",
         "@vueuse/nuxt": "^10.2.1",
         "defu": "^6.1.2",
         "nuxt-headlessui": "^1.1.4",

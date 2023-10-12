@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 definePageMeta({ layout: 'page' })
 useHead({ titleTemplate: 'Components' })
-import useCustomFetch from '../composables/api/base/useCustomFetch'
-import { usePingStore } from '../stores/ping'
+import useCustomFetch from '~/composables/api/base/useCustomFetch'
+import { usePingStore } from '~/stores/ping'
 
 const pingStore = usePingStore()
 
