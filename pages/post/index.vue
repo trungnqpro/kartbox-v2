@@ -13,7 +13,7 @@ useHead({ title: 'Posts' })
       <LayoutTitle text="Posts" class="capitalize" />
     </LayoutHeader>
     <LayoutSection>
-      <ContentList path="/post">
+      <!-- <ContentList path="/post">
         <template #default="{ list }">
           <div
             v-for="article in list"
@@ -54,7 +54,7 @@ useHead({ title: 'Posts' })
         <template #not-found>
           <p>No articles found.</p>
         </template>
-      </ContentList>
+      </ContentList> -->
     </LayoutSection>
   </LayoutWrapper>
 </template>
