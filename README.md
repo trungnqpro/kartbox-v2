@@ -47,7 +47,7 @@
 - [ ] 🇮🇩 Language Switcher
 - [ ] Awesome Components
   - [X] Card
-  - [X] Content (@nuxt/content bridge)
+  - [] Content (@nuxt/content bridge)
   - [X] Form
     - [X] Text Input
     - [X] Switch

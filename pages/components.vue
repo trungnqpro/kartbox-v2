@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({ layout: 'page' })
 useHead({ titleTemplate: 'Components' })
+import useCustomFetch from '../composables/api/base/useCustomFetch'
 
 const isOpen = ref(false)
 const items = [
@@ -38,6 +39,8 @@ const items = [
     },
   ],
 ]
+const { data, pending, refresh, execute, error, status } =
+  await useCustomFetch<object>('/beers')
 </script>
 
 <template>
@@ -79,5 +82,19 @@ const items = [
         />
       </template>
     </CommonDropdown>
+    <!-- Test useFetch -->
+    <div>
+      <button label="fetch data" @click="handleCallApi">fetchData</button>
+      <span v-if="pending">Loading...</span>
+
+      <span v-else-if="data">Todos: {{ data[0] }}</span>
+
+      <span v-else-if="error">Error: {{ error }}</span>
+
+      <button @click="refresh">Refresh</button>
+      <ul>
+        <li></li>
+      </ul>
+    </div>
   </div>
 </template>

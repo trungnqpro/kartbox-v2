@@ -44,8 +44,6 @@ export default defineNuxtConfig({
     // management
     '@pinia/nuxt',
     '@vueuse/nuxt',
-    // contents,
-    '@nuxt/content',
     'nuxt-swiper',
     // todo: feat/localization
     // '@nuxtjs/i18n'
@@ -83,6 +81,12 @@ export default defineNuxtConfig({
     dirs: [resolve('./stores'), '~/stores'],
   },
 
+  router: {
+    options: {
+      strict: true,
+    },
+  },
+
   // module::pinia
   pinia: {
     autoImports: [['defineStore', 'definePiniaStore']],
@@ -96,17 +100,6 @@ export default defineNuxtConfig({
   // module::color-mode
   colorMode: {
     classSuffix: '',
-  },
-
-  // module::content
-  content: {
-    documentDriven: true,
-    markdown: {
-      mdc: true,
-    },
-    highlight: {
-      theme: 'github-dark',
-    },
   },
 
   build: {
