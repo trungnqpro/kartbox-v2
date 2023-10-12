@@ -63,6 +63,12 @@ const MyTheme = {
   },
 }
 
+const fontFamily = {
+  label: ['Inter', ...defaultTheme.fontFamily.sans],
+  general: ['Inter', ...defaultTheme.fontFamily.sans],
+  inherit: 'inherit',
+};
+
 export default <Partial<Config>>{
   darkMode: 'class',
   content: [
@@ -92,9 +98,7 @@ export default <Partial<Config>>{
         red: MyTheme.colors.red,
         slate: colors.slate,
       },
-      fontFamily: {
-        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
-      },
+      fontFamily,
     },
   },
 }

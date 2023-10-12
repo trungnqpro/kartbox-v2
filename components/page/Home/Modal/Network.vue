@@ -28,9 +28,9 @@ const value = computed(() => props.isNetWork)
 <template>
   <CommonModal v-model="value" class="modal-login">
     <div class="text-right p-3">
-      <Button @click="$emit('closeModal')">
+      <button @click="$emit('closeModal')">
         <img src="/images/icons/clear.png" alt="" />
-      </Button>
+      </button>
     </div>
     <div class="p-8 pt-0">
       <span class="text-[40px] font-bold"> Select a Network </span> <br />

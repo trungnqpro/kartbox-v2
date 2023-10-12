@@ -10,9 +10,9 @@ const value = computed(() => props.isUserName)
 <template>
   <CommonModal v-model="value" class="modal-User">
     <div class="text-right p-3">
-      <Button @click="$emit('closeModal')">
+      <button @click="$emit('closeModal')">
         <img src="/images/icons/clear.png" alt="" />
-      </Button>
+      </button>
       <div class="flex flex-col p-16 gap-8 pt-0 text-left">
         <span class="text-[32px]">Choose Your Name</span>
         <input
@@ -20,7 +20,7 @@ const value = computed(() => props.isUserName)
           type="user"
           placeholder="At least 4 charactersm"
         />
-        <Button class="w-[128px] h-[48px] rounded bg-[#FF9900]"> Save </Button>
+        <button class="w-[128px] h-[48px] rounded bg-[#FF9900]"> Save </button>
       </div>
     </div>
   </CommonModal>

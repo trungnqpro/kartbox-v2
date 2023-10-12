@@ -3,14 +3,14 @@
 <template>
   <div id="home" class="pb-[20%] py-[5%]">
     <div class="flex justify-between container">
-      <div class="text-[48px] font-semibold gap-y-[20px]">
-        <div>
+      <div class="text-[48px] gap-y-[20px]">
+        <div class="font-bold">
           <span>Earn </span>
           <span class="text-[#f90]">Tokens / NFTs / OATs </span> <br />
           <span>by Contributing to Your</span> <br />
           <span>Favorite Web3 Community</span>
         </div>
-        <div class="text-[24px] max-w-[70%] pt-[2%]">
+        <div class="text-[24px] max-w-[70%] pt-[2%] font-light">
           Kartbox is a leading platform for building the Web3 community. Kartbox
           drives the development of Optimism, Polygon, Arbitrum, and partners
           with customer loyalty programs based on rewards.

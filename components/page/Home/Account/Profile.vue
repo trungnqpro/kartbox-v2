@@ -25,9 +25,9 @@ definePageMeta({ layout: 'page' })
       <input class="profile-input" type="email" placeholder="info@email.com" />
     </div>
     <div>
-      <Button class="w-[220px] h-[48px] rounded bg-[#FF9900]">
+      <button class="w-[220px] h-[48px] rounded bg-[#FF9900]">
         Update Profile
-      </Button>
+      </button>
     </div>
   </div>
 </template>
