@@ -48,7 +48,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-swiper',
     // todo: feat/localization
-    // '@nuxtjs/i18n'
+    // '@nuxtjs/i18n',
+    '@use-wagmi/nuxt',
   ],
 
   css: [

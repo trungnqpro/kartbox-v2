@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import {
+  useAccount,
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+  useConnect,
+} from 'use-wagmi'
 const props = defineProps({
   isLogin: {
     type: Boolean,
@@ -24,6 +31,25 @@ const wallet = [
     icon: '/images/icons/TrustWallet_icon.png',
   },
 ]
+
+const { connect, connectors, isLoading, error, pendingConnector } = useConnect()
+const { connector, isReconnecting } = useAccount()
+const { address } = useAccount({
+  onConnect: (data) => console.log('connected', data),
+  onDisconnect: () => console.log('disconnected'),
+})
+
+const { data: ensName } = useEnsName({
+  address,
+  chainId: 1,
+})
+
+const { data: ensAvatar } = useEnsAvatar({
+  name: ensName,
+  chainId: 1,
+})
+
+const { disconnect } = useDisconnect()
 </script>
 
 <template>
@@ -42,13 +68,17 @@ const wallet = [
       </span>
       <div class="grid gap-8 grid-cols-2 grid-row-2 py-8 text-[16px]">
         <button
-          v-for="(item, idx) in wallet"
+          v-for="(item, idx) in connectors"
           :key="idx"
           class="w-full h-[51px] rounded flex gap-8 p-2 pl-4"
           style="background: rgba(255, 255, 255, 0.08)"
+          :disabled="!item.ready || isReconnecting || connector?.id === item.id"
+          @click="() => connect({ connector: item })"
         >
-          <img :src="item.icon" />
+          <img :src="item.options.icon" />
           <span class="font-bold pt-1"> {{ item.name }} </span>
+          <span v-if="!item.ready"> (unsupported)</span>
+          <span v-if="isLoading && item.id === pendingConnector?.id">…</span>
         </button>
       </div>
     </div>
