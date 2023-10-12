@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 definePageMeta({ layout: 'page' })
 useHead({ titleTemplate: 'Components' })
+import useCustomFetch from '../composables/api/base/useCustomFetch'
+import { usePingStore } from '../stores/ping'
+
+const pingStore = usePingStore()
 
 const isOpen = ref(false)
 const items = [
@@ -38,6 +42,15 @@ const items = [
     },
   ],
 ]
+
+// test use useCustomFetch
+const { data, pending, refresh, execute, error, status } =
+  await useCustomFetch<object>('/beers')
+
+// test call fake server api
+const callFakeApi = () => useCustomFetch<object>('/fkapi/ping')
+
+pingStore.fetchList()
 </script>
 
 <template>
@@ -79,5 +92,25 @@ const items = [
         />
       </template>
     </CommonDropdown>
+    <!-- Test useFetch -->
+    <div>
+      <span v-if="pending">Loading...</span>
+      <span v-else-if="data">Todos: {{ data[0] }}</span>
+      <span v-else-if="error">Error: {{ error }}</span>
+      <br />
+      <button label="fetch data" @click="refresh">Refresh fetchData</button>
+      <br />
+      <br />
+      <button label="fetch data" @click="callFakeApi">
+        Call fake server api
+      </button>
+
+      <br />
+      <br />
+      <div>Data from store api: <br />{{ pingStore.list }}</div>
+      <ul>
+        <li></li>
+      </ul>
+    </div>
   </div>
 </template>

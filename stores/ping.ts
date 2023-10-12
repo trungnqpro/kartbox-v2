@@ -1,18 +1,21 @@
-import { acceptHMRUpdate } from 'pinia'
+// import { acceptHMRUpdate } from 'pinia'
+import useCustomFetch from '../composables/api/base/useCustomFetch'
 
 const delay = (t: number) => new Promise((r) => setTimeout(r, t))
 
-export interface ICounterState {
+export interface IPingState {
   count: number
   n: number
   numbers: number[]
+  list: object | null
 }
 
-export const useCounter = definePiniaStore('counter', {
-  state: (): ICounterState => ({
+export const usePingStore = definePiniaStore('ping', {
+  state: (): IPingState => ({
     count: 0,
     n: 2,
     numbers: [] as number[],
+    list: null as object | null,
   }),
   getters: {
     // getters receive the state as first parameter
@@ -23,6 +26,13 @@ export const useCounter = definePiniaStore('counter', {
     },
   },
   actions: {
+    async fetchList() {
+      const { data } = await useCustomFetch<object>('/beers')
+      console.log('[fetchList]')
+      this.$patch((state) => {
+        state.list = data.value[0]
+      })
+    },
     increment() {
       this.count++
     },
