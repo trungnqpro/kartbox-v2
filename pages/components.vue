@@ -2,6 +2,9 @@
 definePageMeta({ layout: 'page' })
 useHead({ titleTemplate: 'Components' })
 import useCustomFetch from '../composables/api/base/useCustomFetch'
+import { usePingStore } from '../stores/ping'
+
+const pingStore = usePingStore()
 
 const isOpen = ref(false)
 const items = [
@@ -46,6 +49,8 @@ const { data, pending, refresh, execute, error, status } =
 
 // test call fake server api
 const callFakeApi = () => useCustomFetch<object>('/fkapi/ping')
+
+pingStore.fetchList()
 </script>
 
 <template>
@@ -100,6 +105,9 @@ const callFakeApi = () => useCustomFetch<object>('/fkapi/ping')
         Call fake server api
       </button>
 
+      <br />
+      <br />
+      <div>Data from store api: <br />{{ pingStore.list }}</div>
       <ul>
         <li></li>
       </ul>
