@@ -34,8 +34,7 @@ import type {
 } from '../../../types'
 import { mergeConfig } from '../../../utils'
 
-// @ts-expect-error
-import appConfig from '#build/app.config'
+import appConfig from '~/app.config'
 
 const config = mergeConfig<typeof appConfig.ui.avatar>(
   appConfig.ui.strategy,

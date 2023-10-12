@@ -26,6 +26,9 @@ importers:
       '@vueuse/core':
         specifier: ^10.2.0
         version: 10.5.0(vue@3.3.4)
+      '@vueuse/math':
+        specifier: ^10.5.0
+        version: 10.5.0(vue@3.3.4)
       '@vueuse/nuxt':
         specifier: ^10.2.1
         version: 10.5.0(nuxt@3.7.4)(vue@3.3.4)
@@ -2672,6 +2675,16 @@ packages:
     dependencies:
       '@types/web-bluetooth': 0.0.18
       '@vueuse/metadata': 10.5.0
+      '@vueuse/shared': 10.5.0(vue@3.3.4)
+      vue-demi: 0.14.6(vue@3.3.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
+  /@vueuse/math@10.5.0(vue@3.3.4):
+    resolution: {integrity: sha512-fPCte2DbMI+JCEjG6gj35RmNZ7HjYRMHXfLJ9CjdGli0PtbmZ2WTXqJiaRSEgaeM1uN1QL/l0gXixRvRf85tQQ==}
+    dependencies:
       '@vueuse/shared': 10.5.0(vue@3.3.4)
       vue-demi: 0.14.6(vue@3.3.4)
     transitivePeerDependencies:
