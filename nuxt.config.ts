@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     apiSecretKey: 'xxxx',
     // Keys within public are also exposed client-side
     public: {
-      baseUrl: 'http://localhost:3001/api',
+      // baseUrl: 'http://localhost:3001/api',
     },
   },
 

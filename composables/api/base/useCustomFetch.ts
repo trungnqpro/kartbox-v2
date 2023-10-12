@@ -9,7 +9,7 @@ export default async function useCustomFetch<T>(
   const config = useRuntimeConfig()
 
   const defaults: UseFetchOptions<T> = {
-    baseURL: config.baseUrl ?? 'https://api.nuxtjs.dev',
+    baseURL: config.public.baseUrl ?? 'https://api.nuxtjs.dev',
     // cache request
     key: url,
 

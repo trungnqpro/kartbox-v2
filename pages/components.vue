@@ -39,8 +39,13 @@ const items = [
     },
   ],
 ]
+
+// test use useCustomFetch
 const { data, pending, refresh, execute, error, status } =
   await useCustomFetch<object>('/beers')
+
+// test call fake server api
+const callFakeApi = () => useCustomFetch<object>('/fkapi/ping')
 </script>
 
 <template>
@@ -84,14 +89,17 @@ const { data, pending, refresh, execute, error, status } =
     </CommonDropdown>
     <!-- Test useFetch -->
     <div>
-      <button label="fetch data" @click="handleCallApi">fetchData</button>
       <span v-if="pending">Loading...</span>
-
       <span v-else-if="data">Todos: {{ data[0] }}</span>
-
       <span v-else-if="error">Error: {{ error }}</span>
+      <br />
+      <button label="fetch data" @click="refresh">Refresh fetchData</button>
+      <br />
+      <br />
+      <button label="fetch data" @click="callFakeApi">
+        Call fake server api
+      </button>
 
-      <button @click="refresh">Refresh</button>
       <ul>
         <li></li>
       </ul>
