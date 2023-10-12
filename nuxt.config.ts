@@ -17,19 +17,21 @@ export default defineNuxtConfig({
     'micromark/lib/postprocess.js': 'micromark',
   },
 
+  runtimeConfig: {
+    // The private keys which are only available server-side
+    apiSecretKey: 'xxxx',
+    // Keys within public are also exposed client-side
+    public: {
+      baseUrl: 'http://localhost:3001/api',
+    },
+  },
+
   // app config
   app: {
     // global transition
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'layout', mode: 'out-in' },
   },
-
-  // typescripts
-  // todo: feat/strict-type-check
-  // typescript: {
-  //   strict: true,
-  //   typeCheck: true,
-  // },
 
   // modules
   modules: [
