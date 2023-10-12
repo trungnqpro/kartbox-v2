@@ -49,7 +49,7 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     // todo: feat/localization
     // '@nuxtjs/i18n',
-    '@use-wagmi/nuxt',
+    // '@use-wagmi/nuxt',
   ],
 
   css: [
