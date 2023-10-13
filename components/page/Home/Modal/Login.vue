@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script async setup lang="ts">
 import { computed } from 'vue'
 import {
   useAccount,
@@ -6,50 +6,45 @@ import {
   useEnsAvatar,
   useEnsName,
   useConnect,
+  useSignMessage,
 } from 'use-wagmi'
+import { useUser } from '~/stores/authUser'
+import { useWalletStore } from '~/stores/wallet'
 const props = defineProps({
   isLogin: {
     type: Boolean,
   },
 })
 const value = computed(() => props.isLogin)
-const wallet = [
-  {
-    name: 'Metamask',
-    icon: '/images/icons/metamask_icon.png',
-  },
-  {
-    name: 'CoinbaseWallet',
-    icon: '/images/icons/CoinbaseWallet_icon.png',
-  },
-  {
-    name: 'WalletConnect',
-    icon: '/images/icons/WalletConnect_icon.png',
-  },
-  {
-    name: 'TrustWallet',
-    icon: '/images/icons/TrustWallet_icon.png',
-  },
-]
-
-const { connect, connectors, isLoading, error, pendingConnector } = useConnect()
+const { login, getProfileUser, getProfile, updateProfile, getWallet } = useUser()
+const { SignMessage, ConnectWallet } = useWalletStore()
+const { data: signMessageData, signMessage, variables, signMessageAsync } = useSignMessage()
+const { connect, connectors, isLoading, error, pendingConnector, connectAsync } = useConnect()
 const { connector, isReconnecting } = useAccount()
+
 const { address } = useAccount({
   onConnect: (data) => console.log('connected', data),
   onDisconnect: () => console.log('disconnected'),
 })
-
-const { data: ensName } = useEnsName({
-  address,
-  chainId: 1,
-})
-
-const { data: ensAvatar } = useEnsAvatar({
-  name: ensName,
-  chainId: 1,
-})
-
 const { disconnect } = useDisconnect()
+const singMess = async () => {
+  const result = await signMessageAsync({ message: 'kartbox' })
+  await login({
+    publisher: 'metamask',
+    chain: 'ethereum',
+    address,
+    signature: signMessageData,
+  })
+  await getProfile()
+  await updateProfile({
+    username: 'testUser',
+  })
+  await getWallet()
+}
+const handleConnectWallet = async (connector: any) => {
+  // await ConnectWallet(connector)
+  await connectAsync({ connector })
+}
 </script>
 
 <template>
@@ -65,6 +60,7 @@ const { disconnect } = useDisconnect()
         >By connecting a wallet, you agree to
         <a class="text-[#E5A403]">Terms of Service</a> And
         <a class="text-[#E5A403]">Privacy Policy.</a>
+        <a @click="singMess">sign message</a>
       </span>
       <div class="grid gap-8 grid-cols-2 grid-row-2 py-8 text-[16px]">
         <button
@@ -73,7 +69,7 @@ const { disconnect } = useDisconnect()
           class="w-full h-[51px] rounded flex gap-8 p-2 pl-4"
           style="background: rgba(255, 255, 255, 0.08)"
           :disabled="!item.ready || isReconnecting || connector?.id === item.id"
-          @click="() => connect({ connector: item })"
+          @click="() => handleConnectWallet(item)"
         >
           <img :src="item.options.icon" />
           <span class="font-bold pt-1"> {{ item.name }} </span>

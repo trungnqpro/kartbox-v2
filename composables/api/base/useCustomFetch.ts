@@ -1,5 +1,6 @@
 import type { UseFetchOptions } from 'nuxt/app'
 import { defu } from 'defu'
+import { useUser } from '~/stores/authUser'
 
 export default async function useCustomFetch<T>(
   url: string,
@@ -7,16 +8,13 @@ export default async function useCustomFetch<T>(
 ) {
   // const userAuth = useCookie('token')
   const config = useRuntimeConfig()
-
+  const { accessToken } = useUser()
   const defaults: UseFetchOptions<T> = {
     baseURL: config.public.baseUrl ?? 'https://api.nuxtjs.dev',
     // cache request
     key: url,
 
-    // set user token if connected
-    // headers: userAuth.value
-    //   ? { Authorization: `Bearer ${userAuth.value}` }
-    //   : {},
+    headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
 
     onRequest({ request, options }) {
       console.log('[onRequest]')
@@ -27,8 +25,8 @@ export default async function useCustomFetch<T>(
     },
 
     onResponse({ request, response, options }) {
-      // _ctx.response._data = new myBusinessResponse(_ctx.response._data)
-      console.log('[onResponse]')
+      response = response._data.data
+      console.log('[onResponse]', response)
     },
 
     onResponseError({ request, response, options }) {
