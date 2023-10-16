@@ -27,6 +27,7 @@ export const useUser = definePiniaStore('user', {
           this.profile = response.profile
           this.accessToken = response.accessToken
           this.refreshToken = response.refreshToken
+          return response
         }
       } catch (error) {
         console.log(error, ['login Error'])

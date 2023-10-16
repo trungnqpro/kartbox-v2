@@ -9,12 +9,14 @@ import {
 export interface Wallet {
   address: number
   chain: number
+  isConnected: boolean
 }
 
 export const useWalletStore = definePiniaStore('wallet', {
   state: (): Wallet => ({
     address: 0,
     chain: 0,
+    isConnected: false,
   }),
   getters: {},
   actions: {
@@ -41,6 +43,10 @@ export const useWalletStore = definePiniaStore('wallet', {
       //   // eslint-disable-next-line no-console
       //   console.log(error, ['SignMessage'])
       // }
+    },
+    setConnectWallet(status: boolean) {
+      this.isConnected = status
+      console.log(this.isConnected, 'isConnected')
     },
   },
 })

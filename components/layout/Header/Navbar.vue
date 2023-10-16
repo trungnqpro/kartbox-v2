@@ -1,14 +1,23 @@
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia'
+import { useAccount } from 'use-wagmi'
 import { AwesomeLayoutPageNavbarMenu } from '../../../types'
-// import { useModal, ModalsContainer } from 'vue-final-modal'
+import { useWalletStore } from '~/stores/wallet'
+const { setConnectWallet } = useWalletStore()
 
 const { awesome } = useAppConfig()
 const menus = computed(
   () => (awesome?.layout?.navbar?.menus || []) as AwesomeLayoutPageNavbarMenu[]
 )
-
+const isConnected = computed(() => useWalletStore().isConnected)
 const isLogin = ref(false)
-const connectWallet = ref(false)
+const { address } = useAccount({
+  onConnect: async (data) => await setConnectWallet(true),
+  onDisconnect: async () => {
+    console.log('disconnect')
+    await setConnectWallet(false)
+  },
+})
 </script>
 
 <template>
@@ -38,25 +47,24 @@ const connectWallet = ref(false)
             </template>
           </div>
         </div>
-        <div class="Wallet">
-          <div v-if="!connectWallet">
-            <button
-              class="w-[182px] h-[40px] rounded bg-[#FF9900]"
-              @click="isLogin = true"
-            >
-              Connect Wallet
-            </button>
+        <client-only>
+          <div class="Wallet">
+            <div v-if="!isConnected">
+              <button
+                class="w-[182px] h-[40px] rounded bg-[#FF9900]"
+                @click="isLogin = true"
+              >
+                Connect Wallet
+              </button>
+            </div>
+            <div v-else>
+              <PageHomeUser />
+            </div>
           </div>
-          <div v-else>
-            <PageHomeUser />
-          </div>
-        </div>
+        </client-only>
       </div>
     </div>
-    <PageHomeModalLogin
-      :isLogin="isLogin"
-      @close-Modal="isLogin = false"
-    />
+    <PageHomeModalLogin :is-login="isLogin" @close-Modal="isLogin = false" />
   </header>
 </template>
 
