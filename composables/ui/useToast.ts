@@ -1,7 +1,7 @@
-import type { Notification } from '../types/notification'
+import type { Notification } from '../../types/notification'
 import { useState } from '#imports'
 
-export function useToast () {
+export function useToast() {
   const notifications = useState<Notification[]>('notifications', () => [])
 
   function add (notification: Partial<Notification>) {

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { watch } from 'vue'
 const { awesome } = useAppConfig()
 
 useHead({
@@ -11,15 +10,12 @@ const route = useRoute()
 const account = ref(false)
 
 watch(
-  route,
-  (value) => {
-    if (value.fullPath == '/account') {
-      return (account.value = true)
-    }
-    account.value = false
+  () => route.fullPath,
+  (newPath, oldPath) => {
+    account.value = newPath === '/account';
   },
   { deep: true, immediate: true }
-)
+);
 </script>
 
 <template>
