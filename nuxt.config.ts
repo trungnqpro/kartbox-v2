@@ -24,6 +24,8 @@ export default defineNuxtConfig({
     // Keys within public are also exposed client-side
     public: {
       baseUrl: 'https://stg-api-kartid.famtechvn.com',
+      clientId: '4504f2b7-4389-4eae-837c-b697aa9c7fe7',
+      redirect_uri: 'http://localhost:3000/login',
     },
   },
 

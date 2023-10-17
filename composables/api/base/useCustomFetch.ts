@@ -1,6 +1,7 @@
 import type { UseFetchOptions } from 'nuxt/app'
 import { defu } from 'defu'
 import { useUser } from '~/stores/authUser'
+import { oauthUrl } from '~/utils/endPoint'
 
 export default async function useCustomFetch<T>(
   url: string,
@@ -25,8 +26,26 @@ export default async function useCustomFetch<T>(
     },
 
     onResponse({ request, response, options }) {
-      response = response._data.data
       console.log('[onResponse]', response)
+      if (request.toString().includes(`${oauthUrl.authorizeRedirect}`)) {
+        navigateTo(`${response.url}`, {
+          external: true,
+          open: {
+            target: '_blank',
+            windowFeatures: {
+              // width: 500,
+              // height: 500,
+              // screenX: 500,
+              // screenY: 500,
+              top: 250,
+              left: 250,
+              innerWidth: 850,
+              innerHeight: 850,
+            },
+          },
+        })
+      }
+      response = response._data.data
     },
 
     onResponseError({ request, response, options }) {

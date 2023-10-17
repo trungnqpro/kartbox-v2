@@ -12,13 +12,14 @@ import { useUser } from '~/stores/authUser'
 import { useWalletStore } from '~/stores/wallet'
 const { setConnectWallet } = useWalletStore()
 const emit = defineEmits(['closeModal'])
+const config = useRuntimeConfig()
 const props = defineProps({
   isLogin: {
     type: Boolean,
   },
 })
 const value = computed(() => props.isLogin)
-const { login, getProfileUser, getProfile, updateProfile, getWallet } =
+const { login, getProfileUser, getProfile, updateProfile, getWallet, authorizeRedirect } =
   useUser()
 const { SignMessage, ConnectWallet } = useWalletStore()
 const { address, isConnecting, isDisconnected } = useAccount()
@@ -64,15 +65,23 @@ const handleConnectWallet = async (connector: any) => {
     } else {
       localStorage.setItem('Accounts', JSON.stringify(payload))
     }
-    // const result = await login({
-    //   publisher: 'metamask',
-    //   chain: 'ethereum',
-    //   address,
-    //   signature: signMessageData,
-    // })
-    await navigateTo('/login')
+    const result = await login({
+      publisher: 'metamask',
+      chain: 'ethereum',
+      address,
+      signature: signMessageData,
+    })
+    await authorizeRedirect({
+      client_id: config.public.clientId,
+      redirect_uri: 'http://localhost:3000/login',
+      response_type: 'code',
+      state: 'q',
+      scope: 'default',
+    })
   } catch (error) {
     console.log(error, ['error ConnectWallet'])
+
+  } finally {
     emit('closeModal')
   }
 }

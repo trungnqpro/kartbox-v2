@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useNetwork, useSwitchNetwork } from 'use-wagmi'
+const { chain } = useNetwork()
+const { chains, switchNetworkAsync } = useSwitchNetwork()
+
 const wallet = [
   {
     name: 'BNB Chain',
@@ -23,6 +27,10 @@ const props = defineProps({
   },
 })
 const value = computed(() => props.isNetWork)
+console.log(chain.value.name, 'chain')
+const handleSwitchNetwork = (item: any) => {
+  console.log(switchNetworkAsync, '----------',chains)
+}
 </script>
 
 <template>
@@ -41,6 +49,7 @@ const value = computed(() => props.isNetWork)
           :key="idx"
           class="w-full h-[51px] rounded flex gap-8 p-2 pl-4"
           style="background: rgba(255, 255, 255, 0.08)"
+          @click="handleSwitchNetwork(item)"
         >
           <img :src="item.icon" />
           <span class="font-bold pt-1"> {{ item.name }} </span>

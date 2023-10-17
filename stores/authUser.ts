@@ -1,4 +1,6 @@
 import useCustomFetch from '../composables/api/base/useCustomFetch'
+import { oauthUrl } from '~/utils/endPoint'
+
 export interface UserInfo {
   profile: {} | null
   accessToken: string | null
@@ -10,6 +12,7 @@ export const useUser = definePiniaStore('user', {
     profile: null,
     accessToken: null,
     refreshToken: null,
+    htmlRedirect: null,
   }),
   getters: {
     getProfileUser: (state) => state.profile,
@@ -66,6 +69,22 @@ export const useUser = definePiniaStore('user', {
         }
       } catch (error) {
         console.log(error, ['getWallet Error'])
+      }
+    },
+    authorizeRedirect: async function (params: any) {
+      try {
+        const { data } = await useCustomFetch<object>(
+          `${oauthUrl.authorizeRedirect}`,
+          {
+            method: 'GET',
+            params,
+          }
+        )
+        if (data) {
+          console.log(['authorizeRedirect Succes'], data)
+        }
+      } catch (error) {
+        console.log(error, ['authorizeRedirect Error'])
       }
     },
   },

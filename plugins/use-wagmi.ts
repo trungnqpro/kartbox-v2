@@ -1,6 +1,6 @@
 /** https://github.com/unicape/use-wagmi/blob/main/examples/nuxt/plugins/use-wagmi.ts **/
 import { UseWagmiPlugin, configureChains, createConfig } from 'use-wagmi'
-import { avalanche, goerli, mainnet, optimism } from 'use-wagmi/chains'
+import { avalanche, goerli, mainnet, optimism, polygon, bsc } from 'use-wagmi/chains'
 
 import { CoinbaseWalletConnector } from 'use-wagmi/connectors/coinbaseWallet'
 import { MetaMaskConnector } from 'use-wagmi/connectors/metaMask'
@@ -13,10 +13,8 @@ import { publicProvider } from 'use-wagmi/providers/public'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const { chains, publicClient, webSocketPublicClient } = configureChains(
-    [mainnet, goerli, optimism, avalanche],
+    [mainnet, goerli, optimism, avalanche, polygon, bsc],
     [
-      alchemyProvider({ apiKey: '' }), // TODO: your API Key
-      infuraProvider({ apiKey: '' }), // TODO: your API Key
       publicProvider(),
     ]
   )

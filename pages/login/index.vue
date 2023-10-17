@@ -4,8 +4,9 @@ import { useUser } from '~/stores/authUser'
 const isShowLogin = ref(false)
 const { login, getProfileUser, getProfile, updateProfile, getWallet } =
   useUser()
+const htmlRedirect = computed(() => useUser().htmlRedirect)
 const listAccount = ref(JSON.parse(useLocalStorage('Accounts').value || '[]'))
-console.log(listAccount.value)
+console.log(htmlRedirect, 'htmlRedirect')
 const handleLogin = async (account) => {
   const { profile } = await login(account)
   // TODO UPDATE PROFILE USER LOCAL STORAGE
