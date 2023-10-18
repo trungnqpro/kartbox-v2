@@ -7,6 +7,7 @@ import svgLoader from 'vite-svg-loader'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  devtools: true,
   // exp
   experimental: {
     localLayerAliases: true,
@@ -22,7 +23,9 @@ export default defineNuxtConfig({
     apiSecretKey: 'xxxx',
     // Keys within public are also exposed client-side
     public: {
-      // baseUrl: 'http://localhost:3001/api',
+      baseUrl: 'https://stg-api-kartid.famtechvn.com',
+      clientId: '4504f2b7-4389-4eae-837c-b697aa9c7fe7',
+      redirect_uri: 'http://localhost:3000/login',
     },
   },
 
@@ -49,7 +52,7 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     // todo: feat/localization
     // '@nuxtjs/i18n',
-    // '@use-wagmi/nuxt',
+    '@use-wagmi/nuxt',
   ],
 
   css: [

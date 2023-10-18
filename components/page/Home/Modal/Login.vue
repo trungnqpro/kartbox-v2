@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script async setup lang="ts">
 import { computed } from 'vue'
 import {
   useAccount,
@@ -6,56 +6,82 @@ import {
   useEnsAvatar,
   useEnsName,
   useConnect,
+  useSignMessage,
 } from 'use-wagmi'
+import { useUser } from '~/stores/authUser'
+import { useWalletStore } from '~/stores/wallet'
+const { setConnectWallet } = useWalletStore()
+const emit = defineEmits(['closeModal'])
+const config = useRuntimeConfig()
 const props = defineProps({
   isLogin: {
     type: Boolean,
   },
 })
 const value = computed(() => props.isLogin)
-const wallet = [
-  {
-    name: 'Metamask',
-    icon: '/images/icons/metamask_icon.png',
-  },
-  {
-    name: 'CoinbaseWallet',
-    icon: '/images/icons/CoinbaseWallet_icon.png',
-  },
-  {
-    name: 'WalletConnect',
-    icon: '/images/icons/WalletConnect_icon.png',
-  },
-  {
-    name: 'TrustWallet',
-    icon: '/images/icons/TrustWallet_icon.png',
-  },
-]
-
-const { connect, connectors, isLoading, error, pendingConnector } = useConnect()
+const { login, getProfileUser, getProfile, updateProfile, getWallet, authorizeRedirect } =
+  useUser()
+const { SignMessage, ConnectWallet } = useWalletStore()
+const { address, isConnecting, isDisconnected } = useAccount()
+const {
+  data: signMessageData,
+  signMessage,
+  variables,
+  signMessageAsync,
+} = useSignMessage()
+const {
+  connect,
+  connectors,
+  isLoading,
+  error,
+  pendingConnector,
+  connectAsync,
+} = useConnect()
 const { connector, isReconnecting } = useAccount()
-const { address } = useAccount({
-  onConnect: (data) => console.log('connected', data),
-  onDisconnect: () => console.log('disconnected'),
-})
-
-const { data: ensName } = useEnsName({
-  address,
-  chainId: 1,
-})
-
-const { data: ensAvatar } = useEnsAvatar({
-  name: ensName,
-  chainId: 1,
-})
 
 const { disconnect } = useDisconnect()
+const handleConnectWallet = async (connector: any) => {
+  try {
+    /** Connect wallet Wagmi **/
+    await connectAsync({ connector })
+    setConnectWallet(true)
+    /** get signature User **/
+    await signMessageAsync({ message: 'kartbox' })
+    /** set localStorage **/
+    const payload = [
+      {
+        publisher: 'metamask',
+        chain: 'ethereum',
+        address: address.value,
+        signature: signMessageData.value,
+      },
+    ]
+    if (localStorage.getItem('Accounts') !== 'undefined') {
+      console.log('call 1 account', localStorage.getItem('Accounts'))
+      const accounts = JSON.parse(localStorage.getItem('Accounts'))
+      if (!accounts.find((item) => item.address === payload[0].address)) {
+        console.log('push')
+        await accounts.push(...payload)
+      }
+      await localStorage.setItem('Accounts', JSON.stringify(accounts))
+      console.log(useLocalStorage('Accounts').value)
+    } else {
+      console.log('call 0 account')
+      localStorage.setItem('Accounts', JSON.stringify(payload))
+    }
+    emit('rerender')
+    emit('closeModal')
+  } catch (error) {
+    console.log(error, ['error ConnectWallet'])
+    emit('closeModal')
+  }
+}
 </script>
 
 <template>
   <CommonModal v-model="value" class="modal-login">
     <div class="text-right p-3">
-      <button @click="$emit('closeModal')">
+      <button @click="emit('closeModal')">
         <img src="/images/icons/clear.png" alt="" />
       </button>
     </div>
@@ -73,7 +99,7 @@ const { disconnect } = useDisconnect()
           class="w-full h-[51px] rounded flex gap-8 p-2 pl-4"
           style="background: rgba(255, 255, 255, 0.08)"
           :disabled="!item.ready || isReconnecting || connector?.id === item.id"
-          @click="() => connect({ connector: item })"
+          @click="() => handleConnectWallet(item)"
         >
           <img :src="item.options.icon" />
           <span class="font-bold pt-1"> {{ item.name }} </span>

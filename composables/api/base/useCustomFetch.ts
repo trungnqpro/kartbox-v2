@@ -1,5 +1,7 @@
 import type { UseFetchOptions } from 'nuxt/app'
 import { defu } from 'defu'
+import { useUser } from '~/stores/authUser'
+import { oauthUrl } from '~/utils/endPoint'
 
 export default async function useCustomFetch<T>(
   url: string,
@@ -7,16 +9,13 @@ export default async function useCustomFetch<T>(
 ) {
   // const userAuth = useCookie('token')
   const config = useRuntimeConfig()
-
+  const { accessToken } = useUser()
   const defaults: UseFetchOptions<T> = {
     baseURL: config.public.baseUrl ?? 'https://api.nuxtjs.dev',
     // cache request
     key: url,
 
-    // set user token if connected
-    // headers: userAuth.value
-    //   ? { Authorization: `Bearer ${userAuth.value}` }
-    //   : {},
+    headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
 
     onRequest({ request, options }) {
       console.log('[onRequest]')
@@ -27,8 +26,26 @@ export default async function useCustomFetch<T>(
     },
 
     onResponse({ request, response, options }) {
-      // _ctx.response._data = new myBusinessResponse(_ctx.response._data)
-      console.log('[onResponse]')
+      console.log('[onResponse]', response)
+      if (request.toString().includes(`${oauthUrl.authorizeRedirect}`)) {
+        navigateTo(`${response.url}`, {
+          external: true,
+          open: {
+            target: '_blank',
+            windowFeatures: {
+              // width: 500,
+              // height: 500,
+              // screenX: 500,
+              // screenY: 500,
+              top: 250,
+              left: 250,
+              innerWidth: 850,
+              innerHeight: 850,
+            },
+          },
+        })
+      }
+      response = response._data.data
     },
 
     onResponseError({ request, response, options }) {

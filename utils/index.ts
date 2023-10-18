@@ -55,5 +55,12 @@ export function getSlotsChildren (slots: any) {
   }
   return children
 }
+export const limitLetter = (_val = '', _numberSlice = 18) => {
+  if (_val.length <= _numberSlice) return _val
+  return `${_val.substring(0, _numberSlice / 2)}...${_val.substring(
+    _val.length - _numberSlice / 2 - 3
+  )}`
+}
+
 
 export * from './lodash'
