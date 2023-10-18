@@ -1,16 +1,41 @@
 <script setup lang="ts">
+import { useDisconnect, useSignMessage } from 'use-wagmi'
 import { limitLetter } from '@/utils/index'
 import { useUser } from '~/stores/authUser'
-const isShowLogin = ref(false)
-const { login, getProfileUser, getProfile, updateProfile, getWallet } =
-  useUser()
-const htmlRedirect = computed(() => useUser().htmlRedirect)
-const listAccount = ref(JSON.parse(useLocalStorage('Accounts').value || '[]'))
-console.log(htmlRedirect, 'htmlRedirect')
+const { disconnectAsync } = useDisconnect()
+const isShowLogin = ref(
+    useLocalStorage('Accounts').value !== 'undefined'
+)
+const flag = ref(false)
+const { login } = useUser()
+const {
+  data: signMessageData,
+  signMessage,
+  variables,
+  signMessageAsync,
+} = useSignMessage()
+let listAccount = computed(() => {
+  console.log(useLocalStorage('Accounts'), 'computed')
+  return JSON.parse(
+    useLocalStorage('Accounts').value !== 'undefined'
+      ? useLocalStorage('Accounts').value
+      : '[]'
+  )
+})
+watch(flag, async (value) => {
+  listAccount = JSON.parse(
+    useLocalStorage('Accounts').value !== 'undefined'
+      ? useLocalStorage('Accounts').value
+      : '[]')
+})
 const handleLogin = async (account) => {
   const { profile } = await login(account)
-  // TODO UPDATE PROFILE USER LOCAL STORAGE
   navigateTo('/')
+}
+const hanldeUserMoreAccount = async () => {
+  console.log('handleUserMoreAccount')
+  await disconnectAsync()
+  isShowLogin.value = false
 }
 </script>
 
@@ -18,50 +43,11 @@ const handleLogin = async (account) => {
   <client-only>
     <div class="h-screen p-60">
       <div class="flex justify-center items-center">
-        <common-card class="border border-sky-500">
-          <!-- Login -->
-          <div v-if="isShowLogin">
-            <div class="title flex items-center flex-col mb-5">
-              <div class="text-3xl">Sign in to your account</div>
-            </div>
-            <div class="flex flex-col space-y-4">
-              <div class="flex flex-col">
-                <input
-                  type="text"
-                  placeholder="name@compan.com"
-                  class="p-2 border border-gray-300 text-neutral-950"
-                />
-              </div>
-              <div class="flex flex-col">
-                <input
-                  type="password"
-                  placeholder="******"
-                  class="p-2 border border-gray-300 text-neutral-950"
-                />
-              </div>
-              <div class="flex justify-between item-end">
-                <div class="flex">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox h-5 w-5 text-blue-500"
-                  />
-                  <div class="ps-1">Remember me</div>
-                </div>
-                <div>Forgot password</div>
-              </div>
-              <button
-                type="submit"
-                class="p-2 bg-blue-700 text-white font-bold rounded"
-              >
-                Sign In
-              </button>
-              <div>
-                Don't have an account?<span class="text-sky-400">Sign Up</span>
-              </div>
-            </div>
-          </div>
-          <!-- End Login -->
-          <div v-if="!isShowLogin && listAccount.length" class="py-6 px-8 flex flex-col">
+        <common-card
+          v-if="isShowLogin && listAccount.length"
+          class="border border-sky-500"
+        >
+          <div class="py-6 px-8 flex flex-col">
             <div class="text-center text-3xl mb-4">Choose an account</div>
             <div>
               <div
@@ -84,11 +70,9 @@ const handleLogin = async (account) => {
               </div>
               <div
                 class="flex py-3 border-b-2 border-blue-600 items-center mb-8 cursor-pointer"
-                @click="isShowLogin = true"
               >
-                <CommonAvatar
-                />
-                <div class="ps-3">
+                <CommonAvatar />
+                <div class="ps-3" @click="hanldeUserMoreAccount()">
                   Use another account
                 </div>
               </div>
@@ -96,6 +80,12 @@ const handleLogin = async (account) => {
           </div>
         </common-card>
       </div>
+      <PageHomeModalLogin
+        :is-login="!isShowLogin"
+        @close-Modal="isShowLogin = true"
+        @rerender="flag = !flag"
+      />
+      <div v-if="flag"></div>
     </div>
   </client-only>
 </template>

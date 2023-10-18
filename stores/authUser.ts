@@ -5,6 +5,7 @@ export interface UserInfo {
   profile: {} | null
   accessToken: string | null
   refreshToken: string | null
+  htmlRedirect: null,
 }
 
 export const useUser = definePiniaStore('user', {

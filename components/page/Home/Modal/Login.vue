@@ -56,32 +56,23 @@ const handleConnectWallet = async (connector: any) => {
         signature: signMessageData.value,
       },
     ]
-    if (localStorage.getItem('Accounts')) {
-      const accounts = JSON.parse(localStorage.getItem('Accounts') || '')
+    if (localStorage.getItem('Accounts') !== 'undefined') {
+      console.log('call 1 account', localStorage.getItem('Accounts'))
+      const accounts = JSON.parse(localStorage.getItem('Accounts'))
       if (!accounts.find((item) => item.address === payload[0].address)) {
-        accounts.push(...payload)
+        console.log('push')
+        await accounts.push(...payload)
       }
-      localStorage.setItem('Accounts', JSON.stringify(accounts))
+      await localStorage.setItem('Accounts', JSON.stringify(accounts))
+      console.log(useLocalStorage('Accounts').value)
     } else {
+      console.log('call 0 account')
       localStorage.setItem('Accounts', JSON.stringify(payload))
     }
-    const result = await login({
-      publisher: 'metamask',
-      chain: 'ethereum',
-      address,
-      signature: signMessageData,
-    })
-    await authorizeRedirect({
-      client_id: config.public.clientId,
-      redirect_uri: 'http://localhost:3000/login',
-      response_type: 'code',
-      state: 'q',
-      scope: 'default',
-    })
+    emit('rerender')
+    emit('closeModal')
   } catch (error) {
     console.log(error, ['error ConnectWallet'])
-
-  } finally {
     emit('closeModal')
   }
 }
