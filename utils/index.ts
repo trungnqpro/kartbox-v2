@@ -62,5 +62,14 @@ export const limitLetter = (_val = '', _numberSlice = 18) => {
   )}`
 }
 
+export const replaceNullWithEmptyString = (obj = {}) => {
+  for (const key in obj) {
+    if (obj[key] === null) {
+      obj[key] = "";
+    }
+  }
+  return obj;
+}
+
 
 export * from './lodash'

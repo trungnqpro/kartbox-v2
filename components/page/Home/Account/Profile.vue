@@ -18,14 +18,14 @@
     </div>
     <div class="flex flex-col gap-4">
       <span> Username </span>
-      <input v-model="AccountData.name" class="profile-input" placeholder="info" />
+      <input v-model="AccountData.username" class="profile-input" placeholder="info" />
     </div>
     <div class="flex flex-col gap-4">
       <span> Email </span>
-      <input v-model="AccountData.Email" class="profile-input" type="email" placeholder="info@email.com" />
+      <input v-model="AccountData.email" class="profile-input" type="email" placeholder="info@email.com" />
     </div>
     <div>
-      <button class="w-[220px] h-[48px] rounded bg-[#FF9900]">
+      <button @click="ChangeProfile" class="w-[220px] h-[48px] rounded bg-[#FF9900]">
         Update Profile
       </button>
     </div>
@@ -34,14 +34,16 @@
 
 <script lang="ts">
 definePageMeta({ layout: 'page' })
+import { useUser } from '~/stores/authUser'
 
 export default defineComponent({
   setup() {
+    const { updateProfile, getProfile } = useUser();
     const file = ref<File | null>();
     let url = ref<any>(null);
-    const AccountData = {
-      name: '',
-      Email: ''
+    let AccountData = {
+      username: '',
+      email: '',
     };
 
     function onFileChanged($event: Event) {
@@ -52,8 +54,22 @@ export default defineComponent({
       }
     }
 
-    function ChangeProfile() {
+    async function ChangeProfile() {
+      const payload = AccountData;
+      const res = await updateProfile(payload);
+      console.log('res', res);
     }
+
+    async function getUser() {
+      await getProfile();
+      console.log('useUser().$state.profile', useUser().$state.profile);
+      AccountData = useUser().$state.profile;
+      console.log('AccountData', AccountData);
+    }
+
+    onMounted(async () => {
+      await getUser();
+    });
 
     return {
       onFileChanged,

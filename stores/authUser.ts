@@ -1,5 +1,6 @@
 import useCustomFetch from '../composables/api/base/useCustomFetch'
 import { oauthUrl } from '~/utils/endPoint'
+import { replaceNullWithEmptyString } from '@/utils/index'
 
 export interface UserInfo {
   profile: {} | null
@@ -10,7 +11,7 @@ export interface UserInfo {
 
 export const useUser = definePiniaStore('user', {
   state: (): UserInfo => ({
-    profile: null,
+    profile: {},
     accessToken: null,
     refreshToken: null,
     htmlRedirect: null,
@@ -28,9 +29,13 @@ export const useUser = definePiniaStore('user', {
         if (data) {
           console.log(data.value.data.profile, 'check')
           const response = data.value.data
-          this.profile = response.profile
+          this.profile = replaceNullWithEmptyString(response.profile)
           this.accessToken = response.accessToken
           this.refreshToken = response.refreshToken
+          console.log('this.accessToken',this.accessToken);
+          localStorage.setItem('User', JSON.stringify(this.profile))
+          localStorage.setItem('accessToken', response.accessToken)
+          localStorage.setItem('refreshToken', response.refreshToken)
           return response
         }
       } catch (error) {
