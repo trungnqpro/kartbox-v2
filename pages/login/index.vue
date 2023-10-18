@@ -30,7 +30,7 @@ watch(flag, async (value) => {
 })
 const handleLogin = async (account) => {
   const { profile } = await login(account)
-  const localUser = listAccount.value.map(item => {
+  const localUser = listAccount.map(item => {
     if (item.address === account.address) {
       return {
         ...item,
