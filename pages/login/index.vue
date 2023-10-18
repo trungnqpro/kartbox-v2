@@ -30,6 +30,16 @@ watch(flag, async (value) => {
 })
 const handleLogin = async (account) => {
   const { profile } = await login(account)
+  const localUser = listAccount.value.map(item => {
+    if (item.address === account.address) {
+      return {
+        ...item,
+        ...profile,
+      }
+    }
+    return item
+  })
+  localStorage.setItem('Accounts', JSON.stringify(localUser))
   navigateTo('/')
 }
 const hanldeUserMoreAccount = async () => {
@@ -61,7 +71,7 @@ const hanldeUserMoreAccount = async () => {
                 />
                 <div class="ps-3">
                   <div>
-                    {{ account.name || 'demo' }}
+                    {{ account.username || 'demo' }}
                   </div>
                   <div>
                     {{ limitLetter(account.address, 10) }}
