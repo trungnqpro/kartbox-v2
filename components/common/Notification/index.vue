@@ -48,13 +48,13 @@
 import { ref, computed, toRef, onMounted, onUnmounted, watchEffect, defineComponent } from 'vue'
 import type { PropType } from 'vue'
 import { twMerge, twJoin } from 'tailwind-merge'
-import UIcon from '../Icon/Index.vue'
-import UAvatar from '../Avatar/Index.vue'
-import UButton from '../Button/Index.vue'
+import UIcon from '../Icon/index.vue'
+import UAvatar from '../Avatar/index.vue'
+import UButton from '../Button/index.vue'
 import { useUI } from '../../../composables/ui/useUI'
 import { useTimer } from '../../../composables/ui/useTimer'
 import { mergeConfig } from '../../../utils'
-import type { Avatar, Button, NotificationColor, NotificationAction, Strategy } from '../../types'
+import type { Avatar, Button, NotificationAction, Strategy } from '../../types'
 // @ts-expect-error
 import appConfig from '#build/app.config'
 

@@ -65,10 +65,3 @@ export default defineComponent({
 });
 
 </script>
-<style>
-/* #upload-photo {
-  opacity: 0;
-  position: absolute;
-  z-index: -1;
-} */
-</style>

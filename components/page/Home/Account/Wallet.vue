@@ -1,25 +1,3 @@
-<script setup lang="ts">
-definePageMeta({ layout: 'page' })
-
-const Social = [
-  {
-    name: 'BNB Chain',
-    icon: '/images/icons/BNB_icon.png',
-  },
-  {
-    name: 'Polygon',
-    icon: '/images/icons/Polygon_icon.png',
-  },
-  {
-    name: 'Ethereum',
-    icon: '/images/icons/Ethereum_icon.png',
-  },
-  {
-    name: 'Optimism',
-    icon: '/images/icons/Optimism_icon.png',
-  },
-]
-</script>
 <template>
   <div class="flex flex-col gap-8">
     <div class="profile_title text-[36px] font-bold">Wallet Address</div>
@@ -28,17 +6,13 @@ const Social = [
       <CommonCard class="wallet-card">
         <div class="flex flex-col gap-4">
           <span class="font-bold text-[20px]"> EVM Chain </span>
-          <div
-            class="bg-[#060708] w-full p-3 px-4 rounded-md flex justify-between"
-          >
-            <span class="text-[#F90]">{{ '0x455097....f57c' }}</span>
-            <button>
+          <div class="bg-[#060708] w-full p-3 px-4 rounded-md flex justify-between">
+            <span class="text-[#F90]">{{ formatString(Token) }}</span>
+            <button @click="CopyToken">
               <img src="/images/icons/copy_icon.png" />
             </button>
           </div>
-          <button
-            class="w-full rounded-md p-3 bg-[#060708] flex justify-center"
-          >
+          <button class="w-full rounded-md p-3 bg-[#060708] flex justify-center">
             <img src="/images/icons/add_icon.png" />
           </button>
         </div>
@@ -49,7 +23,7 @@ const Social = [
       <CommonCard class="wallet-card">
         <div class="grid gap-8 grid-cols-2 grid-row-2 py-2 text-[16px]">
           <button v-for="(item, idx) in Social" :key="idx" class="btn-address">
-            <img class="pt-2" :src="item.icon" />
+            <img :src="item.icon" />
             <span class="font-bold pt-1"> {{ item.name }} </span>
           </button>
         </div>
@@ -57,6 +31,67 @@ const Social = [
     </div>
   </div>
 </template>
+
+<script lang="ts">
+definePageMeta({ layout: 'page' })
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  setup() {
+    const Token = ref('0x4550978182192819313983f57c')
+    const Social = [
+      {
+        name: 'BNB Chain',
+        icon: '/images/icons/BNB_icon.png',
+      },
+      {
+        name: 'Polygon',
+        icon: '/images/icons/Polygon_icon.png',
+      },
+      {
+        name: 'Ethereum',
+        icon: '/images/icons/Ethereum_icon.png',
+      },
+      {
+        name: 'Optimism',
+        icon: '/images/icons/Optimism_icon.png',
+      },
+    ]
+
+    function CopyToken() {
+      const tempInput = document.createElement('input');
+      tempInput.value = Token.value;
+      document.body.appendChild(tempInput);
+
+      tempInput.select();
+      document.execCommand('copy');
+
+      document.body.removeChild(tempInput);
+    }
+
+    function formatString(inputString: string) {
+      if (inputString.length < 12) {
+        return inputString;
+      }
+
+      const first8Chars = inputString.substring(0, 8);
+      const last4Chars = inputString.substring(inputString.length - 4);
+
+      return first8Chars + "..." + last4Chars;
+    }
+
+    return {
+      Social,
+      Token,
+      CopyToken,
+      formatString
+    }
+  }
+
+})
+
+</script>
+
 <style>
 /* .profile-input {
   background: var(--base-color-dark-transparent, rgba(47, 50, 65, 0.5));
@@ -65,6 +100,7 @@ const Social = [
 .wallet-card {
   background: rgba(47, 50, 65, 0.5) !important;
 }
+
 .btn-address {
   background: #080809;
   @apply w-full h-[51px] rounded flex gap-8 p-2 pl-4;
