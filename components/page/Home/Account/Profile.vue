@@ -18,14 +18,14 @@
     </div>
     <div class="flex flex-col gap-4">
       <span> Username </span>
-      <input v-model="AccountData.name" class="profile-input" placeholder="info" />
+      <input v-model="AccountData.username" class="profile-input" placeholder="info" />
     </div>
     <div class="flex flex-col gap-4">
       <span> Email </span>
-      <input v-model="AccountData.Email" class="profile-input" type="email" placeholder="info@email.com" />
+      <input v-model="AccountData.email" class="profile-input" type="email" placeholder="info@email.com" />
     </div>
     <div>
-      <button class="w-[220px] h-[48px] rounded bg-[#FF9900]">
+      <button @click="ChangeProfile" class="w-[220px] h-[48px] rounded bg-[#FF9900]">
         Update Profile
       </button>
     </div>
@@ -34,15 +34,17 @@
 
 <script lang="ts">
 definePageMeta({ layout: 'page' })
+import { useUser } from '~/stores/authUser'
 
 export default defineComponent({
-  setup() {
+  async setup() {
+    const { updateProfile, getProfile } = useUser();
+    await getProfile();
+    
     const file = ref<File | null>();
     let url = ref<any>(null);
-    const AccountData = {
-      name: '',
-      Email: ''
-    };
+
+    let AccountData = useUser().$state.profile
 
     function onFileChanged($event: Event) {
       const target = $event.target as HTMLInputElement;
@@ -52,7 +54,13 @@ export default defineComponent({
       }
     }
 
-    function ChangeProfile() {
+    async function ChangeProfile() {
+      const payload = {
+        username: AccountData.username,
+        email: AccountData.email
+      };
+      await updateProfile(payload)
+      await getProfile()
     }
 
     return {

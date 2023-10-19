@@ -9,7 +9,7 @@ export default async function useCustomFetch<T>(
 ) {
   // const userAuth = useCookie('token')
   const config = useRuntimeConfig()
-  const { accessToken } = useUser()
+  const accessToken = useLocalStorage('accessToken').value
   const defaults: UseFetchOptions<T> = {
     baseURL: config.public.baseUrl ?? 'https://api.nuxtjs.dev',
     // cache request
