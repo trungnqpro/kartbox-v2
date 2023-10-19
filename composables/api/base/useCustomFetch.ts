@@ -1,6 +1,5 @@
-import type { UseFetchOptions } from 'nuxt/app'
 import { defu } from 'defu'
-import { useUser } from '~/stores/authUser'
+import type { UseFetchOptions } from 'nuxt/app'
 import { oauthUrl } from '~/utils/endPoint'
 
 export default async function useCustomFetch<T>(
@@ -9,21 +8,21 @@ export default async function useCustomFetch<T>(
 ) {
   // const userAuth = useCookie('token')
   const config = useRuntimeConfig()
-  const accessToken = useLocalStorage('accessToken').value
+  const accessToken = useLocalStorage('accessToken', '').value
   const defaults: UseFetchOptions<T> = {
     baseURL: config.public.baseUrl ?? 'https://api.nuxtjs.dev',
     // cache request
-    key: url,
+    key: new Date().getTime().toString(),
 
     headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
-    server: false,
+    // server: false,
 
     onRequest({ request, options }) {
-      console.log('[onRequest]')
+      console.log('[onRequest]', request)
     },
 
     onRequestError({ request, options, error }) {
-      console.log('[onRequestError]')
+      console.log('[onRequestError]', request)
     },
 
     onResponse({ request, response, options }) {
@@ -45,8 +44,9 @@ export default async function useCustomFetch<T>(
           },
         })
       }
-      console.log('response', response);
-      response = response._data.data
+      console.log('[onResponse]', response._data.data)
+      // response = response._data.data
+      // return response._data
     },
 
     onResponseError({ request, response, options }) {
@@ -58,5 +58,5 @@ export default async function useCustomFetch<T>(
   // for nice deep defaults, please use unjs/defu
   const params = defu(options, defaults)
 
-  return useFetch(url, params)
+  return await useFetch(url, params)
 }
