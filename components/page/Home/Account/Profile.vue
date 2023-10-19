@@ -37,14 +37,14 @@ definePageMeta({ layout: 'page' })
 import { useUser } from '~/stores/authUser'
 
 export default defineComponent({
-  setup() {
+  async setup() {
     const { updateProfile, getProfile } = useUser();
+    await getProfile();
+    
     const file = ref<File | null>();
     let url = ref<any>(null);
-    let AccountData = {
-      username: '',
-      email: '',
-    };
+
+    let AccountData = useUser().$state.profile
 
     function onFileChanged($event: Event) {
       const target = $event.target as HTMLInputElement;
@@ -55,21 +55,13 @@ export default defineComponent({
     }
 
     async function ChangeProfile() {
-      const payload = AccountData;
-      const res = await updateProfile(payload);
-      console.log('res', res);
+      const payload = {
+        username: AccountData.username,
+        email: AccountData.email
+      };
+      await updateProfile(payload)
+      await getProfile()
     }
-
-    async function getUser() {
-      await getProfile();
-      console.log('useUser().$state.profile', useUser().$state.profile);
-      AccountData = useUser().$state.profile;
-      console.log('AccountData', AccountData);
-    }
-
-    onMounted(async () => {
-      await getUser();
-    });
 
     return {
       onFileChanged,

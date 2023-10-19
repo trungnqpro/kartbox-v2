@@ -11,7 +11,10 @@ export interface UserInfo {
 
 export const useUser = definePiniaStore('user', {
   state: (): UserInfo => ({
-    profile: {},
+    profile: {
+      username: '',
+      email:''
+    },
     accessToken: null,
     refreshToken: null,
     htmlRedirect: null,
@@ -27,12 +30,10 @@ export const useUser = definePiniaStore('user', {
           body: payload,
         })
         if (data) {
-          console.log(data.value.data.profile, 'check')
           const response = data.value.data
           this.profile = replaceNullWithEmptyString(response.profile)
           this.accessToken = response.accessToken
           this.refreshToken = response.refreshToken
-          console.log('this.accessToken',this.accessToken);
           localStorage.setItem('User', JSON.stringify(this.profile))
           localStorage.setItem('accessToken', response.accessToken)
           localStorage.setItem('refreshToken', response.refreshToken)
