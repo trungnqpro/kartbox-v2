@@ -16,6 +16,7 @@ export default async function useCustomFetch<T>(
     key: url,
 
     headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+    server: false,
 
     onRequest({ request, options }) {
       console.log('[onRequest]')
@@ -26,7 +27,6 @@ export default async function useCustomFetch<T>(
     },
 
     onResponse({ request, response, options }) {
-      console.log('[onResponse]', response)
       if (request.toString().includes(`${oauthUrl.authorizeRedirect}`)) {
         navigateTo(`${response.url}`, {
           external: true,
@@ -45,6 +45,7 @@ export default async function useCustomFetch<T>(
           },
         })
       }
+      console.log('response', response);
       response = response._data.data
     },
 

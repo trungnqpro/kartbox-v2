@@ -47,6 +47,7 @@ export const useUser = definePiniaStore('user', {
       console.log('getProfile calll')
       try {
         const { data } = await useCustomFetch<object>('account/user/profile')
+        console.log('dataqưqưq', data);
         if (data) {
           const response = data.value.data
           this.profile = response
