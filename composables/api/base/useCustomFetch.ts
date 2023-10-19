@@ -12,7 +12,7 @@ export default async function useCustomFetch<T>(
   const defaults: UseFetchOptions<T> = {
     baseURL: config.public.baseUrl ?? 'https://api.nuxtjs.dev',
     // cache request
-    key: new Date().getTime().toString(),
+    key: url,
 
     headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
     // server: false,
