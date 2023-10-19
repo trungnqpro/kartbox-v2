@@ -22,11 +22,11 @@
 import { computed, defineComponent, toRef } from 'vue'
 import type { PropType } from 'vue'
 import { twMerge, twJoin } from 'tailwind-merge'
-import UIcon from '../Icon/Index.vue'
-import ULink from '../Link/Index.vue'
+import UIcon from '~/components/common/Icon/index.vue'
+import ULink from '~/components/common/Link/index.vue'
 import { useUI } from '../../../composables/ui/useUI'
 import { mergeConfig } from '../../../utils'
-import type { ButtonColor, ButtonSize, ButtonVariant, Strategy } from '../../types'
+import type { ButtonColor, ButtonSize, ButtonVariant, Strategy } from '~/types'
 // @ts-expect-error
 import appConfig from '#build/app.config'
 

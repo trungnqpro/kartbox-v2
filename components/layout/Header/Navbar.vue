@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
 import { useAccount } from 'use-wagmi'
-import { AwesomeLayoutPageNavbarMenu } from '../../../types'
+import { AwesomeLayoutPageNavbarMenu } from '~/types'
 import { useWalletStore } from '~/stores/wallet'
 const { setConnectWallet } = useWalletStore()
 

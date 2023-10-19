@@ -28,7 +28,7 @@ import type { PropType } from 'vue'
 import { twMerge, twJoin } from 'tailwind-merge'
 import { useUI } from '../../../composables/ui/useUI'
 import { mergeConfig } from '../../../utils'
-import type { Strategy } from '../../../types'
+import type { Strategy } from '~/types'
 // @ts-expect-error
 import appConfig from '#build/app.config'
 

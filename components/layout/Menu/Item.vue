@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import {
   AwesomeLayoutPageNavbarMenu,
   AwesomeLayoutPageNavbarMenuDropdownItem,
-} from '../../../types'
+} from '~/types'
 import { NuxtApp } from '#app'
 
 const nuxtApp = useNuxtApp()

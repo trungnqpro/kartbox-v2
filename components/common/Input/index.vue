@@ -45,7 +45,7 @@ import UIcon from '../Icon/index.vue'
 import { useUI } from '../../../composables/ui/useUI'
 import { useFormGroup } from '../../../composables/ui/useFormGroup'
 import { mergeConfig } from '../../../utils'
-import type { NestedKeyOf, Strategy } from '../../../types'
+import type { NestedKeyOf, Strategy } from '~/types'
 // @ts-expect-error
 import appConfig from '#build/app.config'
 // import { input } from '#ui/ui.config'
