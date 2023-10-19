@@ -4,7 +4,7 @@ import { limitLetter } from '@/utils/index'
 import { useUser } from '~/stores/authUser'
 const { disconnectAsync } = useDisconnect()
 const isShowLogin = ref(
-    useLocalStorage('Accounts').value === 'undefined'
+    useLocalStorage('Accounts').value !== 'undefined'
 )
 const flag = ref(false)
 const { login } = useUser()
@@ -48,6 +48,7 @@ const hanldeUserMoreAccount = async () => {
   await disconnectAsync()
   isShowLogin.value = false
 }
+console.log(isShowLogin.value, 'isShowLogin',  useLocalStorage('Accounts').value !== 'undefined')
 </script>
 
 <template>
