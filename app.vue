@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const { awesome } = useAppConfig()
-
+import { useToast } from '~/composables/ui/useToast'
 useHead({
   title: awesome.name,
   titleTemplate: `%s - ${awesome.name}`,
@@ -8,6 +8,8 @@ useHead({
 
 const route = useRoute()
 const account = ref(false)
+
+const toast = useToast()
 
 watch(
   () => route.fullPath,
@@ -27,5 +29,6 @@ watch(
       <NuxtLoadingIndicator />
       <NuxtPage />
     </NuxtLayout>
+    <CommonNotifications />
   </Body>
 </template>

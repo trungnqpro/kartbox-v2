@@ -3,6 +3,7 @@ definePageMeta({ layout: 'page' })
 useHead({ titleTemplate: 'Components' })
 import useCustomFetch from '~/composables/api/base/useCustomFetch'
 import { usePingStore } from '~/stores/ping'
+import { useToast } from '~/composables/ui/useToast'
 
 const pingStore = usePingStore()
 
@@ -51,6 +52,8 @@ const { data, pending, refresh, execute, error, status } =
 const callFakeApi = () => useCustomFetch<object>('/fkapi/ping')
 
 pingStore.fetchList()
+const toast = useToast()
+
 </script>
 
 <template>
@@ -58,7 +61,7 @@ pingStore.fetchList()
     <CommonIcon name="i-heroicons-light-bulb" color="red" />
     <CommonAvatar src="/images/home/NFT_Cards.png" />
     <CommonLink>Link</CommonLink>
-    <button label="Open" @click="isOpen = true">open</button>
+    <button label="Open" @click="toast.add({ title: 'Hello world!' })">open</button>
     <div>
       <CommonModal v-model="isOpen">
         <div class="text-[#333]">đâsd</div>
@@ -92,6 +95,7 @@ pingStore.fetchList()
         />
       </template>
     </CommonDropdown>
+    <!-- <CommonNotifications /> -->
     <!-- Test useFetch -->
     <div>
       <span v-if="pending">Loading...</span>

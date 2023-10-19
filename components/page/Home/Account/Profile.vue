@@ -34,16 +34,17 @@
 
 <script lang="ts">
 definePageMeta({ layout: 'page' })
+// import { useToast } from '~/composables/ui/useToast'
 import { useUser } from '~/stores/authUser'
 
 export default defineComponent({
   async setup() {
     const { updateProfile, getProfile } = useUser();
     await getProfile();
-    
+
+    // const toast = useToast();
     const file = ref<File | null>();
     let url = ref<any>(null);
-
     let AccountData = useUser().$state.profile
 
     function onFileChanged($event: Event) {
@@ -61,6 +62,7 @@ export default defineComponent({
       };
       await updateProfile(payload)
       await getProfile()
+      // toast.add({ title: 'Change profile success' })
     }
 
     return {

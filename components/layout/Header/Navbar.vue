@@ -71,7 +71,7 @@ const { address } = useAccount({
 <style lang="scss">
 .modal-login {
   .Common-modal {
-    max-width: 40%;
+    @apply xl:max-w-[40%]
   }
 }
 </style>

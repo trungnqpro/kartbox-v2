@@ -29,14 +29,16 @@
 </template>
 
 <script lang="ts">
+import { formatString } from '@/utils/index'
 
 export default defineComponent({
   setup() {
+    const Token = JSON.parse(useLocalStorage('Accounts').value)[0].address
     const items = [
       [
         {
           slot: 'account',
-          WalletAdress: '0x4550...f57c',
+          WalletAdress: formatString(Token),
           disabled: false,
         },
       ],

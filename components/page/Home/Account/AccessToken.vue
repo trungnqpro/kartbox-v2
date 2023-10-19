@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { formatString } from '@/utils/index'
 definePageMeta({ layout: 'page' })
+const AccessToken = formatString(useLocalStorage('accessToken').value)
 </script>
 
 <template>
@@ -12,7 +14,7 @@ definePageMeta({ layout: 'page' })
       much more.
     </span>
     <div class="bg-[#23262F] w-full p-3 px-4 rounded-md flex justify-between">
-      <span>{{ 'yAo*****FpkR' }}</span>
+      <span>{{AccessToken}}</span>
       <div class="flex gap-2">
         <button>
           <img src="/images/icons/refresh_icon.png" />
