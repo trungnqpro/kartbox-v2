@@ -35,10 +35,11 @@
 <script lang="ts">
 definePageMeta({ layout: 'page' })
 import { defineComponent } from 'vue'
+import { formatString } from '@/utils/index'
 
 export default defineComponent({
   setup() {
-    const Token = ref('0x4550978182192819313983f57c')
+    const Token = JSON.parse(useLocalStorage('Accounts').value)[0].address
     const Social = [
       {
         name: 'BNB Chain',
@@ -69,22 +70,11 @@ export default defineComponent({
       document.body.removeChild(tempInput);
     }
 
-    function formatString(inputString: string) {
-      if (inputString.length < 12) {
-        return inputString;
-      }
-
-      const first8Chars = inputString.substring(0, 8);
-      const last4Chars = inputString.substring(inputString.length - 4);
-
-      return first8Chars + "..." + last4Chars;
-    }
-
     return {
       Social,
       Token,
       CopyToken,
-      formatString
+      formatString,
     }
   }
 

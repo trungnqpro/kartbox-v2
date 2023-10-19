@@ -1,7 +1,24 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'page' })
+import { useProfile } from '~/stores/profile'
 
+const { SlectedNav } = useProfile();
 const screen = useAwesomeScreen()
+
+let selectedTab = ref(0)
+
+function changeTab(index: any) {
+  SlectedNav(index)
+}
+
+watch(
+  () => useProfile().$state.count,
+  (value: number) => {
+    selectedTab.value = value
+  },
+  { deep: true, immediate: true }
+);
+
 </script>
 
 <template>
@@ -9,7 +26,8 @@ const screen = useAwesomeScreen()
     <LayoutWrapper>
       <LayoutSection>
         <div class="mb-6">
-          <HeadlessTabGroup as="div" class="flex flex-col md:flex-row md:space-x-4" :vertical="screen.higherThan('md')">
+          <HeadlessTabGroup :selectedIndex="selectedTab" @change="changeTab" as="div"
+            class="flex flex-col md:flex-row md:space-x-4" :vertical="screen.higherThan('md')">
             <HeadlessTabList class="md:border-r border-solid border-gray-800 w-full md:w-1/6 flex md:flex-col mb-2 pr-4">
               <PageHomeAccountSidebar />
             </HeadlessTabList>

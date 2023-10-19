@@ -71,5 +71,15 @@ export const replaceNullWithEmptyString = (obj = {}) => {
   return obj;
 }
 
+export const formatString = (inputString: string) => {
+  if (inputString.length < 12) {
+    return inputString;
+  }
+
+  const first8Chars = inputString.substring(0, 8);
+  const last4Chars = inputString.substring(inputString.length - 4);
+
+  return first8Chars + "..." + last4Chars;
+}
 
 export * from './lodash'

@@ -47,10 +47,12 @@ export const useUser = definePiniaStore('user', {
       console.log('getProfile calll')
       try {
         const { data } = await useCustomFetch<object>('account/user/profile')
-        console.log('dataqưqưq', data);
+        console.log('data', data);
         if (data) {
           const response = data.value.data
-          this.profile = response
+          this.$patch((state) => {
+            state.profile = response
+          })
         }
       } catch (error) {
         console.log(error, ['getProfile Error'])
