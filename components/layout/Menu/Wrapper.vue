@@ -70,4 +70,3 @@ const isActive = computed(() => {
     </HeadlessPopover>
   </template>
 </template>
-../../../types/types

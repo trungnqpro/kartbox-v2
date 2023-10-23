@@ -1,16 +1,18 @@
-import type { Notification } from '../../types/notification'
+import type { Notification } from '~/types/notification'
 import { useState } from '#imports'
 
 export function useToast() {
   const notifications = useState<Notification[]>('notifications', () => [])
 
-  function add (notification: Partial<Notification>) {
+  function add(notification: Partial<Notification>) {
     const body = {
       id: new Date().getTime().toString(),
-      ...notification
+      ...notification,
     }
 
-    const index = notifications.value.findIndex((n: Notification) => n.id === body.id)
+    const index = notifications.value.findIndex(
+      (n: Notification) => n.id === body.id
+    )
     if (index === -1) {
       notifications.value.push(body as Notification)
     }
@@ -18,12 +20,14 @@ export function useToast() {
     return body
   }
 
-  function remove (id: string) {
-    notifications.value = notifications.value.filter((n: Notification) => n.id !== id)
+  function remove(id: string) {
+    notifications.value = notifications.value.filter(
+      (n: Notification) => n.id !== id
+    )
   }
 
   return {
     add,
-    remove
+    remove,
   }
 }

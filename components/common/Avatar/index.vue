@@ -26,13 +26,13 @@ import { twJoin, twMerge } from 'tailwind-merge'
 import type { PropType } from 'vue'
 import { computed, defineComponent, ref, toRef, watch } from 'vue'
 import { useUI } from '../../../composables/ui/useUI'
+import { mergeConfig } from '../../../utils'
 import type {
   AvatarChipColor,
   AvatarChipPosition,
   AvatarSize,
   Strategy,
 } from '~/types'
-import { mergeConfig } from '../../../utils'
 
 import appConfig from '~/app.config'
 

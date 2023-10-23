@@ -4,7 +4,7 @@
 // import UAvatar from '../Avatar/index.vue'
 // import { useUI } from '../../../composables/ui/useUI'
 // import { mergeConfig, getSlotsChildren } from '../../../utils'
-// import type { AvatarSize, Strategy } from '../../types'
+// import type { AvatarSize, Strategy } from '~/types'
 // // @ts-expect-error
 // import appConfig from '#build/app.config'
 // import { avatar, avatarGroup } from '#ui/ui.config'

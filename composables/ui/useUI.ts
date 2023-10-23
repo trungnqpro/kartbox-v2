@@ -1,8 +1,8 @@
 import type { Ref } from 'vue'
 import { computed, toValue, useAttrs } from 'vue'
-import { useAppConfig } from '#imports'
-import { Strategy } from '../../types'
 import { get, mergeConfig, omit } from '../../utils'
+import { useAppConfig } from '#imports'
+import { Strategy } from '~/types'
 
 export const useUI = <T>(
   key: string | (string | number)[],
