@@ -37,8 +37,11 @@ export const useUser = definePiniaStore('user', {
           body: payload,
         })
         if (data) {
+          console.log('data', data);
           const response = data.value.data
-          this.profile = replaceNullWithEmptyString(response.profile)
+          this.$patch((state) => {
+            state.profile = replaceNullWithEmptyString(response.profile)
+          })
           this.accessToken = response.accessToken
           this.refreshToken = response.refreshToken
           localStorage.setItem('User', JSON.stringify(this.profile))

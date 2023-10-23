@@ -19,8 +19,7 @@
       </div>
       <div>
         <span class="font-bold text-[20px]">
-          Profile Images {{ AccountData.id }}</span
-        >
+          Profile Images</span>
         <br />
         <span class="text-[#B1B5C3]">
           We recommend an image of at least 300x300. Gifs work too. Max 5mb.
@@ -29,26 +28,14 @@
     </div>
     <div class="flex flex-col gap-4">
       <span> Username </span>
-      <input
-        v-model="AccountData.username"
-        class="profile-input"
-        placeholder="info"
-      />
+      <input v-model="AccountData.username" class="profile-input" placeholder="info" />
     </div>
     <div class="flex flex-col gap-4">
       <span> Email </span>
-      <input
-        v-model="AccountData.email"
-        class="profile-input"
-        type="email"
-        placeholder="info@email.com"
-      />
+      <input v-model="AccountData.email" class="profile-input" type="email" placeholder="info@email.com" />
     </div>
     <div>
-      <button
-        @click="ChangeProfile"
-        class="w-[220px] h-[48px] rounded bg-[#FF9900]"
-      >
+      <button @click="ChangeProfile" class="w-[220px] h-[48px] rounded bg-[#FF9900]">
         Update Profile
       </button>
     </div>
@@ -80,10 +67,10 @@ export default defineComponent({
     const AccountData = computed(() => useUserStore.profile)
 
     async function ChangeProfile() {
-      const payload = {
-        username: AccountData.username,
-        email: AccountData.email,
-      }
+      const payload: { username: string, email: string } = {
+        username: AccountData.value?.username || '',
+        email: AccountData.value?.email || ''
+      };
       await updateProfile(payload)
       await getProfile()
     }
