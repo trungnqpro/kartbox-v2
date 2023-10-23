@@ -1,19 +1,26 @@
-import useCustomFetch from '../composables/api/base/useCustomFetch'
-import { oauthUrl } from '~/utils/endPoint'
 import { replaceNullWithEmptyString } from '@/utils/index'
+import { oauthUrl } from '~/utils/endPoint'
+import useCustomFetch from '../composables/api/base/useCustomFetch'
 
-export interface UserInfo {
-  profile: {} | null
+export interface UserState {
+  profile: Profile | undefined
   accessToken: string | null
   refreshToken: string | null
-  htmlRedirect: null,
+  htmlRedirect: null
+}
+
+export interface Profile {
+  id: string
+  username: string
+  email: string
 }
 
 export const useUser = definePiniaStore('user', {
-  state: (): UserInfo => ({
+  state: (): UserState => ({
     profile: {
+      id: '',
       username: '',
-      email:''
+      email: '',
     },
     accessToken: null,
     refreshToken: null,
@@ -30,8 +37,11 @@ export const useUser = definePiniaStore('user', {
           body: payload,
         })
         if (data) {
+          console.log('data', data);
           const response = data.value.data
-          this.profile = replaceNullWithEmptyString(response.profile)
+          this.$patch((state) => {
+            state.profile = replaceNullWithEmptyString(response.profile)
+          })
           this.accessToken = response.accessToken
           this.refreshToken = response.refreshToken
           localStorage.setItem('User', JSON.stringify(this.profile))
@@ -46,12 +56,18 @@ export const useUser = definePiniaStore('user', {
     getProfile: async function () {
       console.log('getProfile calll')
       try {
-        const { data } = await useCustomFetch<object>('account/user/profile')
-        console.log('data', data);
-        if (data) {
-          const response = data.value.data
+        const { data } = await useCustomFetch<{ data: Profile }>(
+          'account/user/profile',
+          {
+            method: 'GET',
+          }
+        )
+
+        console.log('[getProfile] data:', data.value)
+        if (data.value) {
+          console.log('[data.value] setValue')
           this.$patch((state) => {
-            state.profile = response
+            state.profile = data.value?.data
           })
         }
       } catch (error) {

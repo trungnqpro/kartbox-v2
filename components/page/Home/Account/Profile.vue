@@ -4,13 +4,23 @@
     <div class="profile_img flex gap-4">
       <div class="relative">
         <CommonAvatar :src="url" size="3xl" />
-        <input id="upload-photo" class="opacity-0 absolute z-[-1]" type="file" accept="image/*"
-          @change="onFileChanged($event)">
-        <label for="upload-photo"><img class="absolute bottom-0 right-[-10%] cursor-pointer"
-            src="/images/icons/Camera_icon.png" /></label>
+        <input
+          id="upload-photo"
+          class="opacity-0 absolute z-[-1]"
+          type="file"
+          accept="image/*"
+          @change="onFileChanged($event)"
+        />
+        <label for="upload-photo"
+          ><img
+            class="absolute bottom-0 right-[-10%] cursor-pointer"
+            src="/images/icons/Camera_icon.png"
+        /></label>
       </div>
       <div>
-        <span class="font-bold text-[20px]"> Profile Images </span> <br />
+        <span class="font-bold text-[20px]">
+          Profile Images</span>
+        <br />
         <span class="text-[#B1B5C3]">
           We recommend an image of at least 300x300. Gifs work too. Max 5mb.
         </span>
@@ -38,26 +48,28 @@ import { useUser } from '~/stores/authUser'
 
 export default defineComponent({
   async setup() {
-    const { updateProfile, getProfile } = useUser();
-    await getProfile();
-    
-    const file = ref<File | null>();
-    let url = ref<any>(null);
+    const useUserStore = useUser()
+    const { updateProfile, getProfile } = useUser()
+    // console.log('[getProfile] 1')
+    // await getProfile()
+    // console.log('[getProfile] 2')
 
-    let AccountData = useUser().$state.profile
+    const file = ref<File | null>()
+    let url = ref<any>(null)
 
     function onFileChanged($event: Event) {
-      const target = $event.target as HTMLInputElement;
+      const target = $event.target as HTMLInputElement
       if (target && target.files) {
-        file.value = target.files[0];
-        url.value = URL.createObjectURL(target.files[0]);
+        file.value = target.files[0]
+        url.value = URL.createObjectURL(target.files[0])
       }
     }
+    const AccountData = computed(() => useUserStore.profile)
 
     async function ChangeProfile() {
-      const payload = {
-        username: AccountData.username,
-        email: AccountData.email
+      const payload: { username: string, email: string } = {
+        username: AccountData.value?.username || '',
+        email: AccountData.value?.email || ''
       };
       await updateProfile(payload)
       await getProfile()
@@ -68,8 +80,12 @@ export default defineComponent({
       ChangeProfile,
       url,
       AccountData,
-    };
+      // getProfile,
+    }
   },
-});
 
+  // mounted() {
+  //   this.getProfile()
+  // },
+})
 </script>
