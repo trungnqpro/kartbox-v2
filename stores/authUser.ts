@@ -1,13 +1,20 @@
 import useCustomFetch from '../composables/api/base/useCustomFetch'
 import { oauthUrl, userEndpoint } from '~/utils/endPoint'
 import { replaceNullWithEmptyString } from '@/utils/index'
-import { UserInfo } from '~/types/user'
+import { UserInfo, Account } from '~/types/user'
 
 export const useUser = definePiniaStore('user', {
   state: (): UserInfo => ({
     profile: {
-      username: '',
-      email: '',
+      id: null,
+      username: null,
+      email: null,
+      avatarUrl: null,
+      role: null,
+      status: null,
+      isDeleted: null,
+      createdAt: null,
+      updatedAt: null,
     },
     accessToken: null,
     refreshToken: null,
@@ -16,7 +23,7 @@ export const useUser = definePiniaStore('user', {
     getProfileUser: (state) => state.profile,
   },
   actions: {
-    login: async function (payload: any) {
+    login: async function (payload: Account) {
       try {
         const { data } = await useCustomFetch<object>(userEndpoint.login, {
           method: 'POST',

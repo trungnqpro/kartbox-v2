@@ -96,7 +96,7 @@ console.log(
               <div
                 class="flex py-3 border-b-2 border-blue-600 items-center mb-8 cursor-pointer"
               >
-                <CommonAvatar :src="userAvatar"/>
+                <CommonAvatar :src="userAvatar" />
                 <div class="ps-3" @click="hanldeUserMoreAccount()">
                   Use another account
                 </div>
