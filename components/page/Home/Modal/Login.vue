@@ -19,8 +19,8 @@ const props = defineProps({
   },
 })
 const value = computed(() => props.isLogin)
-const { login, getProfileUser, getProfile, updateProfile, getWallet, authorizeRedirect } =
-  useUser()
+// const { login, getProfileUser, getProfile, updateProfile, getWallet, authorizeRedirect } =
+//   useUser()
 const { SignMessage, ConnectWallet } = useWalletStore()
 const { address, isConnecting, isDisconnected } = useAccount()
 const {

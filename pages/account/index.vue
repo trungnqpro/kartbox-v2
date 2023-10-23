@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useUser } from '~/stores/authUser'
+
 definePageMeta({ layout: 'page' })
 import { useProfile } from '~/stores/profile'
 
