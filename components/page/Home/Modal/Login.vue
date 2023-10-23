@@ -8,7 +8,7 @@ import {
 } from 'use-wagmi'
 import { useUser } from '~/stores/authUser'
 import { useWalletStore } from '~/stores/wallet'
-import {isAccountStorageAvailable} from "~/utils/common";
+import {getListAccountStorage, isAccountStorageAvailable} from "~/utils/common";
 const { setConnectWallet } = useWalletStore()
 const emit = defineEmits(['closeModal'])
 const config = useRuntimeConfig()
@@ -48,7 +48,7 @@ const handleConnectWallet = async (connector: any) => {
       },
     ]
     if (isAccountStorageAvailable()) {
-      const accounts = JSON.parse(localStorage.getItem('Accounts'))
+      const accounts = getListAccountStorage()
       await login(payload[0])
       if (!accounts.find((item) => item.address === payload[0].address)) {
         await accounts.push(...payload)
