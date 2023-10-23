@@ -70,13 +70,13 @@ export default defineComponent({
                 return Object.keys(config.size).includes(value)
             }
         },
-        // color: {
-        //     type: String as PropType<ButtonColor>,
-        //     default: () => config.default.color,
-        //     validator(value: string) {
-        //         return [...appConfig.ui.colors, ...Object.keys(config.color)].includes(value)
-        //     }
-        // },
+        color: {
+            type: String as PropType<ButtonColor>,
+            default: () => config.default.color,
+            validator(value: string) {
+                return [...Object.keys(config.color)].includes(value)
+            }
+        },
         variant: {
             type: String as PropType<ButtonVariant>,
             default: () => config.default.variant,

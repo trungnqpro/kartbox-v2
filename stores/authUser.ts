@@ -36,11 +36,10 @@ export const useUser = definePiniaStore('user', {
           method: 'POST',
           body: payload,
         })
-        if (data) {
-          console.log('data', data);
-          const response = data.value.data
+        if (data.value) {
+          const response = (data.value as any).data
           this.$patch((state) => {
-            state.profile = replaceNullWithEmptyString(response.profile)
+            (state.profile as any) = replaceNullWithEmptyString(response.profile)
           })
           this.accessToken = response.accessToken
           this.refreshToken = response.refreshToken
@@ -63,9 +62,7 @@ export const useUser = definePiniaStore('user', {
           }
         )
 
-        console.log('[getProfile] data:', data.value)
         if (data.value) {
-          console.log('[data.value] setValue')
           this.$patch((state) => {
             state.profile = data.value?.data
           })
@@ -84,7 +81,7 @@ export const useUser = definePiniaStore('user', {
           console.log('updateSuccess')
         }
       } catch (error) {
-        console.log(error, ['updateProfile Error'])
+        console.log(['updateProfile Error'], error)
       }
     },
     getWallet: async function () {

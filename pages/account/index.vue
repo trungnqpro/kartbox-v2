@@ -3,8 +3,11 @@ import { useUser } from '~/stores/authUser'
 
 definePageMeta({ layout: 'page' })
 import { useProfile } from '~/stores/profile'
-
 const { SlectedNav } = useProfile();
+const { getProfile } = useUser()
+
+getProfile()
+
 const screen = useAwesomeScreen()
 
 let selectedTab = ref(0)
