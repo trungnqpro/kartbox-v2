@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import { useAccount } from 'use-wagmi'
 import { AwesomeLayoutPageNavbarMenu } from '../../../types'
 import { useWalletStore } from '~/stores/wallet'
+import { useUser } from '~/stores/authUser'
 const { setConnectWallet } = useWalletStore()
 
 const { awesome } = useAppConfig()
@@ -14,7 +15,6 @@ const isLogin = ref(false)
 const { address } = useAccount({
   onConnect: async (data) => await setConnectWallet(true),
   onDisconnect: async () => {
-    console.log('disconnect')
     await setConnectWallet(false)
   },
 })
@@ -64,7 +64,7 @@ const { address } = useAccount({
         </client-only>
       </div>
     </div>
-    <PageHomeModalLogin :is-login="isLogin" @close-Modal="isLogin = false" />
+    <!--    <PageHomeModalLogin :is-login="isLogin" @close-Modal="isLogin = false" />-->
   </header>
 </template>
 

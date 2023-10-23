@@ -1,23 +1,16 @@
 import useCustomFetch from '../composables/api/base/useCustomFetch'
-import { oauthUrl } from '~/utils/endPoint'
+import { oauthUrl, userEndpoint } from '~/utils/endPoint'
 import { replaceNullWithEmptyString } from '@/utils/index'
-
-export interface UserInfo {
-  profile: {} | null
-  accessToken: string | null
-  refreshToken: string | null
-  htmlRedirect: null,
-}
+import { UserInfo } from '~/types/user'
 
 export const useUser = definePiniaStore('user', {
   state: (): UserInfo => ({
     profile: {
       username: '',
-      email:''
+      email: '',
     },
     accessToken: null,
     refreshToken: null,
-    htmlRedirect: null,
   }),
   getters: {
     getProfileUser: (state) => state.profile,
@@ -25,7 +18,7 @@ export const useUser = definePiniaStore('user', {
   actions: {
     login: async function (payload: any) {
       try {
-        const { data } = await useCustomFetch<object>('account/auth/login', {
+        const { data } = await useCustomFetch<object>(userEndpoint.login, {
           method: 'POST',
           body: payload,
         })
@@ -46,7 +39,7 @@ export const useUser = definePiniaStore('user', {
     getProfile: async function () {
       console.log('getProfile calll')
       try {
-        const { data } = await useCustomFetch<object>('account/user/profile')
+        const { data } = await useCustomFetch<object>(userEndpoint.profile)
         if (data) {
           const response = data.value.data
           this.profile = response
@@ -57,7 +50,7 @@ export const useUser = definePiniaStore('user', {
     },
     updateProfile: async function (payload: any) {
       try {
-        const { data } = await useCustomFetch<object>('account/user/profile', {
+        const { data } = await useCustomFetch<object>(userEndpoint.profile, {
           method: 'PUT',
           body: payload,
         })
@@ -70,7 +63,7 @@ export const useUser = definePiniaStore('user', {
     },
     getWallet: async function () {
       try {
-        const { data } = await useCustomFetch<object>('account/user/wallet')
+        const { data } = await useCustomFetch<object>(userEndpoint.getWallet)
         if (data) {
           console.log(['getWallet Succes'])
         }

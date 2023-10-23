@@ -3,8 +3,6 @@ import { computed } from 'vue'
 import {
   useAccount,
   useDisconnect,
-  useEnsAvatar,
-  useEnsName,
   useConnect,
   useSignMessage,
 } from 'use-wagmi'
@@ -19,18 +17,10 @@ const props = defineProps({
   },
 })
 const value = computed(() => props.isLogin)
-const { login, getProfileUser, getProfile, updateProfile, getWallet, authorizeRedirect } =
-  useUser()
-const { SignMessage, ConnectWallet } = useWalletStore()
-const { address, isConnecting, isDisconnected } = useAccount()
+const { login } = useUser()
+const { address } = useAccount()
+const { data: signMessageData, signMessageAsync } = useSignMessage()
 const {
-  data: signMessageData,
-  signMessage,
-  variables,
-  signMessageAsync,
-} = useSignMessage()
-const {
-  connect,
   connectors,
   isLoading,
   error,
@@ -57,16 +47,14 @@ const handleConnectWallet = async (connector: any) => {
       },
     ]
     if (localStorage.getItem('Accounts') !== 'undefined') {
-      console.log('call 1 account', localStorage.getItem('Accounts'))
       const accounts = JSON.parse(localStorage.getItem('Accounts'))
+      await login(payload[0])
       if (!accounts.find((item) => item.address === payload[0].address)) {
-        console.log('push')
         await accounts.push(...payload)
       }
       await localStorage.setItem('Accounts', JSON.stringify(accounts))
-      console.log(useLocalStorage('Accounts').value)
+      navigateTo('/')
     } else {
-      console.log('call 0 account')
       localStorage.setItem('Accounts', JSON.stringify(payload))
     }
     emit('rerender')
