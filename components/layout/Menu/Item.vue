@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import {
+import type {
   AwesomeLayoutPageNavbarMenu,
   AwesomeLayoutPageNavbarMenuDropdownItem,
-} from '../../../types'
+} from '~/types'
 import { NuxtApp } from '#app'
 
 const nuxtApp = useNuxtApp()

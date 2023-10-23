@@ -1,5 +1,5 @@
 import { useClipboard } from '@vueuse/core'
-import type { Notification } from '../types/notification'
+import type { Notification } from '~/types/notification'
 import { useToast } from './useToast'
 
 export function useCopyToClipboard (options: Partial<Notification> = {}) {

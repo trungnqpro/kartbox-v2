@@ -126,7 +126,7 @@ import ULink from '../Link/index.vue'
 import { useUI } from '../../../composables/ui/useUI'
 import { usePopper } from '../../../composables/ui/usePopper'
 import { mergeConfig, omit } from '../../../utils'
-import type { DropdownItem, PopperOptions, Strategy } from '../../../types'
+import type { DropdownItem, PopperOptions, Strategy } from '~/types'
 // @ts-expect-error
 import appConfig from '#build/app.config'
 

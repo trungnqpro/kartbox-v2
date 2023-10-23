@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { RouteLocationRaw } from 'vue-router'
-import {
+import type {
   AwesomeLayoutPageNavbarMenu,
   AwesomeLayoutPageNavbarMenuDropdownItem,
-} from '../../../types'
+} from '~/types'
 import { NuxtApp } from '#app'
 
 const nuxtApp = useNuxtApp()
@@ -70,4 +70,3 @@ const isActive = computed(() => {
     </HeadlessPopover>
   </template>
 </template>
-../../../types/types

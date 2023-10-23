@@ -31,7 +31,7 @@ import type {
   AvatarChipPosition,
   AvatarSize,
   Strategy,
-} from '../../../types'
+} from '~/types'
 import { mergeConfig } from '../../../utils'
 
 import appConfig from '~/app.config'
