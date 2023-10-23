@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import { computed, toValue, useAttrs } from 'vue'
 import { useAppConfig } from '#imports'
-import { Strategy } from '../../types'
+import type { Strategy } from '~/types'
 import { get, mergeConfig, omit } from '../../utils'
 
 export const useUI = <T>(

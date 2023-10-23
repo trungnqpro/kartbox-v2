@@ -1,6 +1,6 @@
 import { defu, createDefu } from 'defu'
 import { extendTailwindMerge } from 'tailwind-merge'
-import type { Strategy } from '../types'
+import type { Strategy } from '~/types'
 
 const customTwMerge = extendTailwindMerge({
   classGroups: {
