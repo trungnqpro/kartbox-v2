@@ -1,19 +1,14 @@
-FROM node:20-slim AS base
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
-COPY . /app
+FROM node:20-alpine
+RUN mkdir -p /app
+
 WORKDIR /app
-
-FROM base AS prod-deps
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
-
-FROM base AS build
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm run build
-
-FROM base
-COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=build /app/dist /app/dist
+RUN rm -fr .nuxt/ node_modules/ package-lock.json
+COPY . .
+RUN npm install \
+   && npm run build \
+   && npm install --global pm2 \
+   && chown -R node:node /app
+USER node
 EXPOSE 3000
-CMD [ "pnpm", "start" ]
+ENV HOST="0.0.0.0"
+CMD ["sh", "-c" ,"pm2 list && pm2 start ecosystem.config.js --no-daemon"]
