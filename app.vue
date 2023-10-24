@@ -27,5 +27,6 @@ watch(
       <NuxtLoadingIndicator />
       <NuxtPage />
     </NuxtLayout>
+    <CommonNotifications/>
   </Body>
 </template>

@@ -28,6 +28,8 @@ export const usePingStore = definePiniaStore('ping', {
   actions: {
     async fetchList() {
       const { data } = await useCustomFetch<object>('/beers')
+      console.log('121212', await useCustomFetch<object>('/beers'));
+      
       console.log('[fetchList]')
       this.$patch((state) => {
         state.list = data.value[0]

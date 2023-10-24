@@ -14,7 +14,7 @@ export default defineAppConfig({
       navbar: {
         menus: [
           { type: 'link', title: 'Home', to: '/#home' },
-          { type: 'link', title: 'Kart ID', to: '/#KartId' },
+          { type: 'link', title: 'Versial ID', to: '/#VersialId' },
           { type: 'link', title: 'Games', to: '/#Games' },
           { type: 'link', title: 'Spaces', to: '/#Spaces' },
           { type: 'link', title: 'Campaigns', to: '/#Campaigns' },

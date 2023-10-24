@@ -3,12 +3,25 @@ import { oauthUrl, userEndpoint } from '~/utils/endPoint'
 import { replaceNullWithEmptyString } from '@/utils/index'
 import { UserInfo, Account } from '~/types/user'
 
+export interface UserState {
+  profile: Profile | undefined
+  accessToken: string | null
+  refreshToken: string | null
+  htmlRedirect: null
+}
+
+export interface Profile {
+  id: string
+  username: string
+  email: string
+}
+
 export const useUser = definePiniaStore('user', {
-  state: (): UserInfo => ({
+  state: (): UserState => ({
     profile: {
-      id: null,
-      username: null,
-      email: null,
+      id: '',
+      username: '',
+      email: '',
       avatarUrl: null,
       role: null,
       status: null,
@@ -29,9 +42,11 @@ export const useUser = definePiniaStore('user', {
           method: 'POST',
           body: payload,
         })
-        if (data) {
-          const response = data.value.data
-          this.profile = replaceNullWithEmptyString(response.profile)
+        if (data.value) {
+          const response = (data.value as any).data
+          this.$patch((state) => {
+            (state.profile as any) = replaceNullWithEmptyString(response.profile)
+          })
           this.accessToken = response.accessToken
           this.refreshToken = response.refreshToken
           localStorage.setItem('User', JSON.stringify(this.profile))
@@ -47,9 +62,10 @@ export const useUser = definePiniaStore('user', {
       console.log('getProfile calll')
       try {
         const { data } = await useCustomFetch<object>(userEndpoint.profile)
-        if (data) {
-          const response = data.value.data
-          this.profile = response
+        if (data.value) {
+          this.$patch((state) => {
+            state.profile = (data.value as any).data
+          })
         }
       } catch (error) {
         console.log(error, ['getProfile Error'])
@@ -65,7 +81,7 @@ export const useUser = definePiniaStore('user', {
           console.log('updateSuccess')
         }
       } catch (error) {
-        console.log(error, ['updateProfile Error'])
+        console.log(['updateProfile Error'], error)
       }
     },
     getWallet: async function () {

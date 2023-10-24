@@ -27,37 +27,27 @@ export default defineComponent({
         {
           title: 'Profile Setting',
           href: '/account/profile',
-          type: 'a',
           icon: '/images/icons/profile_icon.png',
-          iconActive: '/images/sidebar-account/icon-ico-active.png',
         },
         {
           title: 'Wallet Address',
           href: '/account/profile',
-          type: 'a',
           icon: '/images/icons/wallet_icon.png',
-          iconActive: '/images/sidebar-account/icon-ico-active.png',
         },
         {
           title: 'Social Accounts',
           href: '/account/profile',
-          type: 'a',
           icon: '/images/icons/Socical_icon.png',
-          iconActive: '/images/sidebar-account/icon-ico-active.png',
         },
         {
           title: 'Access Token',
           href: '/account/profile',
-          type: 'a',
           icon: '/images/icons/Token_icon.png',
-          iconActive: '/images/sidebar-account/icon-ico-active.png',
         },
         {
           title: 'Connected Apps',
           href: '/account/profile',
-          type: 'a',
           icon: '/images/icons/Connet_icon.png',
-          iconActive: '/images/sidebar-account/icon-ico-active.png',
         },
       ],
     }
@@ -67,10 +57,9 @@ export default defineComponent({
 
 <style lang="scss">
 [role=tablist] {
-  @apply 
-    gap-4
-    md:w-1/4
+  @apply gap-4 md:w-1/4
 }
+
 .lessTab-btn:hover {
   img {
     filter: brightness(0%);

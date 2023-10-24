@@ -1,5 +1,9 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'page' })
+function RefreshToken() {
+  console.log('abababa');
+  
+}
 </script>
 
 <template>
@@ -12,9 +16,9 @@ definePageMeta({ layout: 'page' })
       much more.
     </span>
     <div class="bg-[#23262F] w-full p-3 px-4 rounded-md flex justify-between">
-      <span class="text-[#F90]">{{ 'yAo*****FpkR' }}</span>
+      <span>{{ 'yAo*****FpkR' }}</span>
       <div class="flex gap-2">
-        <button>
+        <button @click="RefreshToken">
           <img src="/images/icons/refresh_icon.png" />
         </button>
         <button>
