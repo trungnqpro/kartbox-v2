@@ -60,9 +60,13 @@ export default defineComponent({
         username: AccountData.value?.username || '',
         email: AccountData.value?.email || ''
       };
-      await updateProfile(payload)
-      await getProfile()
-      toast.add({ title: 'Update Profile Success!' })
+      try {
+        await updateProfile(payload)
+        await getProfile()
+        toast.add({ title: 'Update Profile Success!' })
+      } catch (error) {
+        toast.add({ title: `${error}` })
+      }
     }
 
     return {
