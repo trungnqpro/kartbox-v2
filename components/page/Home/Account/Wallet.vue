@@ -35,10 +35,12 @@
 <script lang="ts">
 definePageMeta({ layout: 'page' })
 import { defineComponent } from 'vue'
+import { formatString } from '@/utils/index'
+import { useToast } from '~/composables/ui/useToast'
 
 export default defineComponent({
   setup() {
-    const Token = ref('0x4550978182192819313983f57c')
+    const Token = JSON.parse(useLocalStorage('Accounts', '').value)[0].address
     const Social = [
       {
         name: 'BNB Chain',
@@ -57,34 +59,25 @@ export default defineComponent({
         icon: '/images/icons/Optimism_icon.png',
       },
     ]
+    const toast = useToast()
 
     function CopyToken() {
       const tempInput = document.createElement('input');
-      tempInput.value = Token.value;
+      tempInput.value = Token;
       document.body.appendChild(tempInput);
 
       tempInput.select();
       document.execCommand('copy');
 
       document.body.removeChild(tempInput);
-    }
-
-    function formatString(inputString: string) {
-      if (inputString.length < 12) {
-        return inputString;
-      }
-
-      const first8Chars = inputString.substring(0, 8);
-      const last4Chars = inputString.substring(inputString.length - 4);
-
-      return first8Chars + "..." + last4Chars;
+      toast.add({ title: 'Coppy Token Done!' })
     }
 
     return {
       Social,
       Token,
       CopyToken,
-      formatString
+      formatString,
     }
   }
 

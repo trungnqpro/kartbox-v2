@@ -23,14 +23,14 @@ const LIST = [
 ]
 const HomeItem = {
   title: 'User identity in Kartbox ecosystem',
-  contents: 'Kart ID',
+  contents: 'Versial ID',
   detail:
     'Kartbox is a magical space where verified digital information appears everywhere, and we are elevating them to new heights.',
 }
 </script>
 
 <template>
-  <div id="KartId">
+  <div id="VersialId">
     <div class="container py-[5%] relative">
       <PageHomeItemHome
         :title="HomeItem.title"

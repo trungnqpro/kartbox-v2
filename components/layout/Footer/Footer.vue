@@ -27,7 +27,7 @@ const path = computed(() => route.fullPath)
       <div>
         <h4 class="font-bold">About</h4>
         <ul class="text-[#96839B] pt-[10%] gap-4 flex flex-col">
-          <li>Kart ID</li>
+          <li>Versial ID</li>
           <li>Games</li>
           <li>Spaces</li>
           <li>Campaigns</li>
