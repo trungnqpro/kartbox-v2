@@ -6,7 +6,7 @@ module.exports = {
       exec_mode: 'cluster', // enables clustering: cluster | fork
       instances: '1', // or an integer
       cwd: './',
-      script: '.output/server/index.mjs',
+      script: './app/.output/server/index.mjs',
       node_args: '',
       autorestart: true,
       watch: false,
