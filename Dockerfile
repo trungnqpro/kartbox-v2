@@ -1,4 +1,4 @@
-FROM node:20-slim AS builder
+FROM node:latest
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
