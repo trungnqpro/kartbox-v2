@@ -30,6 +30,7 @@
     "scripts": {
         "build": "nuxt build ./app",
         "dev": "nuxt dev",
+        "start": "nuxt dev",
         "generate": "nuxt generate ./app",
         "preview": "nuxt preview ./app",
         "postinstall": "nuxt prepare ./app",
