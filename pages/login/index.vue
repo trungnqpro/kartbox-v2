@@ -1,11 +1,10 @@
 <script setup lang="ts">
+import userAvatar from '~/assets/images/defaultUSer.webp'
 import { useDisconnect, useSignMessage } from 'use-wagmi'
 import { limitLetter } from '@/utils/index'
 import { useUser } from '~/stores/authUser'
 const { disconnectAsync } = useDisconnect()
-const isShowLogin = ref(
-    useLocalStorage('Accounts').value === 'undefined'
-)
+const isShowLogin = ref(useLocalStorage('Accounts').value !== 'undefined')
 const flag = ref(false)
 const { login } = useUser()
 const {
@@ -27,20 +26,30 @@ watch(flag, async (value) => {
   listAccount = JSON.parse(
     useLocalStorage('Accounts').value !== 'undefined'
       ? useLocalStorage('Accounts').value
-      : '[]')
+      : '[]'
+  )
 })
 const handleLogin = async (account) => {
-  const { profile } = await login(account)
-  const localUser = listAccount.map(item => {
-    if (item.address === account.address) {
-      return {
-        ...item,
-        ...profile,
+  const payload = {
+    address: account.address,
+    chain: account.chain,
+    publisher: 'metamask',
+    signature: account.signature,
+  }
+  console.log(listAccount, 'account')
+  const { profile } = await login(payload)
+  if (listAccount.value && listAccount.value.length) {
+    const localUser = listAccount.value.map((item) => {
+      if (item.address === account.address) {
+        return {
+          ...item,
+          ...profile,
+        }
       }
-    }
-    return item
-  })
-  localStorage.setItem('Accounts', JSON.stringify(localUser))
+      return item
+      localStorage.setItem('Accounts', JSON.stringify(localUser))
+    })
+  }
   navigateTo('/')
 }
 const hanldeUserMoreAccount = async () => {
@@ -48,6 +57,11 @@ const hanldeUserMoreAccount = async () => {
   await disconnectAsync()
   isShowLogin.value = false
 }
+console.log(
+  isShowLogin.value,
+  'isShowLogin',
+  useLocalStorage('Accounts').value !== 'undefined'
+)
 </script>
 
 <template>
@@ -82,7 +96,7 @@ const hanldeUserMoreAccount = async () => {
               <div
                 class="flex py-3 border-b-2 border-blue-600 items-center mb-8 cursor-pointer"
               >
-                <CommonAvatar />
+                <CommonAvatar :src="userAvatar" />
                 <div class="ps-3" @click="hanldeUserMoreAccount()">
                   Use another account
                 </div>

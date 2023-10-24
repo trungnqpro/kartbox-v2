@@ -33,16 +33,6 @@ export const useWalletStore = definePiniaStore('wallet', {
         isSuccess,
       } = useSignMessage()
       signMessage({ message })
-      // try {
-      //   console.log('[SignMessage call]', signMessage)
-      //   await signMessage({ message: 'kart' })
-      //   if (isSuccess) {
-      //     return signMessageData
-      //   }
-      // } catch (error) {
-      //   // eslint-disable-next-line no-console
-      //   console.log(error, ['SignMessage'])
-      // }
     },
     setConnectWallet(status: boolean) {
       this.isConnected = status
