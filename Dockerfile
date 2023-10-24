@@ -1,22 +1,19 @@
-FROM node:20-alpine
-#ENV PNPM_HOME="/pnpm"
-#ENV PATH="$PNPM_HOME:$PATH"
-#RUN corepack enable
+FROM node:20-slim AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 COPY . /app
 WORKDIR /app
-RUN ls -lsa
-RUN rm -fr .output .nuxt
-RUN node -v
-RUN pnpm install \
- #  && pnpm build \
-   && ls -lsa /app \
- #  && npm install --global pm2 \ 
-   && chown -R node:node /app
 
-USER node
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+
+FROM base AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm run build
+
+FROM base
+COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY --from=build /app/dist /app/dist
 EXPOSE 3000
-ENV HOST="0.0.0.0"
-#CMD [ "node", ".output/server/index.mjs" ]
-#CMD [ "pnpm", "start", "/app/.output/server/index.mjs" ]
-#CMD ["sh", "-c" ,"pm2 list && pm2 start ecosystem.config.cjs --no-daemon"]
 CMD [ "pnpm", "start" ]
