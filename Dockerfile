@@ -1,9 +1,10 @@
 FROM node:20-alpine
 RUN mkdir -p /app
 
+COPY . /app
 WORKDIR /app
 RUN rm -fr .nuxt/ node_modules/ package-lock.json
-COPY . .
+
 RUN node -v
 RUN ls -lsa
 RUN npm install \
