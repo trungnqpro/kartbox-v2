@@ -35,6 +35,7 @@ import { useUser } from '~/stores/authUser'
 
 export default defineComponent({
   setup() {
+    const { getProfile } = useUser()
     const useUserStore = useUser()
     const AccountData = computed(() => useUserStore.profile || { username: '' })
     const Token = JSON.parse(useLocalStorage('Accounts', '').value)[0].address
@@ -72,6 +73,8 @@ export default defineComponent({
     ]
     const isUserName = ref(false)
     const isNetWork = ref(false)
+
+    getProfile()
     return {
       isUserName,
       isNetWork,

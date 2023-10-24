@@ -63,7 +63,7 @@ export default defineComponent({
 
     function CopyToken() {
       const tempInput = document.createElement('input');
-      tempInput.value = Token.value;
+      tempInput.value = Token;
       document.body.appendChild(tempInput);
 
       tempInput.select();

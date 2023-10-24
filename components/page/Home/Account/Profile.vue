@@ -36,7 +36,6 @@
 
 <script lang="ts">
 definePageMeta({ layout: 'page' })
-import { useUser } from '~/stores/authUser'
 import { useToast } from '~/composables/ui/useToast'
 
 export default defineComponent({
