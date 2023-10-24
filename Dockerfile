@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:20-alpine
 #ENV PNPM_HOME="/pnpm"
 #ENV PATH="$PNPM_HOME:$PATH"
 #RUN corepack enable
@@ -6,6 +6,7 @@ COPY . /app
 WORKDIR /app
 RUN ls -lsa
 RUN rm -fr .output .nuxt
+RUN node -v
 RUN pnpm install \
  #  && pnpm build \
    && ls -lsa /app \
