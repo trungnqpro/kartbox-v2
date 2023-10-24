@@ -11,7 +11,7 @@ RUN npm install \
    && npm run build \
    && npm install --global pm2 \
    && ls -lsa \
-   && ls -ls .output/server/index.mjs \
+   && ls -lsa app \
    && chown -R node:node /home/node
 USER node
 EXPOSE 3000
