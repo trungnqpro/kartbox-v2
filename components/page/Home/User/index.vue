@@ -18,7 +18,7 @@
         </div>
       </template>
       <template class="text-left" #item="{ item }">
-        <nuxt-link class="w-full text-left" :to="item.href">
+        <nuxt-link class="w-full text-left" :to="item.href" @click="changRouter(item)">
           <span class="truncate w-full">{{ item.label }}</span>
         </nuxt-link>
       </template>
@@ -36,6 +36,7 @@ import { useUser } from '~/stores/authUser'
 export default defineComponent({
   setup() {
     const { getProfile } = useUser()
+    const { SlectedNav } = useProfile();
     const useUserStore = useUser()
     const AccountData = computed(() => useUserStore.profile || { username: '' })
     const Token = JSON.parse(useLocalStorage('Accounts', '').value)[0].address
@@ -53,10 +54,13 @@ export default defineComponent({
         },
         {
           label: 'Settings',
-          href: '/account'
+          href: '/account',
+          type: 'account'
         },
         {
           label: 'Change Wallet',
+          href: '/account',
+          type: 'wallet'
         },
         {
           label: 'Logout',
@@ -75,11 +79,23 @@ export default defineComponent({
     const isNetWork = ref(false)
 
     getProfile()
+
+    function changRouter(data: object) {
+      const typeToIndex: { [key: string]: number } = {
+        "account": 0,
+        "wallet": 1,
+      };
+      const selectedIndex = typeToIndex[(data as any).type];
+      if (selectedIndex !== undefined) {
+        SlectedNav(selectedIndex)
+      }
+    }
     return {
       isUserName,
       isNetWork,
       items,
-      AccountData
+      AccountData,
+      changRouter
     }
   }
 })
