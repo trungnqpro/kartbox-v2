@@ -4,9 +4,13 @@ RUN mkdir -p /app
 WORKDIR /app
 RUN rm -fr .nuxt/ node_modules/ package-lock.json
 COPY . .
+RUN node -v
+RUN ls -lsa
 RUN npm install \
    && npm run build \
    && npm install --global pm2 \
+   && ls -lsa \
+   && ls -ls /app/.output/server/index.mjs
    && chown -R node:node /app
 USER node
 EXPOSE 3000
