@@ -2,6 +2,7 @@ import useCustomFetch from '../composables/api/base/useCustomFetch'
 import { oauthUrl, userEndpoint } from '~/utils/endPoint'
 import { replaceNullWithEmptyString } from '@/utils/index'
 import { UserInfo, Account } from '~/types/user'
+import { useToast } from '~/composables/ui/useToast'
 
 export interface UserState {
   profile: Profile | undefined
@@ -15,6 +16,8 @@ export interface Profile {
   username: string
   email: string
 }
+
+const toast = useToast()
 
 export const useUser = definePiniaStore('user', {
   state: (): UserState => ({
@@ -61,11 +64,15 @@ export const useUser = definePiniaStore('user', {
     getProfile: async function () {
       console.log('getProfile calll')
       try {
-        const { data } = await useCustomFetch<object>(userEndpoint.profile)
+        const { data, error } = await useCustomFetch<object>(userEndpoint.profile)
         if (data.value) {
           this.$patch((state) => {
             state.profile = (data.value as any).data
           })
+        }
+        if (error.value) {
+          // throw new Error('There was an error get the profile');
+          toast.add({ title: 'There was an error get the profile' })
         }
       } catch (error) {
         console.log(error, ['getProfile Error'])
@@ -73,15 +80,18 @@ export const useUser = definePiniaStore('user', {
     },
     updateProfile: async function (payload: any) {
       try {
-        const { data } = await useCustomFetch<object>(userEndpoint.profile, {
+        const { data , error} = await useCustomFetch<object>(userEndpoint.profile, {
           method: 'PUT',
           body: payload,
         })
         if (data) {
-          console.log('updateSuccess')
+          console.log('updateSuccess', data)
+        }
+        if (error.value) {
+          throw new Error('There was an error updating the profile');
         }
       } catch (error) {
-        console.log(['updateProfile Error'], error)
+        throw error
       }
     },
     getWallet: async function () {
