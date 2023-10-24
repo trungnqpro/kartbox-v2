@@ -9,11 +9,12 @@
       <CommonAvatar src="https://avatars.githubusercontent.com/u/739984?v=4" />
       <template #account="{ item }">
         <CommonAvatar src="https://avatars.githubusercontent.com/u/739984?v=4" />
-        <div class="text-left">
-          <p class="truncate font-medium text-gray-900 dark:text-white">
+        <div :class="AccountData.username ? 'flex flex-col flex-col-reverse' : ''" class="text-left">
+          <p class="truncate text-gray-400">
             {{ item.WalletAdress }}
           </p>
-          <button @click="isUserName = true" class="text-[#E5A403]">Set up username</button>
+          <p v-if="AccountData.username" class="font-medium "> {{ AccountData.username }}</p>
+          <button v-else @click="isUserName = true" class="text-[#E5A403]">Set up username</button>
         </div>
       </template>
       <template class="text-left" #item="{ item }">
@@ -29,14 +30,19 @@
 </template>
 
 <script lang="ts">
+import { formatString } from '@/utils/index'
+import { useUser } from '~/stores/authUser'
 
 export default defineComponent({
   setup() {
+    const useUserStore = useUser()
+    const AccountData = computed(() => useUserStore.profile || { username: '' })
+    const Token = JSON.parse(useLocalStorage('Accounts', '').value)[0].address
     const items = [
       [
         {
           slot: 'account',
-          WalletAdress: '0x4550...f57c',
+          WalletAdress: formatString(Token),
           disabled: false,
         },
       ],
@@ -69,7 +75,8 @@ export default defineComponent({
     return {
       isUserName,
       isNetWork,
-      items
+      items,
+      AccountData
     }
   }
 })
