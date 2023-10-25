@@ -64,6 +64,7 @@ export default defineComponent({
         },
         {
           label: 'Logout',
+          type: 'logout'
         },
       ],
       [
@@ -84,10 +85,14 @@ export default defineComponent({
       const typeToIndex: { [key: string]: number } = {
         "account": 0,
         "wallet": 1,
+        "logout": 3
       };
       const selectedIndex = typeToIndex[(data as any).type];
-      if (selectedIndex !== undefined) {
+      if (selectedIndex !== undefined && selectedIndex !== 3) {
         SlectedNav(selectedIndex)
+      } else {
+        localStorage.clear();
+        location.reload();
       }
     }
     return {
