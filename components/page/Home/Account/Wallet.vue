@@ -6,9 +6,10 @@
       <CommonCard class="wallet-card">
         <div class="flex flex-col gap-4">
           <span class="font-bold text-[20px]"> EVM Chain </span>
-          <div class="bg-[#060708] w-full p-3 px-4 rounded-md flex justify-between">
-            <span class="text-[#F90]">{{ formatString(Token) }}</span>
-            <button @click="CopyToken">
+          <div v-for="(item, idx) in WallettData" :key="idx"
+            class="bg-[#060708] w-full p-3 px-4 rounded-md flex justify-between">
+            <span class="text-[#F90]">{{ formatString(item.address) }}</span>
+            <button @click="CopyToken(item.address)">
               <img src="/images/icons/copy_icon.png" />
             </button>
           </div>
@@ -39,8 +40,7 @@ import { formatString } from '@/utils/index'
 import { useToast } from '~/composables/ui/useToast'
 
 export default defineComponent({
-  setup() {
-    const Token = JSON.parse(useLocalStorage('Accounts', '').value)[0].address
+  async setup() {
     const Social = [
       {
         name: 'BNB Chain',
@@ -60,24 +60,26 @@ export default defineComponent({
       },
     ]
     const toast = useToast()
+    const useUserStore = useUser()
+    const WallettData = computed(() => (useUserStore.wallet as any).data)
 
-    function CopyToken() {
+    function CopyToken(data : string) {
       const tempInput = document.createElement('input');
-      tempInput.value = Token;
+      tempInput.value = data;
       document.body.appendChild(tempInput);
 
       tempInput.select();
       document.execCommand('copy');
 
       document.body.removeChild(tempInput);
-      toast.add({ title: 'Coppy Token Done!' })
+      toast.add({ title: 'Coppy Address Done!' })
     }
 
     return {
       Social,
-      Token,
       CopyToken,
       formatString,
+      WallettData,
     }
   }
 
