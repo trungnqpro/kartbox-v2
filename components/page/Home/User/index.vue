@@ -90,7 +90,7 @@ export default defineComponent({
       const selectedIndex = typeToIndex[(data as any).type];
       if (selectedIndex !== undefined && selectedIndex !== 3) {
         SlectedNav(selectedIndex)
-      } else {
+      } else if (selectedIndex == 3) {
         localStorage.clear();
         location.reload();
       }
