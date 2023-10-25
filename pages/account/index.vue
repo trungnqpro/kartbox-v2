@@ -6,8 +6,8 @@ import { useProfile } from '~/stores/profile'
 const { SlectedNav } = useProfile();
 const { getProfile, getWallet } = useUser()
 
-getProfile()
-getWallet()
+await getProfile()
+await getWallet()
 
 const screen = useAwesomeScreen()
 

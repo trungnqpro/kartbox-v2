@@ -36,7 +36,6 @@ export const useWalletStore = definePiniaStore('wallet', {
     },
     setConnectWallet(status: boolean) {
       this.isConnected = status
-      console.log(this.isConnected, 'isConnected')
     },
   },
 })

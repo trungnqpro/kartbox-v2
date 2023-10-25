@@ -27,7 +27,6 @@ const props = defineProps({
   },
 })
 const value = computed(() => props.isNetWork)
-console.log(chain.value.name, 'chain')
 const handleSwitchNetwork = (item: any) => {
   console.log(switchNetworkAsync, '----------',chains)
 }
