@@ -52,10 +52,9 @@ export default async function useCustomFetch<T>(
     },
 
     onResponseError: async ({ request, response, options }) => {
-      if (response.status === 500 && response._data.error.code === 40101) {
+      if (response.status === ErrorCode.serverError && response._data.error.code === ErrorCode.tokenExpired) {
         if (useLocalStorage('refreshToken', '').value !== '') {
           await getAccessToken(useLocalStorage('refreshToken', '').value)
-          console.log(useFetch(url), 'check')
           options.headers.Authorization = `Bearer ${useLocalStorage('accessToken', '').value}`
         }
       }
