@@ -1,3 +1,4 @@
+import { useStorage } from '@vueuse/core'
 import useCustomFetch from '../composables/api/base/useCustomFetch'
 import { oauthUrl, userEndpoint } from '~/utils/endPoint'
 import { replaceNullWithEmptyString } from '@/utils/index'
@@ -154,7 +155,7 @@ export const useUser = definePiniaStore('user', {
         if (data) {
           await this.$patch((state) => {
             state.accessToken = (data.value as any).data.accessToken
-            localStorage.setItem('accessToken', state.accessToken)
+            useStorage('accessToken').value = state.accessToken
           })
         }
       } catch (error) {
