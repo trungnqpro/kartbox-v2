@@ -1,14 +1,18 @@
 import { defu } from 'defu'
 import type { UseFetchOptions } from 'nuxt/app'
 import { oauthUrl } from '~/utils/endPoint'
+import { useUser } from '~/stores/authUser'
 
 export default async function useCustomFetch<T>(
   url: string,
   options: UseFetchOptions<T> = {}
 ) {
   // const userAuth = useCookie('token')
+
+  const { getAccessToken } = useUser()
   const config = useRuntimeConfig()
-  const accessToken = useLocalStorage('accessToken', '').value
+  let accessToken = useLocalStorage('accessToken', '').value
+  console.log(accessToken, 'accessToken', 'first')
   const defaults: UseFetchOptions<T> = {
     baseURL: config.public.baseUrl ?? 'https://api.nuxtjs.dev',
     // cache request
@@ -18,14 +22,14 @@ export default async function useCustomFetch<T>(
     // server: false,
 
     onRequest({ request, options }) {
-      console.log('[onRequest]', request)
+
     },
 
     onRequestError({ request, options, error }) {
-      console.log('[onRequestError]', request)
+
     },
 
-    onResponse({ request, response, options }) {
+    onResponse: async ({ request, response, options }) => {
       if (request.toString().includes(`${oauthUrl.authorizeRedirect}`)) {
         navigateTo(`${response.url}`, {
           external: true,
@@ -44,12 +48,16 @@ export default async function useCustomFetch<T>(
           },
         })
       }
-      console.log('[onResponse]', response._data.data)
-      // response = response._data.data
-      // return response._data
+      // console.log('[onResponse]', response)
     },
 
-    onResponseError({ request, response, options }) {
+    onResponseError: async ({ request, response, options }) => {
+      if (response.status === ErrorCode.serverError && response._data.error.code === ErrorCode.tokenExpired) {
+        if (useLocalStorage('refreshToken', '').value !== '') {
+          await getAccessToken(useLocalStorage('refreshToken', '').value)
+          options.headers.Authorization = `Bearer ${useLocalStorage('accessToken', '').value}`
+        }
+      }
       console.log('[onResponseError]')
       // throw new myBusinessError()
     },

@@ -45,7 +45,7 @@ export const useUser = definePiniaStore('user', {
     },
     accessToken: null,
     refreshToken: null,
-    wallet: null
+    wallet: null,
   }),
   getters: {
     getProfileUser: (state) => state.profile,
@@ -76,7 +76,6 @@ export const useUser = definePiniaStore('user', {
       }
     },
     getProfile: async function () {
-      console.log('getProfile calll')
       try {
         const { data, error } = await useCustomFetch<object>(
           userEndpoint.profile
@@ -118,7 +117,7 @@ export const useUser = definePiniaStore('user', {
         const { data } = await useCustomFetch<object>(userEndpoint.getWallet)
         if (data) {
           this.$patch((state) => {
-            (state.wallet as any ) = data.value
+            ;(state.wallet as any) = data.value
           })
         }
       } catch (error) {
@@ -139,6 +138,27 @@ export const useUser = definePiniaStore('user', {
         }
       } catch (error) {
         console.log(error, ['authorizeRedirect Error'])
+      }
+    },
+    getAccessToken: async function (refreshToken: string) {
+      try {
+        const { data } = await useCustomFetch<object>(
+          `${oauthUrl.getAccessToken}`,
+          {
+            method: 'GET',
+            params: {
+              refreshToken,
+            },
+          }
+        )
+        if (data) {
+          await this.$patch((state) => {
+            state.accessToken = (data.value as any).data.accessToken
+            localStorage.setItem('accessToken', state.accessToken)
+          })
+        }
+      } catch (error) {
+        console.log(error, ['getAccessToken Error'])
       }
     },
   },

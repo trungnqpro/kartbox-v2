@@ -8,6 +8,13 @@ import svgLoader from 'vite-svg-loader'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: true,
+  // routeRules: {
+  //   // Homepage pre-rendered at build time
+  //   '/': { prerender: true, ssr: false },
+  //   // Product page generated on-demand, revalidates in background
+  //   '/account': { ssr: false },
+  //   '/login': { ssr: false },
+  // },
   ssr: false,
   // exp
   experimental: {
