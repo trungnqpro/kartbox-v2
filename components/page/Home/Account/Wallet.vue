@@ -6,9 +6,10 @@
       <CommonCard class="wallet-card">
         <div class="flex flex-col gap-4">
           <span class="font-bold text-[20px]"> EVM Chain </span>
-          <div class="bg-[#060708] w-full p-3 px-4 rounded-md flex justify-between">
-            <span class="text-[#F90]">{{ formatString(Token) }}</span>
-            <button @click="CopyToken">
+          <div v-for="(item, idx) in WallettData" :key="idx"
+            class="bg-[#060708] w-full p-3 px-4 rounded-md flex justify-between">
+            <span class="text-[#F90]">{{ formatString(item.address) }}</span>
+            <button @click="CopyToken(item.address)">
               <img src="/images/icons/copy_icon.png" />
             </button>
           </div>
@@ -35,10 +36,11 @@
 <script lang="ts">
 definePageMeta({ layout: 'page' })
 import { defineComponent } from 'vue'
+import { formatString } from '@/utils/index'
+import { useToast } from '~/composables/ui/useToast'
 
 export default defineComponent({
-  setup() {
-    const Token = ref('0x4550978182192819313983f57c')
+  async setup() {
     const Social = [
       {
         name: 'BNB Chain',
@@ -57,34 +59,27 @@ export default defineComponent({
         icon: '/images/icons/Optimism_icon.png',
       },
     ]
+    const toast = useToast()
+    const useUserStore = useUser()
+    const WallettData = computed(() => (useUserStore.wallet as any).data)
 
-    function CopyToken() {
+    function CopyToken(data : string) {
       const tempInput = document.createElement('input');
-      tempInput.value = Token.value;
+      tempInput.value = data;
       document.body.appendChild(tempInput);
 
       tempInput.select();
       document.execCommand('copy');
 
       document.body.removeChild(tempInput);
-    }
-
-    function formatString(inputString: string) {
-      if (inputString.length < 12) {
-        return inputString;
-      }
-
-      const first8Chars = inputString.substring(0, 8);
-      const last4Chars = inputString.substring(inputString.length - 4);
-
-      return first8Chars + "..." + last4Chars;
+      toast.add({ title: 'Coppy Address Done!' })
     }
 
     return {
       Social,
-      Token,
       CopyToken,
-      formatString
+      formatString,
+      WallettData,
     }
   }
 

@@ -1,32 +1,35 @@
-import type { UseFetchOptions } from 'nuxt/app'
 import { defu } from 'defu'
-import { useUser } from '~/stores/authUser'
+import type { UseFetchOptions } from 'nuxt/app'
 import { oauthUrl } from '~/utils/endPoint'
+import { useUser } from '~/stores/authUser'
 
 export default async function useCustomFetch<T>(
   url: string,
   options: UseFetchOptions<T> = {}
 ) {
   // const userAuth = useCookie('token')
+
+  const { getAccessToken } = useUser()
   const config = useRuntimeConfig()
-  const accessToken = useLocalStorage('accessToken').value
+  let accessToken = useLocalStorage('accessToken', '').value
+  console.log(accessToken, 'accessToken', 'first')
   const defaults: UseFetchOptions<T> = {
     baseURL: config.public.baseUrl ?? 'https://api.nuxtjs.dev',
     // cache request
     key: url,
 
     headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+    // server: false,
 
     onRequest({ request, options }) {
-      console.log('[onRequest]')
+
     },
 
     onRequestError({ request, options, error }) {
-      console.log('[onRequestError]')
+
     },
 
-    onResponse({ request, response, options }) {
-      console.log('[onResponse]', response)
+    onResponse: async ({ request, response, options }) => {
       if (request.toString().includes(`${oauthUrl.authorizeRedirect}`)) {
         navigateTo(`${response.url}`, {
           external: true,
@@ -45,10 +48,16 @@ export default async function useCustomFetch<T>(
           },
         })
       }
-      response = response._data.data
+      // console.log('[onResponse]', response)
     },
 
-    onResponseError({ request, response, options }) {
+    onResponseError: async ({ request, response, options }) => {
+      if (response.status === ErrorCode.serverError && response._data.error.code === ErrorCode.tokenExpired) {
+        if (useLocalStorage('refreshToken', '').value !== '') {
+          await getAccessToken(useLocalStorage('refreshToken', '').value)
+          options.headers.Authorization = `Bearer ${useLocalStorage('accessToken', '').value}`
+        }
+      }
       console.log('[onResponseError]')
       // throw new myBusinessError()
     },
@@ -57,5 +66,5 @@ export default async function useCustomFetch<T>(
   // for nice deep defaults, please use unjs/defu
   const params = defu(options, defaults)
 
-  return useFetch(url, params)
+  return await useFetch(url, params)
 }

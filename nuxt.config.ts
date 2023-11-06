@@ -8,6 +8,14 @@ import svgLoader from 'vite-svg-loader'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: true,
+  // routeRules: {
+  //   // Homepage pre-rendered at build time
+  //   '/': { prerender: true, ssr: false },
+  //   // Product page generated on-demand, revalidates in background
+  //   '/account': { ssr: false },
+  //   '/login': { ssr: false },
+  // },
+  ssr: false,
   // exp
   experimental: {
     localLayerAliases: true,
@@ -26,6 +34,7 @@ export default defineNuxtConfig({
       baseUrl: 'https://stg-api-kartid.famtechvn.com',
       clientId: '4504f2b7-4389-4eae-837c-b697aa9c7fe7',
       redirect_uri: 'http://localhost:3000/login',
+      walletProjectId: '0c992ba64aa93cc5956ccd347d8013f3',
     },
   },
 

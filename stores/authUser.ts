@@ -1,14 +1,42 @@
+import { useStorage } from '@vueuse/core'
 import useCustomFetch from '../composables/api/base/useCustomFetch'
 import { oauthUrl, userEndpoint } from '~/utils/endPoint'
 import { replaceNullWithEmptyString } from '@/utils/index'
-import { UserInfo, Account } from '~/types/user'
+import { Account } from '~/types/user'
+import { useToast } from '~/composables/ui/useToast'
+
+const toast = useToast()
+export interface UserState {
+  profile: Profile | undefined
+  accessToken: string | null
+  refreshToken: string | null
+  htmlRedirect: null
+  wallet: null
+}
+
+export interface Profile {
+  id: string
+  username: string
+  email: string
+}
+
+export interface wallet {
+  address: string
+  chain: string
+  createdAt: string
+  id: string
+  isDeleted: null
+  ownerId: string
+  publisher: string
+  updatedAt: null
+}
 
 export const useUser = definePiniaStore('user', {
-  state: (): UserInfo => ({
+  state: (): UserState => ({
     profile: {
-      id: null,
-      username: null,
-      email: null,
+      id: '',
+      username: '',
+      email: '',
       avatarUrl: null,
       role: null,
       status: null,
@@ -18,6 +46,7 @@ export const useUser = definePiniaStore('user', {
     },
     accessToken: null,
     refreshToken: null,
+    wallet: null,
   }),
   getters: {
     getProfileUser: (state) => state.profile,
@@ -29,9 +58,13 @@ export const useUser = definePiniaStore('user', {
           method: 'POST',
           body: payload,
         })
-        if (data) {
-          const response = data.value.data
-          this.profile = replaceNullWithEmptyString(response.profile)
+        if (data.value) {
+          const response = (data.value as any).data
+          this.$patch((state) => {
+            ;(state.profile as any) = replaceNullWithEmptyString(
+              response.profile
+            )
+          })
           this.accessToken = response.accessToken
           this.refreshToken = response.refreshToken
           localStorage.setItem('User', JSON.stringify(this.profile))
@@ -44,12 +77,18 @@ export const useUser = definePiniaStore('user', {
       }
     },
     getProfile: async function () {
-      console.log('getProfile calll')
       try {
-        const { data } = await useCustomFetch<object>(userEndpoint.profile)
-        if (data) {
-          const response = data.value.data
-          this.profile = response
+        const { data, error } = await useCustomFetch<object>(
+          userEndpoint.profile
+        )
+        if (data.value) {
+          this.$patch((state) => {
+            state.profile = (data.value as any).data
+          })
+        }
+        if (error.value) {
+          // throw new Error('There was an error get the profile');
+          toast.add({ title: 'There was an error get the profile' })
         }
       } catch (error) {
         console.log(error, ['getProfile Error'])
@@ -57,22 +96,30 @@ export const useUser = definePiniaStore('user', {
     },
     updateProfile: async function (payload: any) {
       try {
-        const { data } = await useCustomFetch<object>(userEndpoint.profile, {
-          method: 'PUT',
-          body: payload,
-        })
+        const { data, error } = await useCustomFetch<object>(
+          userEndpoint.profile,
+          {
+            method: 'PUT',
+            body: payload,
+          }
+        )
         if (data) {
-          console.log('updateSuccess')
+          console.log('updateSuccess', data)
+        }
+        if (error.value) {
+          throw new Error('There was an error updating the profile')
         }
       } catch (error) {
-        console.log(error, ['updateProfile Error'])
+        throw error
       }
     },
     getWallet: async function () {
       try {
         const { data } = await useCustomFetch<object>(userEndpoint.getWallet)
         if (data) {
-          console.log(['getWallet Succes'])
+          this.$patch((state) => {
+            ;(state.wallet as any) = data.value
+          })
         }
       } catch (error) {
         console.log(error, ['getWallet Error'])
@@ -92,6 +139,27 @@ export const useUser = definePiniaStore('user', {
         }
       } catch (error) {
         console.log(error, ['authorizeRedirect Error'])
+      }
+    },
+    getAccessToken: async function (refreshToken: string) {
+      try {
+        const { data } = await useCustomFetch<object>(
+          `${oauthUrl.getAccessToken}`,
+          {
+            method: 'GET',
+            params: {
+              refreshToken,
+            },
+          }
+        )
+        if (data) {
+          await this.$patch((state) => {
+            state.accessToken = (data.value as any).data.accessToken
+            useStorage('accessToken').value = state.accessToken
+          })
+        }
+      } catch (error) {
+        console.log(error, ['getAccessToken Error'])
       }
     },
   },

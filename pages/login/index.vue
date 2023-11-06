@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { useStorage } from '@vueuse/core'
 import userAvatar from '~/assets/images/defaultUSer.webp'
 import { useDisconnect, useSignMessage } from 'use-wagmi'
 import { limitLetter } from '@/utils/index'
 import { useUser } from '~/stores/authUser'
 const { disconnectAsync } = useDisconnect()
-const isShowLogin = ref(useLocalStorage('Accounts').value !== 'undefined')
+const isShowLogin = ref(useStorage('Accounts', []).value.length)
 const flag = ref(false)
 const { login } = useUser()
 const {
@@ -15,19 +16,11 @@ const {
 } = useSignMessage()
 let listAccount = computed(() => {
   console.log(useLocalStorage('Accounts'), 'computed')
-  return JSON.parse(
-    useLocalStorage('Accounts').value !== 'undefined'
-      ? useLocalStorage('Accounts').value
-      : '[]'
-  )
+  return useStorage('Accounts', []).value
 })
 watch(flag, async (value) => {
   console.log('watch', value)
-  listAccount = JSON.parse(
-    useLocalStorage('Accounts').value !== 'undefined'
-      ? useLocalStorage('Accounts').value
-      : '[]'
-  )
+  listAccount = useStorage('Accounts', []).value
 })
 const handleLogin = async (account) => {
   const payload = {
