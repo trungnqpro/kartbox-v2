@@ -22,7 +22,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     [mainnet, goerli, optimism, avalanche, polygon, bsc],
     [publicProvider()]
   )
-
+  const configNuxt = useRuntimeConfig()
   // @ts-ignore
   const config = createConfig({
     autoConnect: true,
@@ -41,13 +41,13 @@ export default defineNuxtPlugin((nuxtApp) => {
           appName: 'use-wagmi',
         },
       }),
-      // new WalletConnectConnector({
-      //   chains,
-      //   options: {
-      //     projectId: 'c4f79cc821944d9680842e34466bfb', // TODO: your project ID
-      //     icon: '/images/icons/WalletConnect_icon.png',
-      //   },
-      // }),
+      new WalletConnectConnector({
+        chains,
+        options: {
+          projectId: `${configNuxt.public.walletProjectId}`,
+          icon: '/images/icons/WalletConnect_icon.png',
+        },
+      }),
     ],
     publicClient,
     // webSocketPublicClient,
