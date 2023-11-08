@@ -3,12 +3,39 @@ const { resolve } = createResolver(import.meta.url)
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'url'
 import VueI18nVitePlugin from '@intlify/unplugin-vue-i18n/vite'
+import svgLoader from 'vite-svg-loader'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  devtools: true,
+  // routeRules: {
+  //   // Homepage pre-rendered at build time
+  //   '/': { prerender: true, ssr: false },
+  //   // Product page generated on-demand, revalidates in background
+  //   '/account': { ssr: false },
+  //   '/login': { ssr: false },
+  // },
+  ssr: false,
   // exp
   experimental: {
     localLayerAliases: true,
+  },
+  telemetry: false,
+  alias: {
+    'micromark/lib/preprocess.js': 'micromark',
+    'micromark/lib/postprocess.js': 'micromark',
+  },
+
+  runtimeConfig: {
+    // The private keys which are only available server-side
+    apiSecretKey: 'xxxx',
+    // Keys within public are also exposed client-side
+    public: {
+      baseUrl: 'https://stg-api-kartid.famtechvn.com',
+      clientId: '4504f2b7-4389-4eae-837c-b697aa9c7fe7',
+      redirect_uri: 'http://localhost:3000/login',
+      walletProjectId: '0c992ba64aa93cc5956ccd347d8013f3',
+    },
   },
 
   // app config
@@ -17,13 +44,6 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
     layoutTransition: { name: 'layout', mode: 'out-in' },
   },
-
-  // typescripts
-  // todo: feat/strict-type-check
-  // typescript: {
-  //   strict: true,
-  //   typeCheck: true,
-  // },
 
   // modules
   modules: [
@@ -34,14 +54,14 @@ export default defineNuxtConfig({
     'nuxt-headlessui',
     'nuxt-icon',
     '@nuxtjs/color-mode',
+    'nuxt-purgecss',
     // management
     '@pinia/nuxt',
     '@vueuse/nuxt',
-    // contents,
-    '@nuxt/content',
-
+    'nuxt-swiper',
     // todo: feat/localization
-    // '@nuxtjs/i18n'
+    // '@nuxtjs/i18n',
+    '@use-wagmi/nuxt',
   ],
 
   css: [
@@ -51,8 +71,18 @@ export default defineNuxtConfig({
 
   components: [
     {
+      prefix: 'Common',
+      path: resolve('./components/common'),
+      global: true,
+    },
+    {
       prefix: 'Layout',
-      path: resolve('./components/layouts'),
+      path: resolve('./components/layout'),
+      global: true,
+    },
+    {
+      prefix: 'Page',
+      path: resolve('./components/page'),
       global: true,
     },
     {
@@ -64,6 +94,12 @@ export default defineNuxtConfig({
 
   imports: {
     dirs: [resolve('./stores'), '~/stores'],
+  },
+
+  router: {
+    options: {
+      strict: true,
+    },
   },
 
   // module::pinia
@@ -81,17 +117,6 @@ export default defineNuxtConfig({
     classSuffix: '',
   },
 
-  // module::content
-  content: {
-    documentDriven: true,
-    markdown: {
-      mdc: true,
-    },
-    highlight: {
-      theme: 'github-dark',
-    },
-  },
-
   build: {
     transpile: ['vue-i18n'],
   },
@@ -105,6 +130,7 @@ export default defineNuxtConfig({
           ),
         ],
       }),
+      svgLoader(),
     ],
   },
 })

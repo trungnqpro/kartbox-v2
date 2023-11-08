@@ -5,15 +5,28 @@ useHead({
   title: awesome.name,
   titleTemplate: `%s - ${awesome.name}`,
 })
+
+const route = useRoute()
+const account = ref(false)
+
+watch(
+  () => route.fullPath,
+  (newPath, oldPath) => {
+    account.value = newPath === '/account';
+  },
+  { deep: true, immediate: true }
+);
 </script>
 
 <template>
   <Body
-    class="antialiased duration-300 transition-colors text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-950"
+    class="antialiased duration-300 transition-colors text-[#fff]"
+    :class="account ? 'bg-[#010101]' : 'bg-[#140C1F]'"
   >
     <NuxtLayout>
       <NuxtLoadingIndicator />
       <NuxtPage />
     </NuxtLayout>
+    <CommonNotifications/>
   </Body>
 </template>

@@ -11,12 +11,12 @@ const props = defineProps({
 <template>
   <ContentDoc>
     <template #default="{ doc }">
-      <LayoutPageHeader>
-        <LayoutPageTitle :text="doc.title" />
-      </LayoutPageHeader>
-      <LayoutPageSection>
+      <LayoutHeader>
+        <LayoutTitle :text="doc.title" />
+      </LayoutHeader>
+      <LayoutSection>
         <ContentRenderer :value="doc" />
-      </LayoutPageSection>
+      </LayoutSection>
     </template>
     <template #empty>
       <h1>{{ emptyTip }}</h1>

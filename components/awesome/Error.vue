@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // components
-const PageWrapper = resolveComponent('LayoutPageWrapper')
+const PageWrapper = resolveComponent('LayoutWrapper')
 
 // compiler macro
 const props = defineProps({

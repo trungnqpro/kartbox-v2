@@ -2,6 +2,23 @@ import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 
+const screens = {
+  sm: '480px',
+  md: '768px',
+  lg: '976px',
+  xl: '1440px',
+}
+
+const container = {
+  center: true,
+  padding: {
+    DEFAULT: '1.25rem',
+  },
+  screens: {
+    xl: '1440px',
+  },
+}
+
 const MyTheme = {
   colors: {
     green: {
@@ -46,6 +63,12 @@ const MyTheme = {
   },
 }
 
+const fontFamily = {
+  label: ['Inter', ...defaultTheme.fontFamily.sans],
+  general: ['Inter', ...defaultTheme.fontFamily.sans],
+  inherit: 'inherit',
+};
+
 export default <Partial<Config>>{
   darkMode: 'class',
   content: [
@@ -61,6 +84,8 @@ export default <Partial<Config>>{
   ],
   theme: {
     extend: {
+      screens,
+      container,
       maxWidth: {
         '8xl': '90rem',
       },
@@ -73,9 +98,7 @@ export default <Partial<Config>>{
         red: MyTheme.colors.red,
         slate: colors.slate,
       },
-      fontFamily: {
-        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
-      },
+      fontFamily,
     },
   },
 }

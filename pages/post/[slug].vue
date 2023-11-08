@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-  <LayoutPageWrapper>
+  <LayoutWrapper>
     <AwesomeContentDoc empty-tip="Post im empty" />
-  </LayoutPageWrapper>
+  </LayoutWrapper>
 </template>

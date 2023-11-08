@@ -46,8 +46,8 @@ const leadingsText = computed(() => [
 </script>
 
 <template>
-  <LayoutPageWrapper class="flex-1 flex">
-    <LayoutPageSection class="flex-1 flex">
+  <LayoutWrapper class="flex-1 flex">
+    <LayoutSection class="flex-1 flex">
       <div class="flex-1 flex flex-col items-center justify-center">
         <h1 class="text-center mt-4">
           <span
@@ -128,8 +128,8 @@ const leadingsText = computed(() => [
           ></div>
         </div>
       </div>
-    </LayoutPageSection>
-  </LayoutPageWrapper>
+    </LayoutSection>
+  </LayoutWrapper>
 </template>
 
 <style lang="scss">

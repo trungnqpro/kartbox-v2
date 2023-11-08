@@ -17,12 +17,12 @@ if (!data) abortNavigation('404')
 </script>
 
 <template>
-  <LayoutPageWrapper>
-    <LayoutPageHeader>
-      <LayoutPageTitle :text="pageTitle" class="capitalize" />
-    </LayoutPageHeader>
-    <LayoutPageSection>
+  <LayoutWrapper>
+    <LayoutHeader>
+      <LayoutTitle :text="pageTitle" class="capitalize" />
+    </LayoutHeader>
+    <LayoutSection>
       <ContentRenderer :value="(data as any)" />
-    </LayoutPageSection>
-  </LayoutPageWrapper>
+    </LayoutSection>
+  </LayoutWrapper>
 </template>
