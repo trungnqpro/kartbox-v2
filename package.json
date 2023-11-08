@@ -31,7 +31,7 @@
         "build": "nuxt build ./app",
         "dev": "nuxt dev",
         "start": "nuxt dev",
-        "generate": "nuxt generate ./app",
+        "generate": "nuxt generate",
         "preview": "nuxt preview ./app",
         "postinstall": "nuxt prepare ./app",
         "dev:starter": "nuxt dev ./examples/starter",
