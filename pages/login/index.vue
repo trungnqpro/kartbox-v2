@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
-import userAvatar from '~/assets/images/defaultUSer.webp'
+import userAvatar from '~/assets/images/defaultUser.webp'
 import { useDisconnect, useSignMessage } from 'use-wagmi'
 import { limitLetter } from '@/utils/index'
 import { useUser } from '~/stores/authUser'
