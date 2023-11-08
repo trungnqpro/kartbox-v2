@@ -28,7 +28,7 @@
         "tsconfig.json"
     ],
     "scripts": {
-        "build": "nuxt build ./app",
+        "build": "nuxt build",
         "dev": "nuxt dev",
         "start": "nuxt dev",
         "generate": "nuxt generate",
